@@ -147,7 +147,7 @@
 }
 
 .interest-tag.active {
-  background-color: #1a365d;
+  background-color: #068D7B;
   color: white;
   border-color: #068D7B;
 }
