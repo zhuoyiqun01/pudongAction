@@ -7,7 +7,7 @@
 
 /* 页面头部 */
 .page-header {
-  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  background: linear-gradient(135deg, #068D7B 0%, #2d3748 100%);
   padding: 64rpx 0 48rpx;
   color: white;
 }
@@ -83,7 +83,7 @@
 
 .form-label.required::after {
   content: ' *';
-  color: #ef4444;
+  color: #ef4444; /* 错误状态色 */
 }
 
 .form-input, .form-textarea {
@@ -98,7 +98,7 @@
 }
 
 .form-input:focus, .form-textarea:focus {
-  border-color: #1a365d;
+  border-color: #068D7B;
   outline: none;
 }
 
@@ -149,7 +149,7 @@
 .interest-tag.active {
   background-color: #1a365d;
   color: white;
-  border-color: #1a365d;
+  border-color: #068D7B;
 }
 
 .interest-tag:hover {
@@ -220,7 +220,7 @@
   top: 12rpx;
   width: 6rpx;
   height: 6rpx;
-  background-color: #fbbf24;
+  background-color: #FFE501;
   border-radius: 50%;
 }
 

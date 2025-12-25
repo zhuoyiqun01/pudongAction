@@ -13,7 +13,7 @@
 
 .hero-primary {
   flex: 3;
-  background-color: #1a365d;
+  background-color: #068D7B;
   padding: 64rpx 32rpx;
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border-left: 20rpx solid #1a365d;
+  border-left: 20rpx solid #068D7B;
   border-top: 20rpx solid transparent;
   border-bottom: 20rpx solid transparent;
 }
@@ -62,7 +62,7 @@
 }
 
 .hero-title-highlight {
-  color: #fbbf24;
+  color: #FFE501;
 }
 
 .hero-description {
@@ -87,8 +87,8 @@
   align-items: center;
   justify-content: center;
   padding: 32rpx 64rpx;
-  background-color: #fbbf24;
-  color: #1a365d;
+  background-color: #FFE501;
+  color: #068D7B;
   font-weight: 700;
   font-size: 32rpx;
   border: none;
@@ -134,7 +134,7 @@
 }
 
 .puzzle-item-1 {
-  background-color: #f59e0b;
+  background-color: #F49B9B;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +147,7 @@
 }
 
 .puzzle-item-2 {
-  background-color: #10b981;
+  background-color: #A4CCFE;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,7 +170,7 @@
 }
 
 .puzzle-text {
-  color: #1a365d;
+  color: #068D7B;
   font-weight: 700;
   font-size: 32rpx;
   text-align: center;
@@ -209,7 +209,7 @@
 .philosophy-title {
   font-size: 72rpx;
   font-weight: 700;
-  color: #1a365d;
+  color: #068D7B;
   text-transform: uppercase;
   letter-spacing: -1rpx;
   margin-bottom: 16rpx;
@@ -218,7 +218,7 @@
 .philosophy-accent {
   width: 80rpx;
   height: 4rpx;
-  background-color: #fbbf24;
+  background-color: #FFE501;
   margin: 0 auto 32rpx;
 }
 
@@ -246,22 +246,22 @@
 }
 
 .value-courage {
-  background-color: #1a365d;
+  background-color: #068D7B;
   color: white;
 }
 
 .value-container {
-  background-color: #f59e0b;
-  color: #1a365d;
+  background-color: #F49B9B;
+  color: #068D7B;
 }
 
 .value-fun {
-  background-color: #10b981;
-  color: #1a365d;
+  background-color: #A4CCFE;
+  color: #068D7B;
 }
 
 .value-accumulation {
-  background-color: #06b6d4;
+  background-color: #FDC57A;
   color: white;
 }
 
@@ -325,14 +325,14 @@
 .mission-accent {
   width: 32rpx;
   height: 8rpx;
-  background-color: #1a365d;
+  background-color: #068D7B;
   margin-bottom: 32rpx;
 }
 
 .mission-title {
   font-size: 48rpx;
   font-weight: 700;
-  color: #1a365d;
+  color: #068D7B;
   line-height: 1.2;
   margin-bottom: 32rpx;
   letter-spacing: -0.5rpx;
@@ -346,7 +346,7 @@
 }
 
 .mission-link {
-  color: #1a365d;
+  color: #068D7B;
   font-weight: 600;
   font-size: 28rpx;
   text-transform: uppercase;
@@ -360,7 +360,7 @@
 .mission-link-line {
   width: 80rpx;
   height: 1rpx;
-  background-color: #1a365d;
+  background-color: #068D7B;
   transition: width 0.3s ease;
 }
 

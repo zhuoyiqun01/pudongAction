@@ -20,6 +20,17 @@ page {
 .bg-brand-accent3 { background-color: #FDC57A; }
 .bg-brand-gray { background-color: #64748b; }
 
+/* 状态颜色变量 */
+.text-success { color: #10b981; }
+.text-error { color: #ef4444; }
+.text-warning { color: #f59e0b; }
+.text-info { color: #3b82f6; }
+
+.bg-success { background-color: #d1fae5; }
+.bg-error { background-color: #fef2f2; }
+.bg-warning { background-color: #fef3c7; }
+.bg-info { background-color: #dbeafe; }
+
 /* 文字样式 */
 .text-xs { font-size: 24rpx; }
 .text-sm { font-size: 28rpx; }
@@ -151,21 +162,21 @@ page {
 }
 
 .btn-primary {
-  background-color: #1a365d;
+  background-color: #068D7B;
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #152c4a;
+  background-color: #056b63;
 }
 
 .btn-secondary {
-  background-color: #fbbf24;
-  color: #1a365d;
+  background-color: #FFE501;
+  color: #068D7B;
 }
 
 .btn-secondary:hover {
-  background-color: #f59e0b;
+  background-color: #F49B9B;
 }
 
 /* 卡片样式 */
