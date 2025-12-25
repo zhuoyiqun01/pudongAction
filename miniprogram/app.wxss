@@ -6,18 +6,18 @@ page {
 }
 
 /* 品牌颜色变量 */
-.brand-primary { color: #1a365d; }
-.brand-secondary { color: #fbbf24; }
-.brand-accent1 { color: #f59e0b; }
-.brand-accent2 { color: #10b981; }
-.brand-accent3 { color: #06b6d4; }
+.brand-primary { color: #068D7B; }
+.brand-secondary { color: #FFE501; }
+.brand-accent1 { color: #F49B9B; }
+.brand-accent2 { color: #A4CCFE; }
+.brand-accent3 { color: #FDC57A; }
 .brand-gray { color: #64748b; }
 
-.bg-brand-primary { background-color: #1a365d; }
-.bg-brand-secondary { background-color: #fbbf24; }
-.bg-brand-accent1 { background-color: #f59e0b; }
-.bg-brand-accent2 { background-color: #10b981; }
-.bg-brand-accent3 { background-color: #06b6d4; }
+.bg-brand-primary { background-color: #068D7B; }
+.bg-brand-secondary { background-color: #FFE501; }
+.bg-brand-accent1 { background-color: #F49B9B; }
+.bg-brand-accent2 { background-color: #A4CCFE; }
+.bg-brand-accent3 { background-color: #FDC57A; }
 .bg-brand-gray { background-color: #64748b; }
 
 /* 文字样式 */

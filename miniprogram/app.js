@@ -50,11 +50,11 @@ App({
 
     // 品牌颜色配置
     brandColors: {
-      primary: '#1a365d',      // 深蓝色
-      secondary: '#fbbf24',    // 金黄色
-      accent1: '#f59e0b',      // 橙黄色
-      accent2: '#10b981',      // 绿色
-      accent3: '#06b6d4',      // 青色
+      primary: '#068D7B',      // 主色 - 翠绿色
+      secondary: '#FFE501',    // 辅助色 - 亮黄
+      accent1: '#F49B9B',      // 强调色1 - 粉红
+      accent2: '#A4CCFE',      // 强调色2 - 淡蓝
+      accent3: '#FDC57A',      // 强调色3 - 橙黄
       gray: '#64748b'          // 灰色
     }
   },
