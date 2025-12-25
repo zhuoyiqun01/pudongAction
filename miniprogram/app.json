@@ -3,7 +3,8 @@
     "pages/home/index",
     "pages/activists/index",
     "pages/leaders/index",
-    "pages/join/index"
+    "pages/join/index",
+    "pages/learning/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,38 +14,6 @@
     "backgroundColor": "#f8fafc",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
-  },
-  "tabBar": {
-    "color": "#64748b",
-    "selectedColor": "#1a365d",
-    "backgroundColor": "#ffffff",
-    "borderStyle": "black",
-    "list": [
-      {
-        "pagePath": "pages/home/index",
-        "text": "首页",
-        "iconPath": "images/tabbar/home.png",
-        "selectedIconPath": "images/tabbar/home-active.png"
-      },
-      {
-        "pagePath": "pages/activists/index",
-        "text": "活动家",
-        "iconPath": "images/tabbar/activists.png",
-        "selectedIconPath": "images/tabbar/activists-active.png"
-      },
-      {
-        "pagePath": "pages/leaders/index",
-        "text": "带领人",
-        "iconPath": "images/tabbar/leaders.png",
-        "selectedIconPath": "images/tabbar/leaders-active.png"
-      },
-      {
-        "pagePath": "pages/join/index",
-        "text": "加入我们",
-        "iconPath": "images/tabbar/join.png",
-        "selectedIconPath": "images/tabbar/join-active.png"
-      }
-    ]
   },
   "lazyCodeLoading": "requiredComponents"
 }

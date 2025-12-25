@@ -1,0 +1,27 @@
+/* 学习页面样式 */
+.coming-soon-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  text-align: center;
+}
+
+.container {
+  padding: 64rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 24rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #64748b;
+}
