@@ -37,30 +37,75 @@ Page({
 
       const { selectedStreet, searchQuery, page, limit } = this.data
 
-      // 调用云函数获取数据
-      const result = await wx.cloud.callFunction({
-        name: 'getLeaders',
-        data: {
-          page: isLoadMore ? page : 1,
-          limit,
-          street: selectedStreet || undefined,
-          search: searchQuery || undefined
+      // 调用云函数获取数据 - 暂时注释，审核期间不启用云服务
+      // const result = await wx.cloud.callFunction({
+      //   name: 'getLeaders',
+      //   data: {
+      //     page: isLoadMore ? page : 1,
+      //     limit,
+      //     street: selectedStreet || undefined,
+      //     search: searchQuery || undefined
+      //   }
+      // })
+
+      // if (result.result.success) {
+      //   const { items, hasNext } = result.result.data
+
+      //   this.setData({
+      //     leaders: isLoadMore ? [...this.data.leaders, ...items] : items,
+      //     hasMore: hasNext,
+      //     page: isLoadMore ? page + 1 : 2,
+      //     loading: false,
+      //     loadingMore: false
+      //   })
+      // } else {
+      //   throw new Error(result.result.message)
+      // }
+
+      // 暂时使用模拟数据
+      const mockData = [
+        {
+          _id: 'l1',
+          name: '倪小倩',
+          street: '长征镇',
+          community: '象源丽都社区',
+          role: '社区书记',
+          slogan: '每一个小小的改变，都是社区幸福的起点。',
+          contact: '021-12345678',
+          photo: 'https://picsum.photos/seed/leader1/400/400'
+        },
+        {
+          _id: 'l2',
+          name: '陈骏',
+          street: '曹杨新村街道',
+          community: '社区骨干',
+          role: '街道专员',
+          slogan: '邻里之间，小事里见真情，行动中显担当。',
+          contact: '021-22334455',
+          photo: 'https://picsum.photos/seed/leader2/400/400'
+        },
+        {
+          _id: 'l3',
+          name: '李嘉',
+          street: '长寿路街道',
+          community: '共建单位负责人',
+          role: '社区规划师',
+          slogan: '让社区的角落都有光，让居民的愿望都有响。',
+          contact: '021-33445566',
+          photo: 'https://picsum.photos/seed/leader3/400/400'
         }
-      })
+      ]
 
-      if (result.result.success) {
-        const { items, hasNext } = result.result.data
-
+      // 模拟异步延迟
+      setTimeout(() => {
         this.setData({
-          leaders: isLoadMore ? [...this.data.leaders, ...items] : items,
-          hasMore: hasNext,
+          leaders: isLoadMore ? [...this.data.leaders, ...mockData] : mockData,
+          hasMore: !isLoadMore, // 第一次加载后不再加载更多
           page: isLoadMore ? page + 1 : 2,
           loading: false,
           loadingMore: false
         })
-      } else {
-        throw new Error(result.result.message)
-      }
+      }, 1000)
 
     } catch (error) {
       console.error('加载领导者数据失败:', error)

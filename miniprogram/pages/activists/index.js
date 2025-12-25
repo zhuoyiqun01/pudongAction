@@ -37,30 +37,72 @@ Page({
 
       const { selectedStreet, searchQuery, page, limit } = this.data
 
-      // 调用云函数获取数据
-      const result = await wx.cloud.callFunction({
-        name: 'getActivists',
-        data: {
-          page: isLoadMore ? page : 1,
-          limit,
-          street: selectedStreet || undefined,
-          search: searchQuery || undefined
+      // 调用云函数获取数据 - 暂时注释，审核期间不启用云服务
+      // const result = await wx.cloud.callFunction({
+      //   name: 'getActivists',
+      //   data: {
+      //     page: isLoadMore ? page : 1,
+      //     limit,
+      //     street: selectedStreet || undefined,
+      //     search: searchQuery || undefined
+      //   }
+      // })
+
+      // if (result.result.success) {
+      //   const { items, hasNext } = result.result.data
+
+      //   this.setData({
+      //     activists: isLoadMore ? [...this.data.activists, ...items] : items,
+      //     hasMore: hasNext,
+      //     page: isLoadMore ? page + 1 : 2,
+      //     loading: false,
+      //     loadingMore: false
+      //   })
+      // } else {
+      //   throw new Error(result.result.message)
+      // }
+
+      // 暂时使用模拟数据
+      const mockData = [
+        {
+          _id: '1',
+          name: '张建国',
+          role: '垃圾分类先行者',
+          tag: '环保卫士',
+          photo: 'https://picsum.photos/seed/a1/800/1000',
+          bio: '在社区坚持推广垃圾分类3年，带动了超过200户家庭加入。他相信每一份微小的坚持都能改变环境。',
+          street: '长寿路街道'
+        },
+        {
+          _id: '2',
+          name: '李梅',
+          role: '社区花园维护人',
+          tag: '绿意使者',
+          photo: 'https://picsum.photos/seed/a2/800/1000',
+          bio: '将废弃空地改造为微型花园，为邻里提供休闲好去处。她认为自然的绿色是社区最温暖的底色。',
+          street: '长寿路街道'
+        },
+        {
+          _id: '3',
+          name: '王小明',
+          role: '爱心助学志愿者',
+          tag: '教育辅助',
+          photo: 'https://picsum.photos/seed/a3/800/1000',
+          bio: '利用周末时间为社区外来务工子弟辅导功课。用知识点亮孩子们的未来。',
+          street: '曹杨新村街道'
         }
-      })
+      ]
 
-      if (result.result.success) {
-        const { items, hasNext } = result.result.data
-
+      // 模拟异步延迟
+      setTimeout(() => {
         this.setData({
-          activists: isLoadMore ? [...this.data.activists, ...items] : items,
-          hasMore: hasNext,
+          activists: isLoadMore ? [...this.data.activists, ...mockData] : mockData,
+          hasMore: !isLoadMore, // 第一次加载后不再加载更多
           page: isLoadMore ? page + 1 : 2,
           loading: false,
           loadingMore: false
         })
-      } else {
-        throw new Error(result.result.message)
-      }
+      }, 1000)
 
     } catch (error) {
       console.error('加载活动家数据失败:', error)

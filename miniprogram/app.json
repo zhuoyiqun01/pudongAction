@@ -3,14 +3,7 @@
     "pages/home/index",
     "pages/activists/index",
     "pages/leaders/index",
-    "pages/join/index",
-    "pages/learning/index",
-    "pages/spaces/index",
-    "pages/admin/dashboard/index",
-    "pages/admin/activists/index",
-    "pages/admin/leaders/index",
-    "pages/admin/content/index",
-    "pages/admin/settings/index"
+    "pages/join/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -53,14 +46,5 @@
       }
     ]
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于显示附近的社区活动"
-    }
-  },
-  "requiredPrivateInfos": [
-    "getLocation"
-  ],
-  "lazyCodeLoading": "requiredComponents",
-  "cloud": true
+  "lazyCodeLoading": "requiredComponents"
 }

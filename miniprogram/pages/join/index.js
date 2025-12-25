@@ -136,13 +136,14 @@ Page({
     this.setData({ submitting: true })
 
     try {
-      // 调用云函数提交申请
-      const result = await wx.cloud.callFunction({
-        name: 'joinCommunity',
-        data: this.data.formData
-      })
+      // 调用云函数提交申请 - 暂时注释，审核期间不启用云服务
+      // const result = await wx.cloud.callFunction({
+      //   name: 'joinCommunity',
+      //   data: this.data.formData
+      // })
 
-      if (result.result.success) {
+      // if (result.result.success) {
+      // 模拟提交成功
         wx.showToast({
           title: '申请提交成功',
           icon: 'success',
