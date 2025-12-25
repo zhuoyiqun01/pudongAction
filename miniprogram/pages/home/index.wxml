@@ -16,7 +16,7 @@
         </view>
         <button class="btn btn-secondary hero-cta" bindtap="onJoinTap">
           立即加入
-          <image src="/images/icons/arrow-right.png" class="hero-arrow" />
+          <text class="hero-arrow">→</text>
         </button>
       </view>
     </view>
