@@ -25,7 +25,7 @@ Page({
   // 事件处理函数
   onJoinTap: function () {
     // 跳转到加入页面
-    wx.switchTab({
+    wx.navigateTo({
       url: '/pages/join/index'
     })
   },
