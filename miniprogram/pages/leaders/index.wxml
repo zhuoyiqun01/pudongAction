@@ -1,0 +1,117 @@
+<view class="leaders-page">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="container">
+      <text class="page-title">社区带领人</text>
+      <text class="page-subtitle">他们是社区的引路人，用智慧和热情引领大家前行</text>
+    </view>
+  </view>
+
+  <!-- 筛选区域 -->
+  <view class="filters-section">
+    <view class="container">
+      <view class="filters-content">
+        <!-- 街道筛选 -->
+        <view class="filter-group">
+          <text class="filter-label">街道筛选：</text>
+          <view class="filter-options">
+            <view
+              class="filter-option {{ selectedStreet === '' ? 'active' : '' }}"
+              bindtap="onStreetFilter"
+              data-street=""
+            >
+              全部
+            </view>
+            <view
+              wx:for="{{ streets }}"
+              wx:key="street"
+              class="filter-option {{ selectedStreet === item ? 'active' : '' }}"
+              bindtap="onStreetFilter"
+              data-street="{{ item }}"
+            >
+              {{ item }}
+            </view>
+          </view>
+        </view>
+
+        <!-- 搜索框 -->
+        <view class="search-group">
+          <input
+            class="search-input"
+            placeholder="搜索带领人姓名..."
+            value="{{ searchQuery }}"
+            bindinput="onSearchInput"
+            bindconfirm="onSearchConfirm"
+          />
+          <button class="search-btn" bindtap="onSearchConfirm">搜索</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 带领人列表 -->
+  <view class="leaders-section">
+    <view class="container">
+      <!-- 加载状态 -->
+      <view wx:if="{{ loading }}" class="loading">
+        <text>加载中...</text>
+      </view>
+
+      <!-- 空状态 -->
+      <view wx:elif="{{ leaders.length === 0 }}" class="empty-state">
+        <text class="empty-text">暂无带领人数据</text>
+      </view>
+
+      <!-- 带领人列表 -->
+      <view wx:else class="leaders-list">
+        <view
+          wx:for="{{ leaders }}"
+          wx:key="id"
+          class="leader-card"
+          bindtap="onLeaderTap"
+          data-id="{{ item._id }}"
+        >
+          <!-- 左侧头像区域 -->
+          <view class="leader-avatar">
+            <image
+              src="{{ item.photo }}"
+              class="avatar-image"
+              mode="aspectFill"
+              binderror="onImageError"
+            />
+          </view>
+
+          <!-- 右侧信息区域 -->
+          <view class="leader-info">
+            <view class="leader-header">
+              <text class="leader-name">{{ item.name }}</text>
+              <text class="leader-role">{{ item.role }}</text>
+            </view>
+
+            <view class="leader-details">
+              <text class="leader-community">{{ item.community }}</text>
+              <text class="leader-street">{{ item.street }}</text>
+            </view>
+
+            <text class="leader-slogan">{{ item.slogan }}</text>
+
+            <view class="leader-contact">
+              <text class="contact-label">联系方式：</text>
+              <text class="contact-value">{{ item.contact }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载更多 -->
+      <view wx:if="{{ hasMore && !loading }}" class="load-more">
+        <button class="btn btn-primary" bindtap="onLoadMore">加载更多</button>
+      </view>
+
+      <!-- 没有更多数据 -->
+      <view wx:if="{{ !hasMore && leaders.length > 0 }}" class="no-more">
+        <text>没有更多数据了</text>
+      </view>
+    </view>
+  </view>
+</view>

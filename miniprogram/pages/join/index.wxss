@@ -1,0 +1,249 @@
+/* 加入页面样式 */
+.join-page {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  padding-bottom: 64rpx;
+}
+
+/* 页面头部 */
+.page-header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  padding: 64rpx 0 48rpx;
+  color: white;
+}
+
+.page-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  margin-bottom: 16rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.page-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+  display: block;
+  text-align: center;
+  max-width: 600rpx;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+/* 加入区域 */
+.join-section {
+  padding: 32rpx 0;
+}
+
+/* 表单卡片 */
+.join-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+
+.card-header {
+  padding: 32rpx 32rpx 24rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.card-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.card-subtitle {
+  font-size: 26rpx;
+  color: #6b7280;
+  display: block;
+}
+
+/* 表单 */
+.join-form {
+  padding: 32rpx;
+}
+
+.form-group {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #374151;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.form-label.required::after {
+  content: ' *';
+  color: #ef4444;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 20rpx 24rpx;
+  border: 1rpx solid #d1d5db;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #1a365d;
+  outline: none;
+}
+
+.form-textarea {
+  min-height: 120rpx;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.textarea-count {
+  font-size: 24rpx;
+  color: #9ca3af;
+  text-align: right;
+  margin-top: 8rpx;
+  display: block;
+}
+
+/* Picker样式 */
+.picker-display {
+  width: 100%;
+  padding: 20rpx 24rpx;
+  border: 1rpx solid #d1d5db;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #ffffff;
+  color: #374151;
+  cursor: pointer;
+}
+
+/* 兴趣标签 */
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.interest-tag {
+  padding: 12rpx 20rpx;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1rpx solid transparent;
+}
+
+.interest-tag.active {
+  background-color: #1a365d;
+  color: white;
+  border-color: #1a365d;
+}
+
+.interest-tag:hover {
+  background-color: #e5e7eb;
+}
+
+.interest-tag.active:hover {
+  background-color: #152c4a;
+}
+
+/* 表单操作 */
+.form-actions {
+  margin-top: 48rpx;
+  text-align: center;
+}
+
+.submit-btn {
+  min-width: 200rpx;
+  padding: 24rpx 48rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.submit-btn[disabled] {
+  background-color: #9ca3af;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+/* 信息说明 */
+.info-section {
+  margin-top: 48rpx;
+}
+
+.info-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+}
+
+.info-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.info-item {
+  font-size: 26rpx;
+  color: #4b5563;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 32rpx;
+}
+
+.info-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  width: 6rpx;
+  height: 6rpx;
+  background-color: #fbbf24;
+  border-radius: 50%;
+}
+
+/* 响应式设计 */
+@media (max-width: 750rpx) {
+  .join-form {
+    padding: 24rpx;
+  }
+
+  .card-header {
+    padding: 24rpx 24rpx 16rpx;
+  }
+
+  .form-group {
+    margin-bottom: 24rpx;
+  }
+
+  .interest-tags {
+    gap: 12rpx;
+  }
+
+  .interest-tag {
+    padding: 10rpx 16rpx;
+    font-size: 24rpx;
+  }
+}

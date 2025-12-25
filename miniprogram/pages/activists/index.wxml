@@ -1,0 +1,106 @@
+<view class="activists-page">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="container">
+      <text class="page-title">社区活动家</text>
+      <text class="page-subtitle">他们用行动温暖着社区的每一个角落</text>
+    </view>
+  </view>
+
+  <!-- 筛选和搜索 -->
+  <view class="filters-section">
+    <view class="container">
+      <view class="filters-content">
+        <!-- 街道筛选 -->
+        <view class="filter-group">
+          <text class="filter-label">街道筛选：</text>
+          <view class="filter-options">
+            <view
+              class="filter-option {{ selectedStreet === '' ? 'active' : '' }}"
+              bindtap="onStreetFilter"
+              data-street=""
+            >
+              全部
+            </view>
+            <view
+              wx:for="{{ streets }}"
+              wx:key="street"
+              class="filter-option {{ selectedStreet === item ? 'active' : '' }}"
+              bindtap="onStreetFilter"
+              data-street="{{ item }}"
+            >
+              {{ item }}
+            </view>
+          </view>
+        </view>
+
+        <!-- 搜索框 -->
+        <view class="search-group">
+          <input
+            class="search-input"
+            placeholder="搜索活动家姓名..."
+            value="{{ searchQuery }}"
+            bindinput="onSearchInput"
+            bindconfirm="onSearchConfirm"
+          />
+          <button class="search-btn" bindtap="onSearchConfirm">搜索</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 活动家列表 -->
+  <view class="activists-section">
+    <view class="container">
+      <!-- 加载状态 -->
+      <view wx:if="{{ loading }}" class="loading">
+        <text>加载中...</text>
+      </view>
+
+      <!-- 空状态 -->
+      <view wx:elif="{{ activists.length === 0 }}" class="empty-state">
+        <text class="empty-text">暂无活动家数据</text>
+      </view>
+
+      <!-- 活动家网格 -->
+      <view wx:else class="activists-grid">
+        <view
+          wx:for="{{ activists }}"
+          wx:key="id"
+          class="activist-card"
+          bindtap="onActivistTap"
+          data-id="{{ item._id }}"
+        >
+          <!-- 头像 -->
+          <view class="activist-avatar">
+            <image
+              src="{{ item.photo }}"
+              class="avatar-image"
+              mode="aspectFill"
+              binderror="onImageError"
+            />
+            <view class="activist-tag">{{ item.tag }}</view>
+          </view>
+
+          <!-- 信息 -->
+          <view class="activist-info">
+            <text class="activist-name">{{ item.name }}</text>
+            <text class="activist-role">{{ item.role }}</text>
+            <text class="activist-street">{{ item.street }}</text>
+            <text class="activist-bio">{{ item.bio }}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 加载更多 -->
+      <view wx:if="{{ hasMore && !loading }}" class="load-more">
+        <button class="btn btn-primary" bindtap="onLoadMore">加载更多</button>
+      </view>
+
+      <!-- 没有更多数据 -->
+      <view wx:if="{{ !hasMore && activists.length > 0 }}" class="no-more">
+        <text>没有更多数据了</text>
+      </view>
+    </view>
+  </view>
+</view>

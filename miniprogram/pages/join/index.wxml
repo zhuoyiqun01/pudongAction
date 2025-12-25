@@ -1,0 +1,118 @@
+<view class="join-page">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="container">
+      <text class="page-title">加入我们</text>
+      <text class="page-subtitle">期待你在家门口的五十米，创造更美好的社区生活</text>
+    </view>
+  </view>
+
+  <!-- 加入表单 -->
+  <view class="join-section">
+    <view class="container">
+      <view class="join-card">
+        <view class="card-header">
+          <text class="card-title">申请加入社区小事</text>
+          <text class="card-subtitle">填写以下信息，我们会尽快审核您的申请</text>
+        </view>
+
+        <view class="join-form">
+          <!-- 姓名 -->
+          <view class="form-group">
+            <text class="form-label required">姓名</text>
+            <input
+              class="form-input"
+              placeholder="请输入您的姓名"
+              value="{{ formData.name }}"
+              bindinput="onInputChange"
+              data-field="name"
+            />
+          </view>
+
+          <!-- 手机号 -->
+          <view class="form-group">
+            <text class="form-label required">手机号</text>
+            <input
+              class="form-input"
+              placeholder="请输入您的手机号"
+              type="number"
+              value="{{ formData.phone }}"
+              bindinput="onInputChange"
+              data-field="phone"
+            />
+          </view>
+
+          <!-- 所属街道 -->
+          <view class="form-group">
+            <text class="form-label required">所属街道</text>
+            <picker
+              class="form-input"
+              mode="selector"
+              range="{{ streets }}"
+              value="{{ streetIndex }}"
+              bindchange="onStreetChange"
+            >
+              <view class="picker-display">
+                {{ streets[streetIndex] || '请选择所属街道' }}
+              </view>
+            </picker>
+          </view>
+
+          <!-- 个人简介 -->
+          <view class="form-group">
+            <text class="form-label">个人简介</text>
+            <textarea
+              class="form-textarea"
+              placeholder="请简单介绍一下自己，比如您的兴趣爱好、希望参与的社区活动等..."
+              value="{{ formData.bio }}"
+              bindinput="onInputChange"
+              data-field="bio"
+              maxlength="200"
+            />
+            <text class="textarea-count">{{ formData.bio.length }}/200</text>
+          </view>
+
+          <!-- 兴趣标签 -->
+          <view class="form-group">
+            <text class="form-label">感兴趣的活动类型</text>
+            <view class="interest-tags">
+              <view
+                wx:for="{{ interestOptions }}"
+                wx:key="value"
+                class="interest-tag {{ formData.interests.includes(item.value) ? 'active' : '' }}"
+                bindtap="onInterestToggle"
+                data-value="{{ item.value }}"
+              >
+                {{ item.label }}
+              </view>
+            </view>
+          </view>
+
+          <!-- 提交按钮 -->
+          <view class="form-actions">
+            <button
+              class="btn btn-primary submit-btn"
+              bindtap="onSubmit"
+              disabled="{{ submitting }}"
+            >
+              {{ submitting ? '提交中...' : '提交申请' }}
+            </button>
+          </view>
+        </view>
+      </view>
+
+      <!-- 信息说明 -->
+      <view class="info-section">
+        <view class="info-card">
+          <text class="info-title">申请须知</text>
+          <view class="info-list">
+            <view class="info-item">• 我们会在3个工作日内审核您的申请</view>
+            <view class="info-item">• 审核通过后，我们会通过电话或微信联系您</view>
+            <view class="info-item">• 加入后，您将有机会参与各类社区活动</view>
+            <view class="info-item">• 所有信息仅用于社区活动组织，不会泄露给第三方</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,246 @@
+/* 活动家页面样式 */
+.activists-page {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* 页面头部 */
+.page-header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  padding: 64rpx 0 48rpx;
+  color: white;
+}
+
+.page-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  margin-bottom: 16rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.page-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+  display: block;
+  text-align: center;
+}
+
+/* 筛选区域 */
+.filters-section {
+  background-color: #ffffff;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.filters-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.filter-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #374151;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.filter-option {
+  padding: 12rpx 24rpx;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-option.active {
+  background-color: #1a365d;
+  color: white;
+}
+
+.filter-option:hover {
+  background-color: #e5e7eb;
+}
+
+.filter-option.active:hover {
+  background-color: #152c4a;
+}
+
+/* 搜索区域 */
+.search-group {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 16rpx 24rpx;
+  border: 1rpx solid #d1d5db;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #ffffff;
+}
+
+.search-btn {
+  padding: 16rpx 32rpx;
+  background-color: #fbbf24;
+  color: #1a365d;
+  font-size: 28rpx;
+  font-weight: 600;
+  border: none;
+  border-radius: 8rpx;
+  cursor: pointer;
+}
+
+/* 活动家区域 */
+.activists-section {
+  padding: 32rpx 0 64rpx;
+}
+
+.loading, .empty-state {
+  text-align: center;
+  padding: 96rpx 0;
+  color: #6b7280;
+  font-size: 28rpx;
+}
+
+.empty-text {
+  color: #9ca3af;
+  font-size: 32rpx;
+}
+
+/* 活动家网格 */
+.activists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300rpx, 1fr));
+  gap: 32rpx;
+}
+
+/* 活动家卡片 */
+.activist-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.activist-card:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 头像区域 */
+.activist-avatar {
+  position: relative;
+  height: 200rpx;
+  overflow: hidden;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activist-tag {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  background-color: rgba(251, 191, 36, 0.9);
+  color: #1a365d;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+/* 信息区域 */
+.activist-info {
+  padding: 24rpx;
+}
+
+.activist-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.activist-role {
+  font-size: 26rpx;
+  color: #059669;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.activist-street {
+  font-size: 24rpx;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 16rpx;
+  padding: 6rpx 12rpx;
+  background-color: #f3f4f6;
+  border-radius: 8rpx;
+  display: inline-block;
+}
+
+.activist-bio {
+  font-size: 26rpx;
+  color: #4b5563;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 加载更多 */
+.load-more, .no-more {
+  text-align: center;
+  margin-top: 48rpx;
+}
+
+.no-more text {
+  color: #9ca3af;
+  font-size: 26rpx;
+}
+
+/* 响应式设计 */
+@media (max-width: 750rpx) {
+  .activists-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-content {
+    gap: 24rpx;
+  }
+
+  .filter-options {
+    gap: 12rpx;
+  }
+
+  .filter-option {
+    padding: 10rpx 20rpx;
+    font-size: 24rpx;
+  }
+}

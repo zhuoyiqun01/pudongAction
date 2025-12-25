@@ -1,0 +1,291 @@
+/* 领导者页面样式 */
+.leaders-page {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* 页面头部 */
+.page-header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  padding: 64rpx 0 48rpx;
+  color: white;
+}
+
+.page-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  margin-bottom: 16rpx;
+  letter-spacing: -0.5rpx;
+}
+
+.page-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+  display: block;
+  text-align: center;
+}
+
+/* 筛选区域 */
+.filters-section {
+  background-color: #ffffff;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.filters-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.filter-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #374151;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.filter-option {
+  padding: 12rpx 24rpx;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 26rpx;
+  border-radius: 20rpx;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-option.active {
+  background-color: #1a365d;
+  color: white;
+}
+
+.filter-option:hover {
+  background-color: #e5e7eb;
+}
+
+.filter-option.active:hover {
+  background-color: #152c4a;
+}
+
+/* 搜索区域 */
+.search-group {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 16rpx 24rpx;
+  border: 1rpx solid #d1d5db;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #ffffff;
+}
+
+.search-btn {
+  padding: 16rpx 32rpx;
+  background-color: #fbbf24;
+  color: #1a365d;
+  font-size: 28rpx;
+  font-weight: 600;
+  border: none;
+  border-radius: 8rpx;
+  cursor: pointer;
+}
+
+/* 领导者区域 */
+.leaders-section {
+  padding: 32rpx 0 64rpx;
+}
+
+.loading, .empty-state {
+  text-align: center;
+  padding: 96rpx 0;
+  color: #6b7280;
+  font-size: 28rpx;
+}
+
+.empty-text {
+  color: #9ca3af;
+  font-size: 32rpx;
+}
+
+/* 领导者列表 */
+.leaders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 领导者卡片 */
+.leader-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  padding: 24rpx;
+}
+
+.leader-card:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+/* 头像区域 */
+.leader-avatar {
+  flex-shrink: 0;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-right: 24rpx;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 信息区域 */
+.leader-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.leader-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.leader-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.leader-role {
+  font-size: 24rpx;
+  color: #059669;
+  background-color: #ecfdf5;
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+  font-weight: 600;
+}
+
+.leader-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.leader-community, .leader-street {
+  font-size: 26rpx;
+  color: #6b7280;
+  padding: 6rpx 12rpx;
+  background-color: #f3f4f6;
+  border-radius: 8rpx;
+  display: inline-block;
+  width: fit-content;
+}
+
+.leader-slogan {
+  font-size: 28rpx;
+  color: #4b5563;
+  line-height: 1.5;
+  font-style: italic;
+  padding: 16rpx;
+  background-color: #fef3c7;
+  border-radius: 8rpx;
+  border-left: 4rpx solid #fbbf24;
+}
+
+.leader-contact {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+.contact-label {
+  font-size: 26rpx;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.contact-value {
+  font-size: 26rpx;
+  color: #1a365d;
+  font-weight: 600;
+  background-color: #eff6ff;
+  padding: 6rpx 12rpx;
+  border-radius: 6rpx;
+}
+
+/* 加载更多 */
+.load-more, .no-more {
+  text-align: center;
+  margin-top: 48rpx;
+}
+
+.no-more text {
+  color: #9ca3af;
+  font-size: 26rpx;
+}
+
+/* 响应式设计 */
+@media (max-width: 750rpx) {
+  .leader-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .leader-avatar {
+    margin-right: 0;
+    margin-bottom: 16rpx;
+  }
+
+  .leader-header {
+    flex-direction: column;
+    gap: 8rpx;
+  }
+
+  .leader-details {
+    align-items: center;
+  }
+
+  .filters-content {
+    gap: 24rpx;
+  }
+
+  .filter-options {
+    gap: 12rpx;
+  }
+
+  .filter-option {
+    padding: 10rpx 20rpx;
+    font-size: 24rpx;
+  }
+}

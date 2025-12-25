@@ -1,0 +1,147 @@
+// pages/activists/index.js
+Page({
+  data: {
+    // 页面数据
+    activists: [],
+    loading: true,
+    selectedStreet: '',
+    searchQuery: '',
+    streets: ['长寿路街道', '曹杨新村街道', '长风新村街道', '甘泉路街道', '万里街道'],
+
+    // 分页相关
+    page: 1,
+    limit: 10,
+    hasMore: true,
+    loadingMore: false
+  },
+
+  onLoad: function (options) {
+    // 页面加载时的初始化
+    this.loadActivists()
+  },
+
+  onShow: function () {
+    // 页面显示时
+  },
+
+  // 加载活动家数据
+  async loadActivists(isLoadMore = false) {
+    if (this.data.loadingMore) return
+
+    try {
+      if (isLoadMore) {
+        this.setData({ loadingMore: true })
+      } else {
+        this.setData({ loading: true, page: 1, hasMore: true })
+      }
+
+      const { selectedStreet, searchQuery, page, limit } = this.data
+
+      // 调用云函数获取数据
+      const result = await wx.cloud.callFunction({
+        name: 'getActivists',
+        data: {
+          page: isLoadMore ? page : 1,
+          limit,
+          street: selectedStreet || undefined,
+          search: searchQuery || undefined
+        }
+      })
+
+      if (result.result.success) {
+        const { items, hasNext } = result.result.data
+
+        this.setData({
+          activists: isLoadMore ? [...this.data.activists, ...items] : items,
+          hasMore: hasNext,
+          page: isLoadMore ? page + 1 : 2,
+          loading: false,
+          loadingMore: false
+        })
+      } else {
+        throw new Error(result.result.message)
+      }
+
+    } catch (error) {
+      console.error('加载活动家数据失败:', error)
+      wx.showToast({
+        title: '加载失败',
+        icon: 'error'
+      })
+
+      this.setData({
+        loading: false,
+        loadingMore: false
+      })
+    }
+  },
+
+  // 街道筛选
+  onStreetFilter: function (e) {
+    const street = e.currentTarget.dataset.street
+    this.setData({
+      selectedStreet: street,
+      page: 1,
+      hasMore: true
+    })
+    this.loadActivists()
+  },
+
+  // 搜索输入
+  onSearchInput: function (e) {
+    this.setData({
+      searchQuery: e.detail.value
+    })
+  },
+
+  // 搜索确认
+  onSearchConfirm: function () {
+    this.setData({
+      page: 1,
+      hasMore: true
+    })
+    this.loadActivists()
+  },
+
+  // 加载更多
+  onLoadMore: function () {
+    if (this.data.hasMore && !this.data.loadingMore) {
+      this.loadActivists(true)
+    }
+  },
+
+  // 活动家卡片点击
+  onActivistTap: function (e) {
+    const id = e.currentTarget.dataset.id
+    // 跳转到活动家详情页（如果有的话）
+    wx.showToast({
+      title: '功能开发中',
+      icon: 'none'
+    })
+  },
+
+  // 图片加载错误处理
+  onImageError: function (e) {
+    console.log('图片加载失败:', e)
+    // 可以设置默认头像
+  },
+
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    this.setData({
+      page: 1,
+      hasMore: true
+    })
+    this.loadActivists().then(() => {
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  // 分享功能
+  onShareAppMessage: function () {
+    return {
+      title: '社区活动家 - 他们用行动温暖社区',
+      path: '/pages/activists/index'
+    }
+  }
+})

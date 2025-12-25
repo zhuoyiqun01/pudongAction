@@ -1,0 +1,33 @@
+{
+  "name": "community-small-actions-wechat",
+  "version": "1.0.0",
+  "description": "普陀区社区小事微信小程序 - 在家门口的五十米，做一件小事",
+  "main": "miniprogram/app.js",
+  "scripts": {
+    "dev": "echo '请使用微信开发者工具打开项目进行开发'",
+    "build": "echo '小程序无需构建，使用微信开发者工具直接上传'",
+    "deploy": "echo '在微信开发者工具中部署云函数'"
+  },
+  "keywords": [
+    "微信小程序",
+    "社区",
+    "普陀区",
+    "云开发",
+    "社区小事"
+  ],
+  "author": "社区小事团队",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/community-small-actions-wechat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/community-small-actions-wechat/issues"
+  },
+  "homepage": "https://github.com/your-username/community-small-actions-wechat#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
