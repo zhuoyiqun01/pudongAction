@@ -46,7 +46,6 @@
           <view class="form-group">
             <text class="form-label required">所属街道</text>
             <picker
-              class="form-input"
               mode="selector"
               range="{{ streets }}"
               value="{{ streetIndex }}"

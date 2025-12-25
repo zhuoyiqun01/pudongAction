@@ -6,7 +6,7 @@
 
 /* 页面头部 */
 .page-header {
-  background: linear-gradient(135deg, #068D7B 0%, #2d3748 100%);
+  background-color: #068D7B;
   padding: 64rpx 0 48rpx;
   color: white;
 }

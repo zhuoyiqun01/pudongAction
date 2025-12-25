@@ -7,7 +7,7 @@
 
 /* 页面头部 */
 .page-header {
-  background: linear-gradient(135deg, #068D7B 0%, #2d3748 100%);
+  background-color: #068D7B;
   padding: 64rpx 0 48rpx;
   color: white;
 }
@@ -88,6 +88,7 @@
 
 .form-input, .form-textarea {
   width: 100%;
+  height: 88rpx;
   padding: 20rpx 24rpx;
   border: 1rpx solid #d1d5db;
   border-radius: 8rpx;
@@ -95,6 +96,7 @@
   background-color: #ffffff;
   transition: border-color 0.3s ease;
   box-sizing: border-box;
+  line-height: 1.4;
 }
 
 .form-input:focus, .form-textarea:focus {
