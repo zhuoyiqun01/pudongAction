@@ -12,7 +12,6 @@
         <view class="hero-description">
           <view>2025年普陀区委社会工作部、团区委联合大鱼营造，在全区发起「社区小事」开放邻里计划。</view>
           <view>计划面向普陀区所有社区，招募期待在楼组、社区行动的在地生活者。鼓励人们回到身边最初五十米，关注那些细小、具体又温暖的"附近"。</view>
-          <view class="hero-description-light">在家门口的五十米，<br/>做一件小事</view>
         </view>
         <button class="btn btn-secondary hero-cta" bindtap="onJoinTap">
           立即加入

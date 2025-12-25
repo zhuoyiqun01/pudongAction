@@ -54,11 +54,13 @@
 }
 
 .hero-title {
-  font-size: 48rpx;
+  font-size: 72rpx;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 48rpx;
-  letter-spacing: -0.5rpx;
+  letter-spacing: -1rpx;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 .hero-title-highlight {
@@ -77,8 +79,12 @@
 }
 
 .hero-description-light {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 24rpx;
+  font-size: 72rpx;
+  font-weight: 700;
+  color: #FFE501;
+  text-transform: uppercase;
+  letter-spacing: -1rpx;
+  text-align: center;
 }
 
 .hero-cta {
@@ -86,7 +92,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32rpx 64rpx;
+  padding: 20rpx 40rpx;
   background-color: #FFE501;
   color: #068D7B;
   font-weight: 700;
@@ -213,6 +219,7 @@
   text-transform: uppercase;
   letter-spacing: -1rpx;
   margin-bottom: 16rpx;
+  text-align: left;
 }
 
 .philosophy-accent {

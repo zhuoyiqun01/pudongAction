@@ -155,10 +155,10 @@ Page({
       submitting: false
     })
 
-    // 延迟返回首页
+    // 延迟跳转到首页
     setTimeout(() => {
-      wx.navigateBack({
-        delta: 1
+      wx.switchTab({
+        url: '/pages/home/index'
       })
     }, 2000)
   },

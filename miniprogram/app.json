@@ -15,5 +15,30 @@
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
   },
+  "tabBar": {
+    "color": "#64748b",
+    "selectedColor": "#068D7B",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/activists/index",
+        "text": "活动家"
+      },
+      {
+        "pagePath": "pages/leaders/index",
+        "text": "带领人"
+      },
+      {
+        "pagePath": "pages/join/index",
+        "text": "加入我们"
+      }
+    ]
+  },
   "lazyCodeLoading": "requiredComponents"
 }
