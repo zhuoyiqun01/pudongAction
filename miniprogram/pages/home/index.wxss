@@ -142,8 +142,8 @@
 }
 
 .dropdown-filter {
-  flex: 1;
   position: relative;
+  display: inline-block;
 }
 
 .dropdown-trigger {
@@ -154,10 +154,9 @@
   background-color: #f5f5f5;
   border-radius: 6rpx;
   border: 1rpx solid #e0e0e0;
+  white-space: nowrap;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 120rpx;
-  white-space: nowrap;
 }
 
 .dropdown-trigger:active {
