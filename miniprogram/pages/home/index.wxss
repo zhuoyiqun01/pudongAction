@@ -56,7 +56,7 @@
 
 .banner-swiper {
   height: 100%;
-  padding: 0 80rpx;
+  padding: 0 20rpx;
 }
 
 .banner-image {
