@@ -86,8 +86,8 @@
 
 .category-card:hover,
 .category-card.selected {
-  border: 2rpx solid #FDC57A;
-  background-color: #FFE501;
+  border: 2rpx solid #068D7B;
+  background-color: #f0f9ff;
   transform: translateY(0);
 }
 
