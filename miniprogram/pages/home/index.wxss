@@ -31,7 +31,7 @@
 /* 板块1: Banner区域 */
 .banner-section {
   position: relative;
-  height: 400rpx;
+  height: 280rpx;
   overflow: hidden;
   border: 4rpx solid var(--accent1-color);
   background-color: var(--secondary-color);
@@ -42,32 +42,12 @@
 }
 
 .banner-image {
-  width: 100%;
-  height: 100%;
+  width: 240rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+  margin: 0;
 }
 
-.banner-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(6, 141, 123, 0.9);
-  padding: 32rpx;
-  color: white;
-  border-top: 3rpx solid var(--secondary-color);
-}
-
-.banner-title {
-  font-size: 32rpx;
-  font-weight: 700;
-  margin-bottom: 12rpx;
-  color: var(--secondary-color);
-}
-
-.banner-desc {
-  font-size: 24rpx;
-  color: white;
-}
 
 /* 板块2: 介绍区域 - 蒙德里安风格 */
 .intro-section {
