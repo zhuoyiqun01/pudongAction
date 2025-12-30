@@ -54,15 +54,22 @@
   border-radius: 4rpx;
 }
 
+.hero-title-line {
+  margin-bottom: 16rpx;
+}
+
 .hero-title {
   font-size: 48rpx;
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 48rpx;
+  line-height: 1.4;
   letter-spacing: -0.5rpx;
 }
 
 .hero-title-highlight {
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.5rpx;
   color: #FFE501;
 }
 
@@ -90,11 +97,11 @@
   padding: 32rpx 64rpx;
   background-color: #FFE501;
   color: #1a365d;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 32rpx;
   border: none;
   border-radius: 8rpx;
-  margin-top: 32rpx;
+  margin-top: 24rpx;
 }
 
 .hero-arrow {

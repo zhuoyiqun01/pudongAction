@@ -5,9 +5,10 @@
     <!-- Large Primary Block -->
     <view class="hero-primary">
       <view class="hero-content">
-        <view class="hero-badge">small actions with community</view>
-        <view class="hero-title">
-          在家门口的五十米，<br/>
+        <view class="hero-title-line">
+          <text class="hero-title">在家门口的五十米，</text>
+        </view>
+        <view class="hero-title-line">
           <text class="hero-title-highlight">做一件小事</text>
         </view>
         <view class="hero-description">
