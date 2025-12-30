@@ -1,47 +1,24 @@
 /* 全局样式文件 */
 
 /* 基础重置 */
-page {
+* {
   box-sizing: border-box;
 }
 
-/* CSS 主题色变量 */
-:root {
-  --primary-color: #068D7B;
-  --secondary-color: #FFE501;
-  --accent1-color: #F49B9B;
-  --accent2-color: #A4CCFE;
-  --accent3-color: #FDC57A;
-  --gray-color: #64748b;
-  --light-bg: #f8fafc;
-  --white: #ffffff;
-}
+/* 品牌颜色变量 */
+.brand-primary { color: #1a365d; }
+.brand-secondary { color: #fbbf24; }
+.brand-accent1 { color: #f59e0b; }
+.brand-accent2 { color: #10b981; }
+.brand-accent3 { color: #06b6d4; }
+.brand-gray { color: #64748b; }
 
-/* 品牌颜色类 */
-.brand-primary { color: var(--primary-color); }
-.brand-secondary { color: var(--secondary-color); }
-.brand-accent1 { color: var(--accent1-color); }
-.brand-accent2 { color: var(--accent2-color); }
-.brand-accent3 { color: var(--accent3-color); }
-.brand-gray { color: var(--gray-color); }
-
-.bg-brand-primary { background-color: var(--primary-color); }
-.bg-brand-secondary { background-color: var(--secondary-color); }
-.bg-brand-accent1 { background-color: var(--accent1-color); }
-.bg-brand-accent2 { background-color: var(--accent2-color); }
-.bg-brand-accent3 { background-color: var(--accent3-color); }
-.bg-brand-gray { background-color: var(--gray-color); }
-
-/* 状态颜色变量 */
-.text-success { color: #10b981; }
-.text-error { color: #ef4444; }
-.text-warning { color: #f59e0b; }
-.text-info { color: #3b82f6; }
-
-.bg-success { background-color: #d1fae5; }
-.bg-error { background-color: #fef2f2; }
-.bg-warning { background-color: #fef3c7; }
-.bg-info { background-color: #dbeafe; }
+.bg-brand-primary { background-color: #1a365d; }
+.bg-brand-secondary { background-color: #fbbf24; }
+.bg-brand-accent1 { background-color: #f59e0b; }
+.bg-brand-accent2 { background-color: #10b981; }
+.bg-brand-accent3 { background-color: #06b6d4; }
+.bg-brand-gray { background-color: #64748b; }
 
 /* 文字样式 */
 .text-xs { font-size: 24rpx; }
@@ -174,21 +151,21 @@ page {
 }
 
 .btn-primary {
-  background-color: #068D7B;
+  background-color: #1a365d;
   color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: #056b63;
+  background-color: #152c4a;
 }
 
 .btn-secondary {
-  background-color: #FFE501;
-  color: #068D7B;
+  background-color: #fbbf24;
+  color: #1a365d;
 }
 
 .btn-secondary:hover {
-  background-color: #F49B9B;
+  background-color: #f59e0b;
 }
 
 /* 卡片样式 */
@@ -210,11 +187,7 @@ page {
 .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
 
-/* 响应式工具类 */
-@media (max-width: 750rpx) {
-  .md-grid-cols-1 { grid-template-columns: repeat(1, 1fr) !important; }
-  .md-flex-col { flex-direction: column !important; }
-}
+/* 响应式工具类 - WXSS不支持反斜杠转义，已移除 */
 
 /* 页面容器 */
 .container {
