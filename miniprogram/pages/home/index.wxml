@@ -1,7 +1,7 @@
 <view class="home-page fade-in">
   <!-- 板块1: 正在发生 - 海报Banner -->
   <view class="section">
-    <view class="section-title">正在发生</view>
+    <view class="section-title banner-title">正在发生</view>
     <view class="banner-section">
       <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500" display-multiple-items="2.5" previous-margin="20rpx" next-margin="20rpx">
       <swiper-item wx:for="{{banners}}" wx:key="id">

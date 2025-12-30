@@ -21,6 +21,10 @@
   justify-content: space-between;
 }
 
+.banner-title {
+  color: white;
+}
+
 .title-link {
   font-size: 24rpx;
   color: #F49B9B;
@@ -34,7 +38,7 @@
   height: 280rpx;
   overflow: hidden;
   border: 4rpx solid var(--accent1-color);
-  background-color: var(--secondary-color);
+  background: linear-gradient(to bottom, #068D7B 50%, #FFE501 50%);
 }
 
 .banner-swiper {
@@ -42,10 +46,10 @@
 }
 
 .banner-image {
-  width: 240rpx;
-  height: 200rpx;
+  width: 384rpx;
+  height: 320rpx;
   border-radius: 8rpx;
-  margin: 0;
+  margin: 0 auto;
 }
 
 
