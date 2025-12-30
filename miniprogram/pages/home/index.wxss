@@ -56,14 +56,17 @@
 
 .banner-swiper {
   height: 100%;
-  padding-top: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner-image {
-  width: 320rpx;
-  height: 240rpx;
+  width: 400rpx;
+  height: 280rpx;
   border-radius: 8rpx;
-  margin: 20rpx auto 0;
+  margin: 0 auto;
+  display: block;
 }
 
 
