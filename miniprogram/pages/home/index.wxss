@@ -40,13 +40,17 @@
   border: 4rpx solid var(--accent1-color);
 }
 
+.banner-section-wrapper {
+  background-color: #068D7B;
+}
+
 .banner-background {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 50%;
-  background-color: #068D7B;
+  background-color: #FFE501;
 }
 
 .banner-swiper {
