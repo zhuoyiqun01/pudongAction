@@ -12,7 +12,7 @@
 .section-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: var(--primary-color);
+  color: #068D7B;
   margin-bottom: 24rpx;
   text-align: left;
   padding: 0 32rpx;
