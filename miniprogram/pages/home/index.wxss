@@ -1,7 +1,7 @@
 /* 首页样式 */
 .home-page {
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #fafafa;
 }
 
 /* 统一板块标题样式 */
