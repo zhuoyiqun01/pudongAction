@@ -183,6 +183,7 @@
   background-color: white;
   margin-bottom: 16rpx;
   overflow: hidden;
+  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.08);
   transition: all 0.2s ease;
 }
 
