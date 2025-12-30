@@ -63,8 +63,8 @@
 
 .intro-subtitle {
   font-size: 26rpx;
-  color: #64748b;
-  border-left: 6rpx solid #FFE501;
+  color: var(--primary-color);
+  border-left: 6rpx solid var(--secondary-color);
   padding-left: 16rpx;
   margin-bottom: 48rpx;
 }
@@ -121,7 +121,7 @@
 
 .btn-desc {
   font-size: 24rpx;
-  color: #64748b;
+  color: var(--primary-color);
   line-height: 1.5;
 }
 
