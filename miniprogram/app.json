@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/generator/index",
+    "pages/action/index",
     "pages/activists/index",
     "pages/leaders/index",
     "pages/join/index",
@@ -24,19 +26,21 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png"
       },
       {
-        "pagePath": "pages/activists/index",
-        "text": "活动家"
+        "pagePath": "pages/generator/index",
+        "text": "小事生成器",
+        "iconPath": "images/tabbar/generator.png",
+        "selectedIconPath": "images/tabbar/generator-active.png"
       },
       {
-        "pagePath": "pages/leaders/index",
-        "text": "带领人"
-      },
-      {
-        "pagePath": "pages/join/index",
-        "text": "加入我们"
+        "pagePath": "pages/action/index",
+        "text": "小事行动吧",
+        "iconPath": "images/tabbar/action.png",
+        "selectedIconPath": "images/tabbar/action-active.png"
       }
     ]
   },

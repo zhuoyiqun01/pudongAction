@@ -1,0 +1,126 @@
+<!-- pages/action/index.wxml -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="header-title">小事行动吧</view>
+    <view class="header-subtitle">发现有趣的小事，一起参与行动</view>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-tabs">
+    <view
+      class="filter-tab {{currentFilter === 'all' ? 'active' : ''}}"
+      data-filter="all"
+      bindtap="switchFilter"
+    >
+      全部
+    </view>
+    <view
+      class="filter-tab {{currentFilter === 'active' ? 'active' : ''}}"
+      data-filter="active"
+      bindtap="switchFilter"
+    >
+      进行中
+    </view>
+    <view
+      class="filter-tab {{currentFilter === 'completed' ? 'active' : ''}}"
+      data-filter="completed"
+      bindtap="switchFilter"
+    >
+      已完成
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="actions-list">
+    <!-- 进行中的活动 -->
+    <view wx:if="{{currentFilter === 'all' || currentFilter === 'active'}}">
+      <view class="section-title">进行中的活动</view>
+      <view
+        wx:for="{{activeActions}}"
+        wx:key="id"
+        class="action-card"
+        data-id="{{item.id}}"
+        bindtap="viewActionDetail"
+      >
+        <view class="action-header">
+          <view class="category-badge">
+            <text class="category-icon">{{getCategoryIcon(item.category)}}</text>
+            <text class="category-name">{{getCategoryName(item.category)}}</text>
+          </view>
+          <view class="action-status active">进行中</view>
+        </view>
+
+        <view class="action-title">{{item.title}}</view>
+        <view class="action-desc">{{item.description}}</view>
+
+        <view class="action-meta">
+          <view class="meta-item">
+            <text class="meta-icon">👥</text>
+            <text>{{item.participants}}人参与</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-icon">📍</text>
+            <text>{{item.location}}</text>
+          </view>
+        </view>
+
+        <view class="action-footer">
+          <view class="creator">发起人：{{item.creator}}</view>
+          <button
+            class="join-btn"
+            data-id="{{item.id}}"
+            bindtap="joinAction"
+          >
+            加入行动
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 已完成的活动 -->
+    <view wx:if="{{currentFilter === 'all' || currentFilter === 'completed'}}">
+      <view class="section-title">已完成的活动</view>
+      <view
+        wx:for="{{completedActions}}"
+        wx:key="id"
+        class="action-card completed"
+        data-id="{{item.id}}"
+        bindtap="viewActionDetail"
+      >
+        <view class="action-header">
+          <view class="category-badge">
+            <text class="category-icon">{{getCategoryIcon(item.category)}}</text>
+            <text class="category-name">{{getCategoryName(item.category)}}</text>
+          </view>
+          <view class="action-status completed">已完成</view>
+        </view>
+
+        <view class="action-title">{{item.title}}</view>
+        <view class="action-desc">{{item.description}}</view>
+
+        <view class="action-meta">
+          <view class="meta-item">
+            <text class="meta-icon">👥</text>
+            <text>{{item.participants}}人参与</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-icon">📍</text>
+            <text>{{item.location}}</text>
+          </view>
+        </view>
+
+        <view class="action-footer">
+          <view class="creator">发起人：{{item.creator}}</view>
+          <view class="completed-badge">✅ 已完成</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 创建新活动按钮 -->
+  <view class="create-action-btn" bindtap="createNewAction">
+    <text class="create-icon">➕</text>
+    <text>发起新活动</text>
+  </view>
+</view>

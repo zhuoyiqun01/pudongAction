@@ -1,0 +1,227 @@
+/* pages/action/index.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding-bottom: 120rpx;
+}
+
+/* 页面头部 */
+.page-header {
+  background-color: #068D7B;
+  color: white;
+  padding: 64rpx 32rpx;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+
+.header-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 筛选器标签 */
+.filter-tabs {
+  background-color: white;
+  display: flex;
+  margin: 0 32rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  margin-top: -24rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.filter-tab {
+  flex: 1;
+  padding: 24rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #64748b;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.filter-tab.active {
+  color: #068D7B;
+  background-color: #d1fae5;
+  font-weight: 600;
+}
+
+.filter-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background-color: #068D7B;
+  border-radius: 2rpx;
+}
+
+/* 活动列表 */
+.actions-list {
+  padding: 32rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 24rpx;
+  margin-top: 48rpx;
+}
+
+.section-title:first-child {
+  margin-top: 0;
+}
+
+/* 活动卡片 */
+.action-card {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.action-card:active {
+  transform: translateY(-2rpx);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+}
+
+.action-card.completed {
+  opacity: 0.8;
+}
+
+.action-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.category-badge {
+  display: flex;
+  align-items: center;
+  background-color: #f0f9ff;
+  color: #0369a1;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.category-icon {
+  margin-right: 8rpx;
+}
+
+.action-status {
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.action-status.active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.action-status.completed {
+  background-color: #e2e8f0;
+  color: #64748b;
+}
+
+.action-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 16rpx;
+  line-height: 1.3;
+}
+
+.action-desc {
+  font-size: 28rpx;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 24rpx;
+}
+
+.action-meta {
+  display: flex;
+  gap: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #64748b;
+}
+
+.meta-icon {
+  margin-right: 8rpx;
+}
+
+.action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creator {
+  font-size: 24rpx;
+  color: #64748b;
+}
+
+.join-btn {
+  background-color: #068D7B;
+  color: white;
+  border: none;
+  border-radius: 8rpx;
+  padding: 16rpx 32rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.completed-badge {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 16rpx 32rpx;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+/* 创建新活动按钮 */
+.create-action-btn {
+  position: fixed;
+  bottom: 120rpx;
+  right: 32rpx;
+  background-color: #FFE501;
+  color: #1a365d;
+  border-radius: 50%;
+  width: 112rpx;
+  height: 112rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(255, 229, 1, 0.3);
+  font-size: 24rpx;
+  font-weight: 700;
+  z-index: 100;
+}
+
+.create-icon {
+  font-size: 32rpx;
+  margin-bottom: 4rpx;
+}

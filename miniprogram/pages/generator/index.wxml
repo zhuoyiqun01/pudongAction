@@ -1,0 +1,66 @@
+<!-- pages/generator/index.wxml -->
+<view class="container">
+  <!-- 步骤指示器 -->
+  <view class="step-indicator">
+    <view class="step {{currentStep >= 1 ? 'active' : ''}}">1</view>
+    <view class="step-line {{currentStep >= 2 ? 'active' : ''}}"></view>
+    <view class="step {{currentStep >= 2 ? 'active' : ''}}">2</view>
+    <view class="step-line {{currentStep >= 3 ? 'active' : ''}}"></view>
+    <view class="step {{currentStep >= 3 ? 'active' : ''}}">3</view>
+  </view>
+
+  <!-- 第一步：选择类别 -->
+  <view class="step-content {{currentStep === 1 ? 'active' : ''}}">
+    <view class="step-title">选择小事类别</view>
+    <view class="step-desc">想做什么类型的小事？</view>
+
+    <view class="category-grid">
+      <view
+        wx:for="{{categories}}"
+        wx:key="id"
+        class="category-card {{selectedCategory === item.id ? 'selected' : ''}}"
+        data-category="{{item.id}}"
+        bindtap="selectCategory"
+      >
+        <view class="category-icon">{{item.icon}}</view>
+        <view class="category-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第二步：输入想法 -->
+  <view class="step-content {{currentStep === 2 ? 'active' : ''}}">
+    <view class="step-title">分享你的想法</view>
+    <view class="step-desc">简单描述一下你想做的小事</view>
+
+    <textarea
+      class="idea-input"
+      placeholder="例如：我想为小区老人提供帮助..."
+      value="{{userInput}}"
+      bindinput="onInputChange"
+      maxlength="200"
+      auto-focus
+    ></textarea>
+
+    <view class="selected-category">
+      <text>已选择：{{categories.find(item => item.id === selectedCategory).name}}</text>
+    </view>
+
+    <button class="generate-btn" bindtap="generateIdea">生成小事方案</button>
+  </view>
+
+  <!-- 第三步：显示结果 -->
+  <view class="step-content {{currentStep === 3 ? 'active' : ''}}">
+    <view class="step-title">✨ 你的小事方案</view>
+
+    <view class="result-card">
+      <view class="result-icon">💡</view>
+      <view class="result-text">{{generatedIdea}}</view>
+    </view>
+
+    <view class="action-buttons">
+      <button class="share-btn" bindtap="shareIdea">分享给朋友</button>
+      <button class="restart-btn" bindtap="startOver">再来一次</button>
+    </view>
+  </view>
+</view>
