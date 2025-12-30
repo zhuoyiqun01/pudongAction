@@ -51,7 +51,7 @@
           <!-- 地区筛选 -->
           <view class="dropdown-filter">
             <view class="dropdown-trigger" bindtap="toggleRegionDropdown">
-              <text class="dropdown-text">{{getSelectedRegionName()}}</text>
+              <text class="dropdown-text">{{selectedRegionText}}</text>
               <view class="dropdown-arrow {{regionDropdownOpen ? 'open' : ''}}">▼</view>
             </view>
             <view class="dropdown-options {{regionDropdownOpen ? 'show' : ''}}">
@@ -70,7 +70,7 @@
           <!-- 议题筛选 -->
           <view class="dropdown-filter">
             <view class="dropdown-trigger" bindtap="toggleTopicDropdown">
-              <text class="dropdown-text">{{getSelectedTopicName()}}</text>
+              <text class="dropdown-text">{{selectedTopicText}}</text>
               <view class="dropdown-arrow {{topicDropdownOpen ? 'open' : ''}}">▼</view>
             </view>
             <view class="dropdown-options {{topicDropdownOpen ? 'show' : ''}}">

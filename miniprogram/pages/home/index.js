@@ -45,6 +45,8 @@ Page({
 
     selectedRegion: 'all',
     selectedTopic: 'all',
+    selectedRegionText: '全部地区',
+    selectedTopicText: '全部议题',
 
     // 下拉框状态
     regionDropdownOpen: false,
@@ -162,9 +164,13 @@ Page({
 
   // 地区筛选
   selectRegion: function(e) {
-    const region = e.currentTarget.dataset.region;
+    const regionId = e.currentTarget.dataset.region;
+    const region = this.data.regions.find(item => item.id === regionId);
+    const regionText = region ? region.name : '全部地区';
+
     this.setData({
-      selectedRegion: region,
+      selectedRegion: regionId,
+      selectedRegionText: regionText,
       regionDropdownOpen: false // 选择后关闭下拉框
     });
     this.filterActions();
@@ -172,9 +178,13 @@ Page({
 
   // 议题筛选
   selectTopic: function(e) {
-    const topic = e.currentTarget.dataset.topic;
+    const topicId = e.currentTarget.dataset.topic;
+    const topic = this.data.topics.find(item => item.id === topicId);
+    const topicText = topic ? topic.name : '全部议题';
+
     this.setData({
-      selectedTopic: topic,
+      selectedTopic: topicId,
+      selectedTopicText: topicText,
       topicDropdownOpen: false // 选择后关闭下拉框
     });
     this.filterActions();
