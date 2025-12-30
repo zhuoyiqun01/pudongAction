@@ -108,22 +108,22 @@
 }
 
 .generator-btn {
-  background: linear-gradient(135deg, #FFE501 0%, #FDC57A 100%);
+  background-color: #FFE501;
   border: 3rpx solid #FFE501;
 }
 
 .generator-btn:active {
-  background: linear-gradient(135deg, #FDC57A 0%, #FFE501 100%);
+  background-color: #FDC57A;
   transform: translateY(0);
 }
 
 .action-btn {
-  background: linear-gradient(135deg, #A4CCFE 0%, #F49B9B 100%);
+  background-color: #A4CCFE;
   border: 3rpx solid #A4CCFE;
 }
 
 .action-btn:active {
-  background: linear-gradient(135deg, #F49B9B 0%, #A4CCFE 100%);
+  background-color: #F49B9B;
   transform: translateY(0);
 }
 
