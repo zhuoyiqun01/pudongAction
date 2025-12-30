@@ -177,7 +177,7 @@
 
 .dropdown-arrow {
   font-size: 20rpx;
-  color: #666666;
+  color: var(--primary-color);
   transition: transform 0.2s ease;
   margin-left: 8rpx;
 }
