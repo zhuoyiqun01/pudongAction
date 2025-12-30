@@ -1,7 +1,7 @@
 /* 全局样式文件 */
 
 /* 基础重置 */
-* {
+page {
   box-sizing: border-box;
 }
 
