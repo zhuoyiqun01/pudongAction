@@ -213,7 +213,7 @@
 .card-tags {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  gap: 8rpx;
 }
 
 .tag {
@@ -222,8 +222,8 @@
   padding: 6rpx 12rpx;
   font-size: 20rpx;
   font-weight: 500;
-  line-height: 1;
   display: inline-block;
+  vertical-align: baseline;
 }
 
 /* 响应式设计 */
