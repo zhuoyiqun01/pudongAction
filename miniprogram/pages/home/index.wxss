@@ -44,14 +44,6 @@
   background-color: #068D7B;
 }
 
-.banner-background {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background-color: #FFE501;
-}
 
 .banner-swiper {
   height: 100%;
