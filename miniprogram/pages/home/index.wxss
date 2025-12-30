@@ -23,7 +23,7 @@
   position: relative;
   height: 400rpx;
   overflow: hidden;
-  border: 3rpx solid #068D7B;
+  border: 4rpx solid #F49B9B;
   background-color: #FFE501;
 }
 
@@ -63,8 +63,8 @@
 .intro-section {
   padding: 48rpx 0;
   background-color: white;
-  border-top: 3rpx solid #FFE501;
-  border-bottom: 3rpx solid #068D7B;
+  border-top: 4rpx solid #A4CCFE;
+  border-bottom: 4rpx solid #FDC57A;
 }
 
 .intro-content {
@@ -90,14 +90,15 @@
   flex: 1;
   max-width: 280rpx;
   background-color: white;
-  border: 3rpx solid #068D7B;
   padding: 40rpx 24rpx;
   text-align: center;
   transition: all 0.2s ease;
+  border: 3rpx solid #A4CCFE;
 }
 
 .feature-btn:active {
-  background-color: #068D7B;
+  background-color: #A4CCFE;
+  border-color: #068D7B;
   transform: translateY(0);
 }
 
@@ -122,7 +123,7 @@
 /* 板块3: 小事行动墙 - 蒙德里安风格 */
 .wall-section {
   background-color: white;
-  border-top: 3rpx solid #068D7B;
+  border-top: 4rpx solid #F49B9B;
 }
 
 /* 筛选器 - 扁平化设计 */
@@ -130,7 +131,6 @@
   margin-bottom: 32rpx;
   padding: 24rpx;
   background-color: #f8fafc;
-  border: 2rpx solid #068D7B;
 }
 
 .filter-group {
@@ -159,14 +159,13 @@
   background-color: white;
   font-size: 24rpx;
   color: #64748b;
-  border: 2rpx solid #e2e8f0;
   transition: all 0.2s ease;
 }
 
 .filter-option.active {
   background-color: #FFE501;
   color: #068D7B;
-  border-color: #068D7B;
+  border: 2rpx solid #F49B9B;
   font-weight: 600;
 }
 
@@ -185,12 +184,11 @@
   background-color: white;
   margin-bottom: 16rpx;
   overflow: hidden;
-  border: 2rpx solid #e2e8f0;
   transition: all 0.2s ease;
 }
 
 .action-card:active {
-  border-color: #FFE501;
+  border: 2rpx solid #A4CCFE;
   background-color: #f8fafc;
   transform: translateY(0);
 }
@@ -223,7 +221,6 @@
   background-color: #FFE501;
   color: #068D7B;
   padding: 6rpx 12rpx;
-  border: 1rpx solid #068D7B;
   font-size: 20rpx;
   font-weight: 500;
 }
