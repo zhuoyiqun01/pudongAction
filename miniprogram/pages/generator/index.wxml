@@ -43,7 +43,7 @@
     ></textarea>
 
     <view class="selected-category">
-      <text>已选择：{{categories.find(item => item.id === selectedCategory).name}}</text>
+      <text>已选择：{{getSelectedCategoryName()}}</text>
     </view>
 
     <button class="generate-btn" bindtap="generateIdea">生成小事方案</button>

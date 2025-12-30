@@ -28,6 +28,12 @@ Page({
     });
   },
 
+  getSelectedCategoryName: function() {
+    if (!this.data.selectedCategory) return '';
+    const category = this.data.categories.find(item => item.id === this.data.selectedCategory);
+    return category ? category.name : '';
+  },
+
   onInputChange: function(e) {
     this.setData({
       userInput: e.detail.value
