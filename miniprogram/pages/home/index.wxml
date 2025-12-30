@@ -4,7 +4,7 @@
     <view class="section-title banner-title">正在发生</view>
     <view class="banner-section">
       <view class="banner-background"></view>
-      <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500" circular="{{true}}">
+      <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500" circular="{{true}}" display-multiple-items="1.5" previous-margin="60rpx" next-margin="60rpx">
       <swiper-item wx:for="{{banners}}" wx:key="id">
         <image src="{{item.image}}" class="banner-image" mode="widthFix" bindtap="onBannerTap" data-url="{{item.url}}" />
       </swiper-item>
