@@ -49,14 +49,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50%;
+  height: 30%;
   background-color: #068D7B;
 }
 
 
 .banner-swiper {
   height: 100%;
-  padding: 0 20rpx;
+  padding: 0 15rpx 0 65rpx;
 }
 
 .banner-image {
@@ -68,7 +68,7 @@
 }
 
 
-/* 板块2: 介绍区域 - 蒙德里安风格 */
+/* 板块2: 介绍区域  */
 .intro-section {
   padding: 48rpx 0;
   background-color: white;
