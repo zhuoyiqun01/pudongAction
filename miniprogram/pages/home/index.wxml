@@ -47,37 +47,29 @@
     <view class="wall-section">
       <view class="container">
         <!-- 筛选器 -->
-      <view class="filters">
-        <view class="filter-group">
-          <view class="filter-label">地区：</view>
-          <scroll-view scroll-x class="filter-options">
-            <view
-              wx:for="{{regions}}"
-              wx:key="id"
-              class="filter-option {{selectedRegion === item.id ? 'active' : ''}}"
-              bindtap="selectRegion"
-              data-region="{{item.id}}"
-            >
-              {{item.name}}
-            </view>
-          </scroll-view>
-        </view>
+        <scroll-view scroll-x class="filter-options">
+          <view
+            wx:for="{{regions}}"
+            wx:key="id"
+            class="filter-option {{selectedRegion === item.id ? 'active' : ''}}"
+            bindtap="selectRegion"
+            data-region="{{item.id}}"
+          >
+            {{item.name}}
+          </view>
+        </scroll-view>
 
-        <view class="filter-group">
-          <view class="filter-label">议题：</view>
-          <scroll-view scroll-x class="filter-options">
-            <view
-              wx:for="{{topics}}"
-              wx:key="id"
-              class="filter-option {{selectedTopic === item.id ? 'active' : ''}}"
-              bindtap="selectTopic"
-              data-topic="{{item.id}}"
-            >
-              {{item.name}}
-            </view>
-          </scroll-view>
-        </view>
-      </view>
+        <scroll-view scroll-x class="filter-options" style="margin-top: 12rpx;">
+          <view
+            wx:for="{{topics}}"
+            wx:key="id"
+            class="filter-option {{selectedTopic === item.id ? 'active' : ''}}"
+            bindtap="selectTopic"
+            data-topic="{{item.id}}"
+          >
+            {{item.name}}
+          </view>
+        </scroll-view>
 
       <!-- 瀑布流内容 -->
       <view class="waterfall-container">
@@ -93,13 +85,13 @@
             <view class="card-content">
               <view class="card-title">{{item.title}}</view>
               <view class="card-tags">
-                <text
+                <view
                   wx:for="{{item.tags}}"
                   wx:key="*"
                   class="tag"
                 >
                   {{item}}
-                </text>
+                </view>
               </view>
             </view>
           </view>
@@ -117,13 +109,13 @@
             <view class="card-content">
               <view class="card-title">{{item.title}}</view>
               <view class="card-tags">
-                <text
+                <view
                   wx:for="{{item.tags}}"
                   wx:key="*"
                   class="tag"
                 >
                   {{item}}
-                </text>
+                </view>
               </view>
             </view>
           </view>
