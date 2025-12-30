@@ -1,0 +1,12 @@
+<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 房子填充 -->
+  <path d="M40.5 8L68 28.5V70H52V52H28.5V70H13V28.5L40.5 8Z" fill="#068D7B" stroke="#068D7B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 门 -->
+  <rect x="35" y="52" width="11" height="18" rx="1" fill="#FFFFFF" stroke="#068D7B" stroke-width="2"/>
+  <!-- 门把手 -->
+  <circle cx="38.5" cy="60" r="1.5" fill="#068D7B"/>
+  <!-- 烟囱 -->
+  <rect x="50" y="15" width="4" height="8" rx="2" fill="#FFFFFF"/>
+  <!-- 屋顶装饰 -->
+  <polygon points="35,28.5 40.5,23 46,28.5" fill="#FFFFFF"/>
+</svg>

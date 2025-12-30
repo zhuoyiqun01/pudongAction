@@ -1,126 +1,111 @@
 <!-- pages/action/index.wxml -->
-<view class="container">
-  <!-- 页面标题 -->
-  <view class="page-header">
-    <view class="header-title">小事行动吧</view>
-    <view class="header-subtitle">发现有趣的小事，一起参与行动</view>
-  </view>
-
-  <!-- 筛选器 -->
-  <view class="filter-tabs">
-    <view
-      class="filter-tab {{currentFilter === 'all' ? 'active' : ''}}"
-      data-filter="all"
-      bindtap="switchFilter"
-    >
-      全部
-    </view>
-    <view
-      class="filter-tab {{currentFilter === 'active' ? 'active' : ''}}"
-      data-filter="active"
-      bindtap="switchFilter"
-    >
-      进行中
-    </view>
-    <view
-      class="filter-tab {{currentFilter === 'completed' ? 'active' : ''}}"
-      data-filter="completed"
-      bindtap="switchFilter"
-    >
-      已完成
-    </view>
-  </view>
-
-  <!-- 活动列表 -->
-  <view class="actions-list">
-    <!-- 进行中的活动 -->
-    <view wx:if="{{currentFilter === 'all' || currentFilter === 'active'}}">
-      <view class="section-title">进行中的活动</view>
-      <view
-        wx:for="{{activeActions}}"
-        wx:key="id"
-        class="action-card"
-        data-id="{{item.id}}"
-        bindtap="viewActionDetail"
-      >
-        <view class="action-header">
-          <view class="category-badge">
-            <text class="category-icon">{{getCategoryIcon(item.category)}}</text>
-            <text class="category-name">{{getCategoryName(item.category)}}</text>
-          </view>
-          <view class="action-status active">进行中</view>
+<view class="home-page fade-in">
+  <!-- Hero Section - Interlocking Block Design -->
+  <view class="hero-section">
+    <!-- Large Primary Block -->
+    <view class="hero-primary">
+      <view class="hero-content">
+        <view class="hero-badge">small actions with community</view>
+        <view class="hero-title">
+          在家门口的五十米，<br/>
+          <text class="hero-title-highlight">做一件小事</text>
         </view>
-
-        <view class="action-title">{{item.title}}</view>
-        <view class="action-desc">{{item.description}}</view>
-
-        <view class="action-meta">
-          <view class="meta-item">
-            <text class="meta-icon">👥</text>
-            <text>{{item.participants}}人参与</text>
-          </view>
-          <view class="meta-item">
-            <text class="meta-icon">📍</text>
-            <text>{{item.location}}</text>
-          </view>
+        <view class="hero-description">
+          <view>2025年普陀区委社会工作部、团区委联合大鱼营造，在全区发起「社区小事」开放邻里计划。</view>
+          <view>计划面向普陀区所有社区，招募期待在楼组、社区行动的在地生活者。鼓励人们回到身边最初五十米，关注那些细小、具体又温暖的"附近"。</view>
         </view>
-
-        <view class="action-footer">
-          <view class="creator">发起人：{{item.creator}}</view>
-          <button
-            class="join-btn"
-            data-id="{{item.id}}"
-            bindtap="joinAction"
-          >
-            加入行动
-          </button>
-        </view>
+        <button class="btn btn-secondary hero-cta" bindtap="onJoinTap">
+          立即加入
+          <text class="hero-arrow">→</text>
+        </button>
       </view>
     </view>
 
-    <!-- 已完成的活动 -->
-    <view wx:if="{{currentFilter === 'all' || currentFilter === 'completed'}}">
-      <view class="section-title">已完成的活动</view>
-      <view
-        wx:for="{{completedActions}}"
-        wx:key="id"
-        class="action-card completed"
-        data-id="{{item.id}}"
-        bindtap="viewActionDetail"
-      >
-        <view class="action-header">
-          <view class="category-badge">
-            <text class="category-icon">{{getCategoryIcon(item.category)}}</text>
-            <text class="category-name">{{getCategoryName(item.category)}}</text>
-          </view>
-          <view class="action-status completed">已完成</view>
+    <!-- Visual Puzzle Block Grid -->
+    <view class="hero-visual">
+      <view class="puzzle-grid">
+        <view class="puzzle-item puzzle-item-1">
+          <text class="puzzle-number">01</text>
         </view>
-
-        <view class="action-title">{{item.title}}</view>
-        <view class="action-desc">{{item.description}}</view>
-
-        <view class="action-meta">
-          <view class="meta-item">
-            <text class="meta-icon">👥</text>
-            <text>{{item.participants}}人参与</text>
-          </view>
-          <view class="meta-item">
-            <text class="meta-icon">📍</text>
-            <text>{{item.location}}</text>
-          </view>
+        <view class="puzzle-item puzzle-item-2"></view>
+        <view class="puzzle-item puzzle-item-3">
+          <text class="puzzle-text">COMMUNITY<br/>ACTIONS</text>
         </view>
-
-        <view class="action-footer">
-          <view class="creator">发起人：{{item.creator}}</view>
-          <view class="completed-badge">✅ 已完成</view>
+        <view class="puzzle-item puzzle-item-4">
+          <image src="https://picsum.photos/seed/community1/600/600" class="puzzle-image" mode="aspectFill" />
         </view>
       </view>
     </view>
   </view>
 
-  <!-- 创建新活动按钮 -->
-  <view class="create-action-btn" bindtap="createNewAction">
-    <text class="create-icon">➕</text>
-    <text>发起新活动</text>
+  <!-- Philosophy Section - 5 Core Values -->
+  <view class="philosophy-section">
+    <view class="container">
+      <view class="philosophy-header">
+        <view class="philosophy-title">「社区小事」相信</view>
+        <view class="philosophy-accent"></view>
+        <view class="philosophy-subtitle">Fundamental Values of CSA</view>
+      </view>
+
+      <view class="values-grid">
+        <!-- Value 1: Courage -->
+        <view class="value-card value-courage">
+          <text class="value-number">01</text>
+          <text class="value-title">勇气</text>
+          <text class="value-desc">总要有人先开始，迈出第一步是链接世界的起点</text>
+        </view>
+
+        <!-- Value 2: Container -->
+        <view class="value-card value-container">
+          <text class="value-number">02</text>
+          <text class="value-title">容器</text>
+          <text class="value-desc">一块小白板，表达着我温柔不用见面的在意</text>
+        </view>
+
+        <!-- Value 3: Fun -->
+        <view class="value-card value-fun">
+          <text class="value-number">03</text>
+          <text class="value-title">乐趣</text>
+          <text class="value-desc">享受过程的喜悦，周围的人也会参与进来</text>
+        </view>
+
+        <!-- Value 4: Accumulation -->
+        <view class="value-card value-accumulation">
+          <text class="value-number">04</text>
+          <text class="value-title">积累</text>
+          <text class="value-desc">微火慢炖中，社区的关系会慢慢生长</text>
+        </view>
+
+        <!-- Value 5: Partner -->
+        <view class="value-card value-partner">
+          <text class="value-number">05</text>
+          <text class="value-title">伙伴</text>
+          <text class="value-desc">收获伙伴，就是最大的奖励</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Image & Mission Section -->
+  <view class="mission-section">
+    <view class="container">
+      <view class="mission-content">
+        <view class="mission-image-container">
+          <image src="https://picsum.photos/seed/putuo/1000/800" class="mission-image" mode="aspectFill" />
+        </view>
+        <view class="mission-text">
+          <view class="mission-accent"></view>
+          <text class="mission-title">共创有温度的"附近"</text>
+          <text class="mission-desc">
+            我们正在寻找那些不甘于"原子化"生活，渴望在熟悉又陌生的邻里间播下种子的人。
+            在「社区小事」，每一次微小的尝试，都是在拼凑理想生活的拼图。
+          </text>
+          <view class="mission-link" bindtap="onJoinTap">
+            <text>了解招募详情</text>
+            <view class="mission-link-line"></view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

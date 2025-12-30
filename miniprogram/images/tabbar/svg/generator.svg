@@ -1,0 +1,14 @@
+<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 灯泡轮廓 -->
+  <path d="M40.5 15C32.5 15 26 21.5 26 29.5C26 35.5 29.5 40.5 34 44V51H47V44C51.5 40.5 55 35.5 55 29.5C55 21.5 48.5 15 40.5 15Z" stroke="#64748b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 灯丝 -->
+  <path d="M40.5 24V35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+  <!-- 灯泡底座 -->
+  <rect x="37" y="51" width="7" height="6" rx="1" stroke="#64748b" stroke-width="2"/>
+  <!-- 灯泡底座连接线 -->
+  <path d="M39.5 57V61" stroke="#64748b" stroke-width="2"/>
+  <!-- 灯泡底座底座 -->
+  <rect x="35.5" y="61" width="10" height="3" rx="1.5" stroke="#64748b" stroke-width="2"/>
+  <!-- 亮光效果 -->
+  <path d="M30 25L28 23M53 25L55 23M40.5 19L40.5 17" stroke="#64748b" stroke-width="2" stroke-linecap="round"/>
+</svg>

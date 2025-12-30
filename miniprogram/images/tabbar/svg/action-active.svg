@@ -1,0 +1,18 @@
+<svg width="81" height="81" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 拼图主体填充 -->
+  <path d="M25 25H56V56H25V25Z" fill="#F49B9B" stroke="#F49B9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 拼图分割线 -->
+  <path d="M40.5 25V56M25 40.5H56" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- 左上角拼图凸起 -->
+  <path d="M25 32.5C28.5 32.5 31.5 29.5 31.5 26C31.5 22.5 28.5 19.5 25 19.5" fill="#F49B9B" stroke="#F49B9B" stroke-width="2" stroke-linecap="round"/>
+  <!-- 右下角拼图凹陷 -->
+  <path d="M56 48.5C52.5 48.5 49.5 51.5 49.5 55C49.5 58.5 52.5 61.5 56 61.5" fill="#F49B9B" stroke="#F49B9B" stroke-width="2" stroke-linecap="round"/>
+  <!-- 右上角拼图凹陷 -->
+  <path d="M48.5 25C48.5 28.5 51.5 31.5 55 31.5C58.5 31.5 61.5 28.5 61.5 25" fill="#F49B9B" stroke="#F49B9B" stroke-width="2" stroke-linecap="round"/>
+  <!-- 左下角拼图凸起 -->
+  <path d="M32.5 56C32.5 52.5 29.5 49.5 26 49.5C22.5 49.5 19.5 52.5 19.5 56" fill="#F49B9B" stroke="#F49B9B" stroke-width="2" stroke-linecap="round"/>
+  <!-- 连接点装饰 -->
+  <circle cx="40.5" cy="40.5" r="3" fill="#FFFFFF"/>
+  <!-- 拼图块阴影效果 -->
+  <path d="M27 27H54V54H27V27Z" fill="none" stroke="#E91E63" stroke-width="1" opacity="0.3"/>
+</svg>
