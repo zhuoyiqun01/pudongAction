@@ -1,7 +1,9 @@
 <view class="home-page fade-in">
   <!-- 板块1: 正在发生 - 海报Banner -->
-  <view class="banner-section">
-    <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
+  <view class="section">
+    <view class="section-title">正在发生</view>
+    <view class="banner-section">
+      <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
       <swiper-item wx:for="{{banners}}" wx:key="id">
         <image src="{{item.image}}" class="banner-image" mode="aspectFill" bindtap="onBannerTap" data-url="{{item.url}}" />
         <view class="banner-overlay">
@@ -10,15 +12,16 @@
         </view>
       </swiper-item>
     </swiper>
+    </view>
   </view>
 
   <!-- 板块2: 社区小事是什么？-->
-  <view class="intro-section">
-    <view class="container">
-      <view class="intro-header">
-        <view class="intro-title">社区小事是什么？</view>
-        <view class="intro-subtitle">让小行动带来大改变</view>
-      </view>
+  <view class="section">
+    <view class="section-title">社区小事是什么？</view>
+    <view class="intro-section">
+      <view class="container">
+        <view class="intro-content">
+          <view class="intro-subtitle">让小行动带来大改变</view>
 
       <view class="feature-buttons">
         <view class="feature-btn" bindtap="goToGenerator">
@@ -34,12 +37,15 @@
         </view>
       </view>
     </view>
+    </view>
   </view>
 
   <!-- 板块3: 小事行动墙 -->
-  <view class="wall-section">
-    <view class="container">
-      <!-- 筛选器 -->
+  <view class="section">
+    <view class="section-title">小事行动墙</view>
+    <view class="wall-section">
+      <view class="container">
+        <!-- 筛选器 -->
       <view class="filters">
         <view class="filter-group">
           <view class="filter-label">地区：</view>
@@ -122,6 +128,7 @@
           </view>
         </view>
       </view>
+    </view>
     </view>
   </view>
 </view>
