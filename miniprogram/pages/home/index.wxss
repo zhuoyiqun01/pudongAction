@@ -184,8 +184,9 @@
 .dropdown-options {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10rpx);
+  min-width: 160rpx;
   background-color: white;
   border: 1rpx solid #e0e0e0;
   border-radius: 6rpx;
@@ -195,13 +196,12 @@
   transition: all 0.3s ease;
   z-index: 1000;
   opacity: 0;
-  transform: translateY(-10rpx);
 }
 
 .dropdown-options.show {
   max-height: 300rpx;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-option {
@@ -211,6 +211,9 @@
   border-bottom: 1rpx solid #f0f0f0;
   transition: all 0.2s ease;
   cursor: pointer;
+  white-space: nowrap;
+  min-width: 120rpx;
+  text-align: center;
 }
 
 .dropdown-option:last-child {
