@@ -183,7 +183,7 @@
   background-color: white;
   margin-bottom: 16rpx;
   overflow: hidden;
-  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0rpx 5rpx rgba(0, 100, 0, 0.2);
   transition: all 0.2s ease;
 }
 
@@ -221,6 +221,10 @@
   padding: 4rpx 12rpx;
   font-size: 20rpx;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
 }
 
 /* 响应式设计 */
