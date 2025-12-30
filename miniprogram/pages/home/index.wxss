@@ -18,7 +18,7 @@
   padding: 0 32rpx;
 }
 
-/* 板块1: Banner区域 - 蒙德里安风格 */
+/* 板块1: Banner区域 */
 .banner-section {
   position: relative;
   height: 400rpx;
@@ -194,7 +194,6 @@
 
 .card-image {
   width: 100%;
-  height: 200rpx;
   display: block;
 }
 
@@ -222,8 +221,6 @@
   padding: 4rpx 12rpx;
   font-size: 20rpx;
   font-weight: 500;
-  margin-right: 8rpx;
-  margin-bottom: 4rpx;
 }
 
 /* 响应式设计 */

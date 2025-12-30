@@ -5,7 +5,7 @@
     <view class="banner-section">
       <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500">
       <swiper-item wx:for="{{banners}}" wx:key="id">
-        <image src="{{item.image}}" class="banner-image" mode="aspectFill" bindtap="onBannerTap" data-url="{{item.url}}" />
+        <image src="{{item.image}}" class="banner-image" mode="widthFix" bindtap="onBannerTap" data-url="{{item.url}}" />
         <view class="banner-overlay">
           <view class="banner-title">{{item.title}}</view>
           <view class="banner-desc">{{item.description}}</view>
@@ -41,9 +41,9 @@
     </view>
   </view>
 
-  <!-- 板块3: 小事行动墙 -->
+  <!-- 板块3: 小事行动者墙 -->
   <view class="section">
-    <view class="section-title">小事行动墙</view>
+    <view class="section-title">小事行动者墙</view>
     <view class="wall-section">
       <view class="container">
         <!-- 筛选器 -->
@@ -89,7 +89,7 @@
             bindtap="viewActionDetail"
             data-id="{{item.id}}"
           >
-            <image src="{{item.image}}" class="card-image" mode="aspectFill" />
+            <image src="{{item.image}}" class="card-image" mode="widthFix" />
             <view class="card-content">
               <view class="card-title">{{item.title}}</view>
               <view class="card-tags">
@@ -113,7 +113,7 @@
             bindtap="viewActionDetail"
             data-id="{{item.id}}"
           >
-            <image src="{{item.image}}" class="card-image" mode="aspectFill" />
+            <image src="{{item.image}}" class="card-image" mode="widthFix" />
             <view class="card-content">
               <view class="card-title">{{item.title}}</view>
               <view class="card-tags">
