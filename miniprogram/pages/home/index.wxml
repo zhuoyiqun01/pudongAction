@@ -22,8 +22,9 @@
       <view class="container">
         <view class="intro-content">
           <view class="intro-subtitle">让小行动带来大改变</view>
+        </view>
 
-      <view class="feature-buttons">
+        <view class="feature-buttons">
         <view class="feature-btn" bindtap="goToGenerator">
           <view class="btn-icon">💡</view>
           <view class="btn-title">小事生成器</view>
