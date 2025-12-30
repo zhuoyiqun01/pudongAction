@@ -218,13 +218,10 @@
 .tag {
   background-color: #068D7B;
   color: #ffffff;
-  padding: 4rpx 12rpx;
+  padding: 6rpx 12rpx 2rpx 12rpx;
   font-size: 20rpx;
   font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.2;
+  vertical-align: middle;
 }
 
 /* 响应式设计 */
