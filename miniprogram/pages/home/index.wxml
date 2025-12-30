@@ -17,7 +17,10 @@
 
   <!-- 板块2: 社区小事是什么？-->
   <view class="section">
-    <view class="section-title">社区小事是什么？</view>
+    <view class="section-title">
+      <text>社区小事是什么？</text>
+      <text class="title-link" bindtap="onLearnMore">了解更多👉</text>
+    </view>
     <view class="intro-section">
       <view class="container">
         <view class="intro-content">
@@ -25,15 +28,15 @@
         </view>
 
         <view class="feature-buttons">
-        <view class="feature-btn" bindtap="goToGenerator">
+        <view class="feature-btn generator-btn" bindtap="goToGenerator">
           <view class="btn-icon">💡</view>
-          <view class="btn-title">小事生成器</view>
+          <view class="btn-title">生成你的社区点子</view>
           <view class="btn-desc">AI帮你想出创意小事</view>
         </view>
 
-        <view class="feature-btn" bindtap="goToAction">
+        <view class="feature-btn action-btn" bindtap="goToAction">
           <view class="btn-icon">🧩</view>
-          <view class="btn-title">小事行动吧</view>
+          <view class="btn-title">成为小事行动者</view>
           <view class="btn-desc">发现项目，参与行动</view>
         </view>
       </view>

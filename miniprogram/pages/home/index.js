@@ -134,6 +134,13 @@ Page({
     });
   },
 
+  // 了解更多
+  onLearnMore: function() {
+    wx.switchTab({
+      url: '/pages/action/index'
+    });
+  },
+
   // 获取选中地区名称
   getSelectedRegionName: function() {
     const region = this.data.regions.find(item => item.id === this.data.selectedRegion);
