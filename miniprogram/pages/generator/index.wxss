@@ -82,7 +82,7 @@
   border-radius: 16rpx;
   padding: 32rpx 24rpx;
   text-align: center;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 2rpx solid transparent;
 }
@@ -90,7 +90,7 @@
 .category-card:hover,
 .category-card.selected {
   border-color: #068D7B;
-  box-shadow: 0 4rpx 16rpx rgba(6, 141, 123, 0.2);
+  box-shadow: 0 4rpx 6rpx rgba(6, 141, 123, 0.2);
   transform: translateY(-4rpx);
 }
 
@@ -110,7 +110,7 @@
   width: 100%;
   height: 200rpx;
   border: 2rpx solid #e2e8f0;
-  border-radius: 12rpx;
+  border-radius: 8rpx;
   padding: 24rpx;
   font-size: 28rpx;
   line-height: 1.5;
@@ -132,7 +132,7 @@
   background-color: #068D7B;
   color: white;
   border: none;
-  border-radius: 12rpx;
+  border-radius: 8rpx;
   height: 88rpx;
   font-size: 32rpx;
   font-weight: 600;
@@ -144,7 +144,7 @@
   border-radius: 16rpx;
   padding: 48rpx 32rpx;
   text-align: center;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
   margin-bottom: 48rpx;
 }
 
@@ -170,7 +170,7 @@
 .restart-btn {
   flex: 1;
   height: 88rpx;
-  border-radius: 12rpx;
+  border-radius: 8rpx;
   font-size: 32rpx;
   font-weight: 600;
   border: none;
