@@ -46,6 +46,10 @@ Page({
     selectedRegion: 'all',
     selectedTopic: 'all',
 
+    // 下拉框状态
+    regionDropdownOpen: false,
+    topicDropdownOpen: false,
+
     // 行动墙数据
     actions: [
       {
@@ -128,11 +132,40 @@ Page({
     });
   },
 
+  // 获取选中地区名称
+  getSelectedRegionName: function() {
+    const region = this.data.regions.find(item => item.id === this.data.selectedRegion);
+    return region ? region.name : '全部地区';
+  },
+
+  // 获取选中议题名称
+  getSelectedTopicName: function() {
+    const topic = this.data.topics.find(item => item.id === this.data.selectedTopic);
+    return topic ? topic.name : '全部议题';
+  },
+
+  // 切换地区下拉框
+  toggleRegionDropdown: function() {
+    this.setData({
+      regionDropdownOpen: !this.data.regionDropdownOpen,
+      topicDropdownOpen: false // 关闭另一个下拉框
+    });
+  },
+
+  // 切换议题下拉框
+  toggleTopicDropdown: function() {
+    this.setData({
+      topicDropdownOpen: !this.data.topicDropdownOpen,
+      regionDropdownOpen: false // 关闭另一个下拉框
+    });
+  },
+
   // 地区筛选
   selectRegion: function(e) {
     const region = e.currentTarget.dataset.region;
     this.setData({
-      selectedRegion: region
+      selectedRegion: region,
+      regionDropdownOpen: false // 选择后关闭下拉框
     });
     this.filterActions();
   },
@@ -141,7 +174,8 @@ Page({
   selectTopic: function(e) {
     const topic = e.currentTarget.dataset.topic;
     this.setData({
-      selectedTopic: topic
+      selectedTopic: topic,
+      topicDropdownOpen: false // 选择后关闭下拉框
     });
     this.filterActions();
   },

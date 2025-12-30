@@ -47,29 +47,45 @@
     <view class="wall-section">
       <view class="container">
         <!-- 筛选器 -->
-        <scroll-view scroll-x class="filter-options">
-          <view
-            wx:for="{{regions}}"
-            wx:key="id"
-            class="filter-option {{selectedRegion === item.id ? 'active' : ''}}"
-            bindtap="selectRegion"
-            data-region="{{item.id}}"
-          >
-            {{item.name}}
+        <view class="filter-container">
+          <!-- 地区筛选 -->
+          <view class="dropdown-filter">
+            <view class="dropdown-trigger" bindtap="toggleRegionDropdown">
+              <text class="dropdown-text">{{getSelectedRegionName()}}</text>
+              <view class="dropdown-arrow {{regionDropdownOpen ? 'open' : ''}}">▼</view>
+            </view>
+            <view class="dropdown-options {{regionDropdownOpen ? 'show' : ''}}">
+              <view
+                wx:for="{{regions}}"
+                wx:key="id"
+                class="dropdown-option {{selectedRegion === item.id ? 'selected' : ''}}"
+                bindtap="selectRegion"
+                data-region="{{item.id}}"
+              >
+                {{item.name}}
+              </view>
+            </view>
           </view>
-        </scroll-view>
 
-        <scroll-view scroll-x class="filter-options" style="margin-top: 12rpx;">
-          <view
-            wx:for="{{topics}}"
-            wx:key="id"
-            class="filter-option {{selectedTopic === item.id ? 'active' : ''}}"
-            bindtap="selectTopic"
-            data-topic="{{item.id}}"
-          >
-            {{item.name}}
+          <!-- 议题筛选 -->
+          <view class="dropdown-filter">
+            <view class="dropdown-trigger" bindtap="toggleTopicDropdown">
+              <text class="dropdown-text">{{getSelectedTopicName()}}</text>
+              <view class="dropdown-arrow {{topicDropdownOpen ? 'open' : ''}}">▼</view>
+            </view>
+            <view class="dropdown-options {{topicDropdownOpen ? 'show' : ''}}">
+              <view
+                wx:for="{{topics}}"
+                wx:key="id"
+                class="dropdown-option {{selectedTopic === item.id ? 'selected' : ''}}"
+                bindtap="selectTopic"
+                data-topic="{{item.id}}"
+              >
+                {{item.name}}
+              </view>
+            </view>
           </view>
-        </scroll-view>
+        </view>
 
       <!-- 瀑布流内容 -->
       <view class="waterfall-container">

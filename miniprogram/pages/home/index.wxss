@@ -133,31 +133,99 @@
   background-color: #f8fafc;
 }
 
-.filter-row {
-  margin-bottom: 16rpx;
+/* 下拉筛选器 */
+.filter-container {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
 }
 
-.filter-options {
-  white-space: nowrap;
-  height: 56rpx;
+.dropdown-filter {
+  flex: 1;
+  position: relative;
 }
 
-.filter-option {
-  display: inline-block;
-  padding: 10rpx 16rpx;
-  margin-right: 8rpx;
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12rpx 16rpx;
   background-color: #f5f5f5;
-  font-size: 24rpx;
-  color: #666666;
-  border-radius: 4rpx;
+  border-radius: 6rpx;
+  border: 1rpx solid #e0e0e0;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.filter-option.active {
-  background-color: #e0e0e0;
+.dropdown-trigger:active {
+  background-color: #e8e8e8;
+  border-color: #cccccc;
+}
+
+.dropdown-text {
+  font-size: 26rpx;
   color: #333333;
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  font-size: 20rpx;
+  color: #666666;
+  transition: transform 0.2s ease;
+  margin-left: 8rpx;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 6rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10rpx);
+}
+
+.dropdown-options.show {
+  max-height: 300rpx;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-option {
+  padding: 12rpx 16rpx;
+  font-size: 26rpx;
+  color: #333333;
+  border-bottom: 1rpx solid #f0f0f0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.dropdown-option:hover,
+.dropdown-option:active {
+  background-color: #f8f8f8;
+}
+
+.dropdown-option.selected {
+  background-color: #e8f4fd;
+  color: #068D7B;
   font-weight: 600;
 }
+
 
 /* 瀑布流容器 */
 .waterfall-container {
