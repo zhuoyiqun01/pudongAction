@@ -1,0 +1,46 @@
+/* components/custom-tabbar/index.wxss */
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 98rpx;
+  background-color: white;
+  border-top: 1rpx solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 999;
+}
+
+.tabbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  padding: 8rpx 0;
+  transition: all 0.2s ease;
+}
+
+.tabbar-item.active {
+  color: #068D7B;
+}
+
+.tabbar-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 4rpx;
+}
+
+.tabbar-text {
+  font-size: 20rpx;
+  line-height: 1.2;
+  color: #666666;
+}
+
+.tabbar-item.active .tabbar-text {
+  color: #068D7B;
+}
