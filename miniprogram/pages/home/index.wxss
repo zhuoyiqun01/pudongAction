@@ -35,7 +35,7 @@
 /* 板块1: Banner区域 */
 .banner-section {
   position: relative;
-  height: 560rpx;
+  height: 280rpx;
   overflow: hidden;
   border: 4rpx solid var(--accent1-color);
 }
@@ -44,16 +44,26 @@
   background-color: #068D7B;
 }
 
+.banner-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background-color: #068D7B;
+}
+
 
 .banner-swiper {
   height: 100%;
+  padding-top: 40rpx;
 }
 
 .banner-image {
-  width: 576rpx;
-  height: 480rpx;
+  width: 320rpx;
+  height: 240rpx;
   border-radius: 8rpx;
-  margin: 0 auto;
+  margin: 20rpx auto 0;
 }
 
 
