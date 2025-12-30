@@ -199,21 +199,21 @@
 }
 
 .card-content {
-  padding: 20rpx;
+  padding: 16rpx 20rpx 12rpx 20rpx;
 }
 
 .card-title {
   font-size: 28rpx;
   font-weight: 600;
   color: #068D7B;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
   line-height: 1.4;
 }
 
 .card-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8rpx;
+  margin-top: -4rpx;
 }
 
 .tag {
@@ -223,7 +223,7 @@
   font-size: 20rpx;
   font-weight: 500;
   margin-right: 8rpx;
-  margin-bottom: 8rpx;
+  margin-bottom: 4rpx;
 }
 
 /* 响应式设计 */
