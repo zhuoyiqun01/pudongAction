@@ -12,17 +12,19 @@
 .section-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #1a365d;
+  color: #068D7B;
   margin-bottom: 24rpx;
   text-align: left;
   padding: 0 32rpx;
 }
 
-/* 板块1: Banner区域 */
+/* 板块1: Banner区域 - 蒙德里安风格 */
 .banner-section {
   position: relative;
   height: 400rpx;
   overflow: hidden;
+  border: 3rpx solid #068D7B;
+  background-color: #FFE501;
 }
 
 .banner-swiper {
@@ -39,59 +41,64 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  padding: 48rpx 32rpx;
+  background: rgba(6, 141, 123, 0.9);
+  padding: 32rpx;
   color: white;
+  border-top: 3rpx solid #FFE501;
 }
 
 .banner-title {
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 700;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
+  color: #FFE501;
 }
 
 .banner-desc {
   font-size: 24rpx;
-  opacity: 0.9;
+  color: white;
 }
 
-/* 板块2: 介绍区域 */
+/* 板块2: 介绍区域 - 蒙德里安风格 */
 .intro-section {
-  padding: 32rpx 0;
+  padding: 48rpx 0;
   background-color: white;
+  border-top: 3rpx solid #FFE501;
+  border-bottom: 3rpx solid #068D7B;
 }
 
 .intro-content {
-  text-align: left;
   margin-bottom: 48rpx;
 }
 
 .intro-subtitle {
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #64748b;
+  border-left: 6rpx solid #FFE501;
+  padding-left: 16rpx;
   margin-bottom: 48rpx;
 }
 
 .feature-buttons {
   display: flex;
-  gap: 32rpx;
+  gap: 24rpx;
   justify-content: center;
+  margin-top: 32rpx;
 }
 
 .feature-btn {
   flex: 1;
-  max-width: 300rpx;
-  background-color: #f8fafc;
-  border-radius: 16rpx;
-  padding: 48rpx 32rpx;
+  max-width: 280rpx;
+  background-color: white;
+  border: 3rpx solid #068D7B;
+  padding: 40rpx 24rpx;
   text-align: center;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .feature-btn:active {
-  transform: translateY(-2rpx);
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.15);
+  background-color: #068D7B;
+  transform: translateY(0);
 }
 
 .btn-icon {
@@ -112,14 +119,18 @@
   line-height: 1.5;
 }
 
-/* 板块3: 小事行动墙 */
+/* 板块3: 小事行动墙 - 蒙德里安风格 */
 .wall-section {
-  background-color: #f8fafc;
+  background-color: white;
+  border-top: 3rpx solid #068D7B;
 }
 
-/* 筛选器 */
+/* 筛选器 - 扁平化设计 */
 .filters {
   margin-bottom: 32rpx;
+  padding: 24rpx;
+  background-color: #f8fafc;
+  border: 2rpx solid #068D7B;
 }
 
 .filter-group {
@@ -127,34 +138,36 @@
 }
 
 .filter-label {
-  font-size: 28rpx;
+  font-size: 26rpx;
   font-weight: 600;
-  color: #1a365d;
-  margin-bottom: 16rpx;
+  color: #068D7B;
+  margin-bottom: 12rpx;
   display: block;
+  border-bottom: 2rpx solid #FFE501;
+  padding-bottom: 8rpx;
 }
 
 .filter-options {
   white-space: nowrap;
-  height: 60rpx;
+  height: 56rpx;
 }
 
 .filter-option {
   display: inline-block;
-  padding: 12rpx 24rpx;
-  margin-right: 16rpx;
+  padding: 12rpx 20rpx;
+  margin-right: 12rpx;
   background-color: white;
-  border-radius: 16rpx;
   font-size: 24rpx;
   color: #64748b;
-  border: 1rpx solid #e2e8f0;
-  transition: all 0.3s ease;
+  border: 2rpx solid #e2e8f0;
+  transition: all 0.2s ease;
 }
 
 .filter-option.active {
-  background-color: #068D7B;
-  color: white;
+  background-color: #FFE501;
+  color: #068D7B;
   border-color: #068D7B;
+  font-weight: 600;
 }
 
 /* 瀑布流容器 */
@@ -167,19 +180,19 @@
   flex: 1;
 }
 
-/* 行动卡片 */
+/* 行动卡片 - 扁平化设计 */
 .action-card {
   background-color: white;
-  border-radius: 16rpx;
   margin-bottom: 16rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border: 2rpx solid #e2e8f0;
+  transition: all 0.2s ease;
 }
 
 .action-card:active {
-  transform: translateY(-2rpx);
-  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  border-color: #FFE501;
+  background-color: #f8fafc;
+  transform: translateY(0);
 }
 
 .card-image {
@@ -195,7 +208,7 @@
 .card-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #1a365d;
+  color: #068D7B;
   margin-bottom: 16rpx;
   line-height: 1.4;
 }
@@ -207,10 +220,10 @@
 }
 
 .tag {
-  background-color: #f0f9ff;
-  color: #0369a1;
+  background-color: #FFE501;
+  color: #068D7B;
   padding: 6rpx 12rpx;
-  border-radius: 8rpx;
+  border: 1rpx solid #068D7B;
   font-size: 20rpx;
   font-weight: 500;
 }

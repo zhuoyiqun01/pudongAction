@@ -79,19 +79,17 @@
 
 .category-card {
   background-color: white;
-  border-radius: 16rpx;
   padding: 32rpx 24rpx;
   text-align: center;
-  box-shadow: 0 1rpx 3rpx rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  border: 2rpx solid transparent;
+  border: 2rpx solid #e2e8f0;
+  transition: all 0.2s ease;
 }
 
 .category-card:hover,
 .category-card.selected {
   border-color: #068D7B;
-  box-shadow: 0 4rpx 6rpx rgba(6, 141, 123, 0.2);
-  transform: translateY(-4rpx);
+  background-color: #FFE501;
+  transform: translateY(0);
 }
 
 .category-icon {
