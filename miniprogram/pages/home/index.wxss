@@ -41,7 +41,18 @@
 }
 
 .banner-section-wrapper {
+  position: relative;
+}
+
+.banner-section-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx; /* 固定高度而不是百分比 */
   background-color: #068D7B;
+  z-index: 0;
 }
 
 .banner-background {
@@ -49,7 +60,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 30%;
+  height: 20%;
   background-color: #068D7B;
 }
 
@@ -57,7 +68,6 @@
 .banner-swiper {
   height: 100%;
   padding: 0 40rpx;
-  transform: translateX(25rpx);
 }
 
 .banner-image {
