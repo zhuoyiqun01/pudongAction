@@ -5,20 +5,32 @@ page {
   box-sizing: border-box;
 }
 
-/* 品牌颜色变量 */
-.brand-primary { color: #068D7B; }
-.brand-secondary { color: #FFE501; }
-.brand-accent1 { color: #F49B9B; }
-.brand-accent2 { color: #A4CCFE; }
-.brand-accent3 { color: #FDC57A; }
-.brand-gray { color: #64748b; }
+/* CSS 主题色变量 */
+:root {
+  --primary-color: #068D7B;
+  --secondary-color: #FFE501;
+  --accent1-color: #F49B9B;
+  --accent2-color: #A4CCFE;
+  --accent3-color: #FDC57A;
+  --gray-color: #64748b;
+  --light-bg: #f8fafc;
+  --white: #ffffff;
+}
 
-.bg-brand-primary { background-color: #068D7B; }
-.bg-brand-secondary { background-color: #FFE501; }
-.bg-brand-accent1 { background-color: #F49B9B; }
-.bg-brand-accent2 { background-color: #A4CCFE; }
-.bg-brand-accent3 { background-color: #FDC57A; }
-.bg-brand-gray { background-color: #64748b; }
+/* 品牌颜色类 */
+.brand-primary { color: var(--primary-color); }
+.brand-secondary { color: var(--secondary-color); }
+.brand-accent1 { color: var(--accent1-color); }
+.brand-accent2 { color: var(--accent2-color); }
+.brand-accent3 { color: var(--accent3-color); }
+.brand-gray { color: var(--gray-color); }
+
+.bg-brand-primary { background-color: var(--primary-color); }
+.bg-brand-secondary { background-color: var(--secondary-color); }
+.bg-brand-accent1 { background-color: var(--accent1-color); }
+.bg-brand-accent2 { background-color: var(--accent2-color); }
+.bg-brand-accent3 { background-color: var(--accent3-color); }
+.bg-brand-gray { background-color: var(--gray-color); }
 
 /* 状态颜色变量 */
 .text-success { color: #10b981; }
