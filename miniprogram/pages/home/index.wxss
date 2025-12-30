@@ -115,7 +115,7 @@
 .btn-title {
   font-size: 32rpx;
   font-weight: 700;
-  color: #1a365d;
+  color: var(--primary-color);
   margin-bottom: 16rpx;
 }
 
@@ -171,7 +171,7 @@
 
 .dropdown-text {
   font-size: 26rpx;
-  color: #333333;
+  color: var(--primary-color);
   font-weight: 500;
 }
 
@@ -212,7 +212,7 @@
 .dropdown-option {
   padding: 12rpx 16rpx;
   font-size: 26rpx;
-  color: #333333;
+  color: var(--primary-color);
   border-bottom: 1rpx solid #f0f0f0;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -581,7 +581,7 @@
 }
 
 .value-partner {
-  background-color: #334155;
+  background-color: var(--primary-color);
   color: white;
 }
 
