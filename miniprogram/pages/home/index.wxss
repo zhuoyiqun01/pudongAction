@@ -138,6 +138,7 @@
   display: flex;
   gap: 16rpx;
   margin-bottom: 24rpx;
+  flex-wrap: wrap;
 }
 
 .dropdown-filter {
@@ -146,7 +147,7 @@
 }
 
 .dropdown-trigger {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: space-between;
   padding: 12rpx 16rpx;
@@ -155,6 +156,8 @@
   border: 1rpx solid #e0e0e0;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 120rpx;
+  white-space: nowrap;
 }
 
 .dropdown-trigger:active {
