@@ -6,7 +6,8 @@
     "pages/activists/index",
     "pages/leaders/index",
     "pages/join/index",
-    "pages/learning/index"
+    "pages/learning/index",
+    "pages/action/intro/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

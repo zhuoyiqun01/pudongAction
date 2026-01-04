@@ -5,13 +5,13 @@
   left: 0;
   right: 0;
   height: 98rpx;
-  background-color: white;
-  border-top: 1rpx solid #e5e5e5;
+  background-color: var(--white);
+  border-top: 1rpx solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding-bottom: env(safe-area-inset-bottom);
-  z-index: 999;
+  z-index: var(--z-fixed);
 }
 
 .tabbar-item {
@@ -21,26 +21,27 @@
   justify-content: center;
   flex: 1;
   height: 100%;
-  padding: 8rpx 0;
-  transition: all 0.2s ease;
+  padding: var(--space-xs) 0;
+  transition: var(--transition-fast);
 }
 
 .tabbar-item.active {
-  color: #068D7B;
+  color: var(--primary-color);
 }
 
 .tabbar-icon {
-  width: 48rpx;
-  height: 48rpx;
-  margin-bottom: 4rpx;
+  width: var(--space-xl);
+  height: var(--space-xl);
+  margin-bottom: var(--space-2xs);
 }
 
 .tabbar-text {
-  font-size: 20rpx;
+  font-size: var(--text-xs);
   line-height: 1.2;
-  color: #666666;
+  color: var(--text-gray);
 }
 
 .tabbar-item.active .tabbar-text {
-  color: #068D7B;
+  color: var(--primary-color);
 }
+

@@ -1,16 +1,16 @@
 <view class="home-page fade-in">
   <!-- 板块1: 正在发生 - 海报Banner -->
-  <view class="section banner-section-wrapper">
-    <view class="section-title banner-title">正在发生</view>
-    <view class="banner-section">
-      <view class="banner-background"></view>
-      <swiper class="banner-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="3000" duration="500" circular="{{true}}" display-multiple-items="1.3" previous-margin="80rpx" next-margin="30rpx">
-      <swiper-item wx:for="{{banners}}" wx:key="id">
-        <image src="{{item.image}}" class="banner-image" mode="widthFix" bindtap="onBannerTap" data-url="{{item.url}}" />
-      </swiper-item>
-    </swiper>
+    <view class="section banner-section-wrapper">
+      <view class="section-title banner-title">正在发生</view>
+      <view class="banner-section">
+        <view class="banner-background"></view>
+        <swiper wx:if="{{banners.length > 0}}" class="banner-swiper" indicator-dots="{{true}}" indicator-color="#068D7B" indicator-active-color="#94a3b8" autoplay="{{true}}" interval="3000" duration="500" circular="{{true}}" display-multiple-items="{{banners.length > 1 ? 1.3 : 1}}" previous-margin="{{banners.length > 1 ? '140rpx' : '0rpx'}}" next-margin="0rpx">
+        <swiper-item wx:for="{{banners}}" wx:key="id">
+          <image src="{{item.image}}" class="banner-image" mode="widthFix" bindtap="onBannerTap" data-url="{{item.url}}" />
+        </swiper-item>
+      </swiper>
+      </view>
     </view>
-  </view>
 
   <!-- 板块2: 社区小事是什么？-->
   <view class="section">
@@ -18,26 +18,17 @@
       <text>社区小事是什么？</text>
       <text class="title-link" bindtap="onLearnMore">了解更多👉</text>
     </view>
-    <view class="intro-section">
-      <view class="container">
-        <view class="intro-content">
-          <view class="intro-subtitle">让小行动带来大改变</view>
-        </view>
-
-        <view class="feature-buttons">
-        <view class="feature-btn generator-btn" bindtap="goToGenerator">
-          <view class="btn-icon">💡</view>
-          <view class="btn-title">生成你的社区点子</view>
-          <view class="btn-desc">AI帮你想出创意小事</view>
-        </view>
-
-        <view class="feature-btn action-btn" bindtap="goToAction">
-          <view class="btn-icon">🧩</view>
-          <view class="btn-title">成为小事行动者</view>
-          <view class="btn-desc">发现项目，参与行动</view>
-        </view>
+    <view class="intro-subtitle">让小行动带来大改变</view>
+    <view class="feature-buttons intro-section">
+      <view class="feature-btn generator-btn" bindtap="goToGenerator">
+        <view class="btn-icon">💡</view>
+        <view class="btn-title">生成你的社区点子</view>
       </view>
-    </view>
+
+      <view class="feature-btn action-btn" bindtap="goToAction">
+        <view class="btn-icon">🧩</view>
+        <view class="btn-title">成为小事行动者</view>
+      </view>
     </view>
   </view>
 

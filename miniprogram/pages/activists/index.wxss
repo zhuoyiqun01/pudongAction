@@ -1,27 +1,27 @@
 /* 活动家页面样式 */
 .activists-page {
-  background-color: #f8fafc;
+  background-color: var(--bg-light);
   min-height: 100vh;
 }
 
 /* 页面头部 */
 .page-header {
-  background-color: #068D7B;
-  padding: 64rpx 0 48rpx;
-  color: white;
+  background-color: var(--primary-color);
+  padding: var(--space-2xl) 0 var(--space-xl);
+  color: var(--white);
 }
 
 .page-title {
-  font-size: 48rpx;
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
   display: block;
   text-align: center;
-  margin-bottom: 16rpx;
+  margin-bottom: var(--space-sm);
   letter-spacing: -0.5rpx;
 }
 
 .page-subtitle {
-  font-size: 28rpx;
+  font-size: var(--text-base);
   opacity: 0.9;
   display: block;
   text-align: center;
@@ -29,122 +29,121 @@
 
 /* 筛选区域 */
 .filters-section {
-  background-color: #ffffff;
-  padding: 32rpx 0;
-  border-bottom: 1rpx solid #e2e8f0;
+  background-color: var(--white);
+  padding: var(--space-lg) var(--space-lg);
 }
 
 .filters-content {
   display: flex;
   flex-direction: column;
-  gap: 32rpx;
+  gap: var(--space-lg);
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 16rpx;
+  gap: var(--space-sm);
 }
 
 .filter-label {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #374151;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-dark);
 }
 
 .filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 16rpx;
+  gap: var(--space-sm);
 }
 
 .filter-option {
-  padding: 12rpx 24rpx;
-  background-color: #f3f4f6;
-  color: #6b7280;
-  font-size: 26rpx;
-  border-radius: 20rpx;
+  padding: 12rpx var(--space-md);
+  background-color: var(--bg-gray);
+  color: var(--text-gray);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
 }
 
 .filter-option.active {
-  background-color: #068D7B;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
 }
 
 .filter-option:hover {
-  background-color: #e5e7eb;
+  background-color: var(--border-light);
 }
 
 .filter-option.active:hover {
-  background-color: #152c4a;
+  background-color: var(--accent-navy);
 }
 
 /* 搜索区域 */
 .search-group {
   display: flex;
-  gap: 16rpx;
+  gap: var(--space-sm);
   align-items: center;
 }
 
 .search-input {
   flex: 1;
-  padding: 16rpx 24rpx;
-  border: 1rpx solid #d1d5db;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  background-color: #ffffff;
+  padding: var(--space-sm) var(--space-md);
+  border: 1rpx solid var(--border-gray);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  background-color: var(--white);
 }
 
 .search-btn {
-  padding: 16rpx 32rpx;
-  background-color: #FFE501;
-  color: #068D7B;
-  font-size: 28rpx;
-  font-weight: 600;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
   border: none;
-  border-radius: 8rpx;
+  border-radius: var(--radius-sm);
   cursor: pointer;
 }
 
 /* 活动家区域 */
 .activists-section {
-  padding: 32rpx 0 64rpx;
+  padding: var(--space-lg) var(--space-lg) var(--space-2xl) var(--space-lg);
 }
 
 .loading, .empty-state {
   text-align: center;
-  padding: 96rpx 0;
-  color: #6b7280;
-  font-size: 28rpx;
+  padding: var(--space-4xl) 0;
+  color: var(--text-gray);
+  font-size: var(--text-base);
 }
 
 .empty-text {
-  color: #9ca3af;
-  font-size: 32rpx;
+  color: var(--text-light);
+  font-size: var(--text-lg);
 }
 
 /* 活动家网格 */
 .activists-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300rpx, 1fr));
-  gap: 32rpx;
+  gap: var(--space-lg);
 }
 
 /* 活动家卡片 */
 .activist-card {
-  background-color: #ffffff;
-  border-radius: 16rpx;
+  background-color: var(--white);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
   cursor: pointer;
 }
 
 .activist-card:hover {
   transform: translateY(-4rpx);
-  box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-md);
 }
 
 /* 头像区域 */
@@ -162,51 +161,51 @@
 
 .activist-tag {
   position: absolute;
-  top: 16rpx;
-  right: 16rpx;
+  top: var(--space-sm);
+  right: var(--space-sm);
   background-color: rgba(251, 191, 36, 0.9);
-  color: #068D7B;
-  padding: 8rpx 16rpx;
-  border-radius: 12rpx;
-  font-size: 20rpx;
-  font-weight: 600;
+  color: var(--primary-color);
+  padding: 8rpx var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
 }
 
 /* 信息区域 */
 .activist-info {
-  padding: 24rpx;
+  padding: var(--space-md);
 }
 
 .activist-name {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-dark);
   display: block;
-  margin-bottom: 8rpx;
+  margin-bottom: var(--space-xs);
 }
 
 .activist-role {
-  font-size: 26rpx;
-  color: #059669;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--success-color);
+  font-weight: var(--font-semibold);
   display: block;
-  margin-bottom: 8rpx;
+  margin-bottom: var(--space-xs);
 }
 
 .activist-street {
-  font-size: 24rpx;
-  color: #6b7280;
+  font-size: var(--text-xs);
+  color: var(--text-gray);
   display: block;
-  margin-bottom: 16rpx;
-  padding: 6rpx 12rpx;
-  background-color: #f3f4f6;
-  border-radius: 8rpx;
+  margin-bottom: var(--space-sm);
+  padding: 6rpx var(--space-sm);
+  background-color: var(--bg-gray);
+  border-radius: var(--radius-xs);
   display: inline-block;
 }
 
 .activist-bio {
-  font-size: 26rpx;
-  color: #4b5563;
+  font-size: var(--text-sm);
+  color: var(--text-gray);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -217,12 +216,12 @@
 /* 加载更多 */
 .load-more, .no-more {
   text-align: center;
-  margin-top: 48rpx;
+  margin-top: var(--space-xl);
 }
 
 .no-more text {
-  color: #9ca3af;
-  font-size: 26rpx;
+  color: var(--text-light);
+  font-size: var(--text-sm);
 }
 
 /* 响应式设计 */
@@ -232,7 +231,7 @@
   }
 
   .filters-content {
-    gap: 24rpx;
+    gap: var(--space-md);
   }
 
   .filter-options {
@@ -240,7 +239,7 @@
   }
 
   .filter-option {
-    padding: 10rpx 20rpx;
-    font-size: 24rpx;
+    padding: 10rpx var(--space-md);
+    font-size: var(--text-sm);
   }
 }

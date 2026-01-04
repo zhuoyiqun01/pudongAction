@@ -12,15 +12,19 @@ exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
   try {
-    const { page = 1, limit = 20, street, search } = event
+    const { page = 1, limit = 20, street, topic, search } = event
 
     // 构建查询条件
     let query = {
       published: true
     }
 
-    if (street) {
+    if (street && street !== 'all') {
       query.street = street
+    }
+
+    if (topic && topic !== 'all') {
+      query.topic = topic
     }
 
     if (search) {
@@ -31,13 +35,13 @@ exports.main = async (event, context) => {
     }
 
     // 查询总数
-    const totalResult = await db.collection('activists')
+    const totalResult = await db.collection('xsxdz')
       .where(query)
       .count()
 
     // 查询数据
     const skip = (page - 1) * limit
-    let dataQuery = db.collection('activists')
+    let dataQuery = db.collection('xsxdz')
       .where(query)
       .orderBy('order', 'desc')
       .orderBy('createdAt', 'desc')

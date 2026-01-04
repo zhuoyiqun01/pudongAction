@@ -15,3 +15,4 @@
     <text class="tabbar-text">{{item.text}}</text>
   </view>
 </view>
+

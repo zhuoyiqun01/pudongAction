@@ -88,3 +88,4 @@ chmod +x convert_icons.sh
 1. 编辑 `svg/` 目录下的 SVG 文件
 2. 重新转换为 PNG 格式
 3. 测试在微信开发者工具中的显示效果
+

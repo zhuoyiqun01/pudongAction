@@ -1,28 +1,28 @@
 /* 加入页面样式 */
 .join-page {
-  background-color: #f8fafc;
+  background-color: var(--bg-light);
   min-height: 100vh;
-  padding-bottom: 64rpx;
+  padding-bottom: var(--space-2xl);
 }
 
 /* 页面头部 */
 .page-header {
-  background-color: #068D7B;
-  padding: 64rpx 0 48rpx;
-  color: white;
+  background-color: var(--primary-color);
+  padding: var(--space-2xl) 0 var(--space-xl);
+  color: var(--white);
 }
 
 .page-title {
-  font-size: 48rpx;
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
   display: block;
   text-align: center;
-  margin-bottom: 16rpx;
+  margin-bottom: var(--space-sm);
   letter-spacing: -0.5rpx;
 }
 
 .page-subtitle {
-  font-size: 28rpx;
+  font-size: var(--text-base);
   opacity: 0.9;
   display: block;
   text-align: center;
@@ -33,74 +33,73 @@
 
 /* 加入区域 */
 .join-section {
-  padding: 32rpx 0;
+  padding: var(--space-lg) var(--space-lg);
 }
 
 /* 表单卡片 */
 .join-card {
-  background-color: #ffffff;
-  border-radius: 16rpx;
-  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  margin-bottom: 32rpx;
+  margin-bottom: var(--space-lg);
 }
 
 .card-header {
-  padding: 32rpx 32rpx 24rpx;
-  border-bottom: 1rpx solid #e2e8f0;
+  padding: var(--space-lg) var(--space-lg) var(--space-md);
 }
 
 .card-title {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-dark);
   display: block;
-  margin-bottom: 8rpx;
+  margin-bottom: var(--space-xs);
 }
 
 .card-subtitle {
-  font-size: 26rpx;
-  color: #6b7280;
+  font-size: var(--text-sm);
+  color: var(--text-gray);
   display: block;
 }
 
 /* 表单 */
 .join-form {
-  padding: 32rpx;
+  padding: var(--space-lg);
 }
 
 .form-group {
-  margin-bottom: 32rpx;
+  margin-bottom: var(--space-lg);
 }
 
 .form-label {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #374151;
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-dark);
   display: block;
   margin-bottom: 12rpx;
 }
 
 .form-label.required::after {
   content: ' *';
-  color: #ef4444; /* 错误状态色 */
+  color: var(--error-color);
 }
 
 .form-input, .form-textarea {
   width: 100%;
   height: 88rpx;
-  padding: 20rpx 24rpx;
-  border: 1rpx solid #d1d5db;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  background-color: #ffffff;
-  transition: border-color 0.3s ease;
+  padding: 20rpx var(--space-md);
+  border: 1rpx solid var(--border-gray);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  background-color: var(--white);
+  transition: var(--transition-base);
   box-sizing: border-box;
   line-height: 1.4;
 }
 
 .form-input:focus, .form-textarea:focus {
-  border-color: #068D7B;
+  border-color: var(--primary-color);
   outline: none;
 }
 
@@ -111,22 +110,22 @@
 }
 
 .textarea-count {
-  font-size: 24rpx;
-  color: #9ca3af;
+  font-size: var(--text-sm);
+  color: var(--text-light);
   text-align: right;
-  margin-top: 8rpx;
+  margin-top: var(--space-xs);
   display: block;
 }
 
 /* Picker样式 */
 .picker-display {
   width: 100%;
-  padding: 20rpx 24rpx;
-  border: 1rpx solid #d1d5db;
-  border-radius: 8rpx;
-  font-size: 28rpx;
-  background-color: #ffffff;
-  color: #374151;
+  padding: 20rpx var(--space-md);
+  border: 1rpx solid var(--border-gray);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  background-color: var(--white);
+  color: var(--text-dark);
   cursor: pointer;
 }
 
@@ -134,85 +133,85 @@
 .interest-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 16rpx;
+  gap: var(--space-sm);
 }
 
 .interest-tag {
-  padding: 12rpx 20rpx;
-  background-color: #f3f4f6;
-  color: #6b7280;
-  font-size: 26rpx;
-  border-radius: 20rpx;
+  padding: 12rpx var(--space-md);
+  background-color: var(--bg-gray);
+  color: var(--text-gray);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
   border: 1rpx solid transparent;
 }
 
 .interest-tag.active {
-  background-color: #068D7B;
-  color: white;
-  border-color: #068D7B;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
 }
 
 .interest-tag:hover {
-  background-color: #e5e7eb;
+  background-color: var(--border-light);
 }
 
 .interest-tag.active:hover {
-  background-color: #152c4a;
+  background-color: var(--accent-navy);
 }
 
 /* 表单操作 */
 .form-actions {
-  margin-top: 48rpx;
+  margin-top: var(--space-xl);
   text-align: center;
 }
 
 .submit-btn {
   min-width: 200rpx;
-  padding: 24rpx 48rpx;
-  font-size: 32rpx;
-  font-weight: 700;
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
 }
 
 .submit-btn[disabled] {
-  background-color: #9ca3af;
-  color: #ffffff;
+  background-color: var(--text-light);
+  color: var(--white);
   cursor: not-allowed;
 }
 
 /* 信息说明 */
 .info-section {
-  margin-top: 48rpx;
+  margin-top: var(--space-xl);
 }
 
 .info-card {
-  background-color: #ffffff;
-  border-radius: 16rpx;
-  padding: 32rpx;
-  box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
 }
 
 .info-title {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: #1f2937;
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-dark);
   display: block;
-  margin-bottom: 24rpx;
+  margin-bottom: var(--space-md);
 }
 
 .info-list {
   display: flex;
   flex-direction: column;
-  gap: 16rpx;
+  gap: var(--space-sm);
 }
 
 .info-item {
-  font-size: 26rpx;
-  color: #4b5563;
+  font-size: var(--text-sm);
+  color: var(--text-gray);
   line-height: 1.5;
   position: relative;
-  padding-left: 32rpx;
+  padding-left: var(--space-lg);
 }
 
 .info-item::before {
@@ -222,22 +221,22 @@
   top: 12rpx;
   width: 6rpx;
   height: 6rpx;
-  background-color: #FFE501;
+  background-color: var(--secondary-color);
   border-radius: 50%;
 }
 
 /* 响应式设计 */
 @media (max-width: 750rpx) {
   .join-form {
-    padding: 24rpx;
+    padding: var(--space-md);
   }
 
   .card-header {
-    padding: 24rpx 24rpx 16rpx;
+    padding: var(--space-md) var(--space-md) var(--space-sm);
   }
 
   .form-group {
-    margin-bottom: 24rpx;
+    margin-bottom: var(--space-md);
   }
 
   .interest-tags {
@@ -245,7 +244,7 @@
   }
 
   .interest-tag {
-    padding: 10rpx 16rpx;
-    font-size: 24rpx;
+    padding: 10rpx var(--space-sm);
+    font-size: var(--text-sm);
   }
 }
