@@ -1,44 +1,159 @@
 /* 首页样式 */
 .home-page {
   min-height: 100vh;
-  background-color: var(--bg-light);
+  background-color: var(--primary-color);
 }
 
-/* 统一板块标题样式 */
+.home-page.lock-scroll {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- 二楼 (Second Floor) 样式 --- */
+.second-floor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: var(--primary-color);
+  z-index: -1; /* 初始在底层 */
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(-100%);
+  will-change: transform;
+}
+
+.second-floor.expand {
+  z-index: 2000;
+  opacity: 1;
+}
+
+.main-content {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  will-change: transform;
+}
+
+.main-content.slide-down {
+  /* 由内联样式控制实时位移 */
+}
+
+/* 二楼内部 Hero 样式 (同步自 intro 页面) */
+.second-floor .hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-lg);
+  color: var(--white);
+}
+
+.second-floor .hero-primary {
+  max-width: 640rpx;
+  text-align: left;
+}
+
+.second-floor .hero-title-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.second-floor .hero-title {
+  font-size: 64rpx;
+  font-weight: var(--font-black);
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 4rpx; 
+}
+
+.second-floor .hero-title-highlight {
+  font-size: 72rpx;
+  font-weight: var(--font-black);
+  color: var(--secondary-color);
+  line-height: 1;
+  display: block;
+  margin-top: 0;
+}
+
+.second-floor .hero-description {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-top: var(--space-xl);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.second-floor .hero-description view {
+  margin-bottom: var(--space-md);
+}
+
+.second-floor-tip {
+  padding: var(--space-xl);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-sm);
+  letter-spacing: 2rpx;
+}
+
+/* --- 统一板块标题样式 --- */
 .section {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-lg);
 }
 
 .section-title {
   font-size: var(--text-xl);
   font-weight: var(--font-bold);
   color: var(--primary-color);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-3xs);
   text-align: left;
-  padding: var(--space-xl) var(--space-lg) 0 var(--space-lg);
+  padding: var(--space-2xs) var(--space-lg); /* 调整内边距，减少底部留白 */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: relative; /* 默认不再吸顶 */
   z-index: var(--z-base);
+  background-color: transparent;
+}
+
+.sticky-title {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+  background-color: var(--bg-light); /* 吸顶时使用页面背景色遮挡内容 */
 }
 
 .banner-title {
   color: var(--white);
+  background-color: var(--primary-color); /* 保持主题绿背景 */
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.banner-title .title-link {
+  color: var(--white);
+  opacity: 0.9;
 }
 
 .title-link {
   font-size: var(--text-sm);
-  color: var(--accent-pink);
+  color: var(--primary-color);
   font-weight: var(--font-medium);
   cursor: pointer;
+}
+
+.banner-section-wrapper .intro-subtitle {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* 板块1: Banner区域 */
 .banner-section {
   position: relative;
-  height: 280rpx;
-  overflow: hidden;
+  height: 260rpx; /* 降低高度，使其更显精致 */
+  overflow: visible; /* 允许阴影溢出 */
 }
 
 .banner-section-wrapper {
@@ -51,9 +166,15 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 160rpx; /* 进一步增加高度确保覆盖标题 */
+  height: 240rpx; /* 增加高度以覆盖副标题 */
   background-color: var(--primary-color);
   z-index: 0;
+}
+
+.banner-section-wrapper .intro-subtitle {
+  color: rgba(255, 255, 255, 0.9); /* 在绿色背景下显示为白色 */
+  position: relative;
+  z-index: 1;
 }
 
 .banner-background {
@@ -67,20 +188,26 @@
 
 .banner-swiper {
   height: 100%;
-  padding: 0 var(--space-lg);
+  padding: 0; /* 移除 padding，由 swiper 的 margin 控制间距 */
+}
+
+.swiper-item-inner {
+  padding: 0 10rpx; /* 图片之间的间距 */
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .banner-image {
-  width: 400rpx;
-  height: 280rpx;
-  border-radius: var(--radius-sm);
-  margin: 0 auto;
+  width: 100%; /* 宽度占满 inner 容器 */
+  height: 100%;
+  border-radius: var(--radius-md);
   display: block;
+  box-shadow: var(--shadow-sm); /* 统一 Banner 卡片阴影 */
 }
 
 /* 板块2: 介绍区域  */
 .intro-section {
-  padding: 0 var(--space-lg) var(--space-xl) var(--space-lg);
+  padding: 0 var(--space-lg) var(--space-sm) var(--space-lg);
   background-color: transparent;
 }
 
@@ -93,67 +220,78 @@
   color: var(--text-gray);
   padding-left: var(--space-lg);
   margin-bottom: var(--space-md);
-  margin-top: calc(-1 * var(--space-xs));
+  margin-top: 0;
   display: block;
 }
 
 .feature-buttons {
   display: flex;
-  gap: var(--space-md);
-  justify-content: center;
-  margin-top: var(--space-lg);
-  background: transparent;
-  color: var(--white);
+  gap: 0; /* 按钮间距改为 0 */
+  justify-content: stretch; /* 填充整个宽度 */
+  margin-top: var(--space-md);
+  background: var(--white); /* 整体改为白底 */
+  color: var(--primary-color); /* 整体改为主题绿字 */
+  border-radius: var(--radius-md);
+  overflow: hidden; /* 配合子项圆角处理 */
+  box-shadow: var(--shadow-sm); /* 增加整体阴影 */
+  position: relative; /* 为中间竖线定位 */
+}
+
+.feature-buttons::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  bottom: 25%;
+  width: 2rpx;
+  background-color: var(--border-gray); /* 浅灰色竖线 */
+  z-index: 2;
 }
 
 .feature-btn {
   flex: 1;
-  max-width: 280rpx;
   background-color: var(--white);
-  padding: var(--space-lg) var(--space-xs);
+  padding: var(--space-md) var(--space-xs);
   text-align: center;
   transition: var(--transition-fast);
   position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-sm);
+  border-radius: 0; /* 移除子项默认圆角，改由外部容器或两端控制 */
+  box-shadow: none; /* 按钮靠拢后移除单个阴影，避免重叠 */
 }
 
 .generator-btn {
-  background-color: var(--accent-pink);
-  border: var(--space-2xs) solid var(--accent-pink);
-}
-
-.generator-btn:active {
-  background-color: var(--accent-orange);
-  transform: translateY(0);
+  background-color: var(--white);
+  border: none;
 }
 
 .action-btn {
-  background-color: var(--accent-blue);
-  border: var(--space-2xs) solid var(--accent-blue);
+  background-color: var(--white);
+  border: none;
 }
 
-.action-btn:active {
-  background-color: var(--accent-pink);
-  transform: translateY(0);
+.action-btn:active, .generator-btn:active {
+  background-color: var(--bg-gray); /* 增加点击反馈 */
 }
 
 .btn-icon {
-  font-size: var(--space-2xl);
-  margin-bottom: var(--space-md);
+  font-size: 48rpx;
+  margin-bottom: var(--space-xs);
 }
 
 .btn-title {
-  font-size: var(--text-lg);
-  font-weight: var(--font-bold);
-  color: var(--black);
-  margin-bottom: var(--space-sm);
+  font-size: var(--text-base);
+  font-weight: var(--font-regular); /* 从 bold 降为 semibold */
+  color: var(--primary-color); /* 主题绿 */
+  margin-bottom: 4rpx;
+  letter-spacing: -1rpx;
 }
 
 .btn-desc {
-  font-size: var(--text-sm);
-  color: var(--black);
-  line-height: 1.5;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium); /* 明确设置为 medium */
+  color: var(--text-gray); /* 改为灰色更加精致 */
+  line-height: 1.3;
+  letter-spacing: -0.5rpx;
 }
 
 /* 板块3: 小事行动墙  */
@@ -181,7 +319,7 @@
   justify-content: space-between;
   padding: 12rpx var(--space-sm);
   background-color: var(--bg-gray);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-md);
   border: 1rpx solid var(--border-gray);
   white-space: nowrap;
   cursor: pointer;
@@ -194,7 +332,7 @@
 }
 
 .dropdown-text {
-  font-size: 26rpx;
+  font-size: var(--text-sm);
   color: var(--primary-color);
   font-weight: var(--font-medium);
 }
@@ -218,7 +356,7 @@
   min-width: 160rpx;
   background-color: var(--white);
   border: 1rpx solid var(--border-gray);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   max-height: 0;
   overflow: hidden;
@@ -228,14 +366,15 @@
 }
 
 .dropdown-options.show {
-  max-height: 300rpx;
+  max-height: 600rpx; /* 增加最大高度，适应更多街道 */
+  overflow-y: auto;   /* 允许竖向滚动 */
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-option {
   padding: 12rpx var(--space-sm);
-  font-size: 26rpx;
+  font-size: var(--text-sm);
   color: var(--primary-color);
   border-bottom: 1rpx solid var(--border-light);
   transition: var(--transition-fast);

@@ -1,13 +1,13 @@
   /* 拼图块动画效果 */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20rpx); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .fade-in {
-    animation: fadeIn 0.6s ease-out;
-  }
-  
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
   /* 基础重置 */
   page {
     /* 品牌核心色 */
@@ -51,6 +51,7 @@
     --text-4xl: 72rpx;
     
     /* 间距系统 - 8rpx 步进 */
+    --space-3xs: 2rpx;
     --space-2xs: 4rpx;
     --space-xs: 8rpx;
     --space-sm: 16rpx;
@@ -68,11 +69,11 @@
     --radius-lg: 24rpx;
     --radius-full: 999rpx;
     
-    /* 阴影系统 */
-    --shadow-sm: 0 1rpx 3rpx rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4rpx 6rpx rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10rpx 15rpx rgba(0, 0, 0, 0.1);
-    --shadow-green: 0 0rpx 5rpx rgba(0, 100, 0, 0.2);
+    /* 阴影系统 - 重塑为更轻盈、通透的层次 */
+    --shadow-sm: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);   /* 更柔和的投影 */
+    --shadow-md: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);   /* 具有呼吸感的悬浮 */
+    --shadow-lg: 0 16rpx 48rpx rgba(0, 0, 0, 0.08);  /* 深度层次感 */
+    --shadow-green: 0 6rpx 20rpx rgba(6, 141, 123, 0.12); /* 使用品牌色的光晕感 */
     
     /* 动画系统 */
     --transition-fast: all 0.2s ease;
@@ -111,10 +112,14 @@
   /* 间距 - Margin */
   .m-0 { margin: 0 !important; }
   .m-auto { margin: 0 auto !important; }
+  .mt-3xs { margin-top: var(--space-3xs) !important; }
+  .mt-2xs { margin-top: var(--space-2xs) !important; }
   .mt-xs { margin-top: var(--space-xs) !important; }
   .mt-sm { margin-top: var(--space-sm) !important; }
   .mt-md { margin-top: var(--space-md) !important; }
   .mt-lg { margin-top: var(--space-lg) !important; }
+  .mb-3xs { margin-bottom: var(--space-3xs) !important; }
+  .mb-2xs { margin-bottom: var(--space-2xs) !important; }
   .mb-xs { margin-bottom: var(--space-xs) !important; }
   .mb-sm { margin-bottom: var(--space-sm) !important; }
   .mb-md { margin-bottom: var(--space-md) !important; }
@@ -173,15 +178,15 @@
     overflow: hidden !important;
     white-space: nowrap !important;
     text-overflow: ellipsis !important;
-  }
-  
-  .line-clamp-2 {
+}
+
+.line-clamp-2 {
     display: -webkit-box !important;
     -webkit-line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
-  }
-  
+}
+
   /* 圆角 */
   .rounded-xs { border-radius: var(--radius-xs) !important; }
   .rounded-sm { border-radius: var(--radius-sm) !important; }

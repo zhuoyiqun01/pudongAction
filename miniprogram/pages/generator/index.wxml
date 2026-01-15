@@ -1,66 +1,95 @@
-<!-- pages/generator/index.wxml -->
-<view class="container">
-  <!-- 步骤指示器 -->
-  <view class="step-indicator">
-    <view class="step {{currentStep >= 1 ? 'active' : ''}}">1</view>
-    <view class="step-line {{currentStep >= 2 ? 'active' : ''}}"></view>
-    <view class="step {{currentStep >= 2 ? 'active' : ''}}">2</view>
-    <view class="step-line {{currentStep >= 3 ? 'active' : ''}}"></view>
-    <view class="step {{currentStep >= 3 ? 'active' : ''}}">3</view>
+<view class="generator-page fade-in">
+  <view class="header-area">
+    <text class="title">社区小事生成器</text>
+    <text class="sub-title">你正在关注什么问题或话题？(如：老旧小区楼道堆物)</text>
   </view>
 
-  <!-- 第一步：选择类别 -->
-  <view class="step-content {{currentStep === 1 ? 'active' : ''}}">
-    <view class="step-title">选择小事类别</view>
-    <view class="step-desc">想做什么类型的小事？</view>
+  <view class="input-area">
+    <input 
+      class="main-input" 
+      placeholder="输入场景..." 
+      value="{{inputValue}}" 
+      bindinput="onInput"
+      confirm-type="search"
+      bindconfirm="generate"
+    />
+    <button 
+      class="generate-btn {{isLoading ? 'loading' : ''}}" 
+      bindtap="generate" 
+      disabled="{{isLoading}}"
+    >
+      {{isLoading ? '🤔 AI 正在思考中...' : '生成创意点子'}}
+    </button>
+  </view>
 
-    <view class="category-grid">
-      <view
-        wx:for="{{categories}}"
-        wx:key="id"
-        class="category-card {{selectedCategory === item.id ? 'selected' : ''}}"
-        data-category="{{item.id}}"
-        bindtap="selectCategory"
+  <view class="tags-area" wx:if="{{!showResult && !isLoading}}">
+    <view class="tag-title">试试这些话题：</view>
+    <view class="tag-list">
+      <view 
+        class="tag" 
+        wx:for="{{hotTags}}" 
+        wx:key="*this" 
+        bindtap="onTagTap" 
+        data-text="{{item}}"
       >
-        <view class="category-icon">{{item.icon}}</view>
-        <view class="category-name">{{item.name}}</view>
+        #{{item}}
       </view>
     </view>
   </view>
 
-  <!-- 第二步：输入想法 -->
-  <view class="step-content {{currentStep === 2 ? 'active' : ''}}">
-    <view class="step-title">分享你的想法</view>
-    <view class="step-desc">简单描述一下你想做的小事</view>
-
-    <textarea
-      class="idea-input"
-      placeholder="例如：我想为小区老人提供帮助..."
-      value="{{userInput}}"
-      bindinput="onInputChange"
-      maxlength="200"
-      auto-focus
-    ></textarea>
-
-    <view class="selected-category">
-      <text>已选择：{{getSelectedCategoryName()}}</text>
-    </view>
-
-    <button class="generate-btn" bindtap="generateIdea">生成小事方案</button>
+  <view class="result-area" wx:if="{{showResult}}">
+    <view class="result-header">✨ 生成结果</view>
+    <view class="tip-text">点击卡片，生成分享图片</view>
+    
+    <block wx:for="{{suggestions}}" wx:key="index">
+      <view class="suggestion-card level-{{item.level === '观察类' ? '0' : (item.level === '互动类' ? '1' : '2')}}">
+        <view class="card-header">
+          <view class="level-badge">
+            <text class="badge-icon">{{categoryIcons[item.level]}}</text>
+            <text>{{item.level}}</text>
+          </view>
+          <text class="card-title">{{item.title}}</text>
+        </view>
+        <view class="card-desc">{{item.desc}}</view>
+        <button class="adopt-btn" bindtap="onViewDetail" data-index="{{index}}">查看详情</button>
+      </view>
+    </block>
+    
+    <view class="re-generate" bindtap="generate">不满意？换一批试试 🔄</view>
   </view>
 
-  <!-- 第三步：显示结果 -->
-  <view class="step-content {{currentStep === 3 ? 'active' : ''}}">
-    <view class="step-title">✨ 你的小事方案</view>
-
-    <view class="result-card">
-      <view class="result-icon">💡</view>
-      <view class="result-text">{{generatedIdea}}</view>
-    </view>
-
-    <view class="action-buttons">
-      <button class="share-btn" bindtap="shareIdea">分享给朋友</button>
-      <button class="restart-btn" bindtap="startOver">再来一次</button>
+  <!-- 详情弹窗 -->
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <view class="user-question">“ {{inputValue}} ”</view>
+      </view>
+      
+      <view class="modal-body">
+        <view class="idea-box">
+          <view class="idea-label">
+            <text>{{categoryIcons[selectedItem.level]}}</text>
+            <text>{{selectedItem.level}}</text>
+          </view>
+          <view class="idea-title">{{selectedItem.title}}</view>
+          <view class="idea-desc">{{selectedItem.desc}}</view>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="footer-btn save-btn" bindtap="saveImage">保存卡片</button>
+        <button class="footer-btn share-btn" open-type="share">分享给好友</button>
+      </view>
+      
+      <view class="modal-close" bindtap="closeModal">✕</view>
     </view>
   </view>
+  
+  <view class="loading-area" wx:if="{{isLoading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">🤔 AI 正在思考中...</text>
+  </view>
+
+  <!-- 隐藏的画布，用于生成分享图片 -->
+  <canvas type="2d" id="shareCanvas" canvas-id="shareCanvas" style="width: 600px; height: 800px; position: fixed; left: -2000px;"></canvas>
 </view>
