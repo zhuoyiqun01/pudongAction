@@ -30,86 +30,184 @@
 /* 筛选区域 */
 .filters-section {
   background-color: var(--white);
-  padding: var(--space-lg) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1rpx solid var(--border-light);
 }
 
 .filters-content {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+  align-items: center;
+  gap: var(--space-md);
 }
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+/* 下拉筛选器 */
+.dropdown-filter {
+  position: relative;
+  display: inline-block;
 }
 
-.filter-label {
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  color: var(--text-dark);
-}
-
-.filter-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-}
-
-.filter-option {
+.dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12rpx var(--space-md);
   background-color: var(--bg-gray);
-  color: var(--text-gray);
-  font-size: var(--text-sm);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
+  border: 1rpx solid var(--border-gray);
+  white-space: nowrap;
   cursor: pointer;
-  transition: var(--transition-base);
+  transition: var(--transition-fast);
+  min-width: 180rpx;
 }
 
-.filter-option.active {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.filter-option:hover {
+.dropdown-trigger:active {
   background-color: var(--border-light);
 }
 
-.filter-option.active:hover {
-  background-color: var(--accent-navy);
-}
-
-/* 搜索区域 */
-.search-group {
-  display: flex;
-  gap: var(--space-sm);
-  align-items: center;
-}
-
-.search-input {
-  flex: 1;
-  padding: var(--space-sm) var(--space-md);
-  border: 1rpx solid var(--border-gray);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-base);
-  background-color: var(--white);
-}
-
-.search-btn {
-  padding: var(--space-sm) var(--space-lg);
-  background-color: var(--warning-color);
+.dropdown-text {
+  font-size: var(--text-sm);
   color: var(--primary-color);
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  border: none;
-  border-radius: var(--radius-sm);
+  font-weight: var(--font-medium);
+}
+
+.dropdown-arrow {
+  font-size: 20rpx;
+  color: var(--primary-color);
+  transition: var(--transition-fast);
+  margin-left: var(--space-xs);
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240rpx;
+  background-color: var(--white);
+  border: 1rpx solid var(--border-gray);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  max-height: 0;
+  overflow: hidden;
+  transition: var(--transition-base);
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  margin-top: 8rpx;
+}
+
+.dropdown-options.show {
+  max-height: 600rpx;
+  overflow-y: auto;
+  opacity: 1;
+}
+
+.dropdown-option {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm);
+  color: var(--primary-color);
+  border-bottom: 1rpx solid var(--border-light);
+  transition: var(--transition-fast);
   cursor: pointer;
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.dropdown-option:active {
+  background-color: var(--bg-light);
+}
+
+.dropdown-option.selected {
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+  font-weight: var(--font-semibold);
 }
 
 /* 领导者区域 */
 .leaders-section {
   padding: var(--space-lg) var(--space-lg) var(--space-2xl) var(--space-lg);
+}
+
+/* 金牌带领人样式 */
+.gold-section {
+  margin-bottom: var(--space-xl);
+}
+
+.section-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--primary-color);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.gold-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.gold-list {
+  display: flex;
+  padding: var(--space-xs) 0;
+}
+
+.gold-card {
+  flex-shrink: 0;
+  width: 200rpx;
+  margin-right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gold-avatar-wrapper {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: var(--space-sm);
+}
+
+.gold-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4rpx solid var(--secondary-color); /* 统一为 2px (4rpx) */
+  box-shadow: var(--shadow-md);
+}
+
+.gold-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: var(--secondary-color);
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  box-shadow: var(--shadow-sm);
+}
+
+.gold-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--text-dark);
+  margin-bottom: 4rpx;
+}
+
+.gold-street {
+  font-size: var(--text-xs);
+  color: var(--text-gray);
+  background-color: var(--bg-gray);
+  padding: 2rpx 12rpx;
+  border-radius: var(--radius-full);
 }
 
 .loading, .empty-state {
@@ -209,16 +307,7 @@
   width: fit-content;
 }
 
-.leader-slogan {
-  font-size: var(--text-base);
-  color: var(--text-dark);
-  line-height: 1.5;
-  font-style: italic;
-  padding: var(--space-sm);
-  background-color: #fef3c7;
-  border-radius: var(--radius-xs);
-  border-left: var(--space-2xs) solid var(--secondary-color);
-}
+/* 领导者卡片相关样式已移至组件内 */
 
 .leader-contact {
   display: flex;
@@ -273,18 +362,5 @@
 
   .leader-details {
     align-items: center;
-  }
-
-  .filters-content {
-    gap: var(--space-md);
-  }
-
-  .filter-options {
-    gap: 12rpx;
-  }
-
-  .filter-option {
-    padding: 10rpx var(--space-md);
-    font-size: var(--text-sm);
   }
 }

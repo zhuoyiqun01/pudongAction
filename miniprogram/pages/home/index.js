@@ -1,178 +1,306 @@
 // pages/home/index.js
 Page({
   data: {
-    // Banner数据
+    showSecondFloor: true, // 初始显示二楼（引导页）
+    secondFloorOffset: 0,   // 二楼实时偏移量
+    isDragging: false,      // 是否正在拖拽
+    windowHeight: 0,        // 屏幕高度
     banners: [],
-
-    // 筛选器数据
     regions: [],
     topics: [],
-
     selectedRegion: 'all',
     selectedTopic: 'all',
     selectedRegionText: '全部地区',
     selectedTopicText: '全部议题',
-
-    // 下拉框状态
     regionDropdownOpen: false,
     topicDropdownOpen: false,
-
-    // 行动墙数据
     actions: [],
-
     leftColumn: [],
-    rightColumn: []
+    rightColumn: [],
+
+    // --- 新增分页状态 ---
+    page: 1,           // 当前页码 (与云函数对齐，从1开始)
+    pageSize: 4,      // 每页数量 (测试模式：暂时设为 4)
+    hasMore: true,     // 是否还有更多数据
+    isLoading: false   // 防止重复请求锁
   },
 
   onLoad: function() {
-    this.loadBanners();
-    this.loadActivists();
-    this.loadFilters();
+    const windowInfo = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
+    this.setData({ windowHeight: windowInfo.windowHeight });
+    
+    // 初始进入如果是二楼，隐藏 TabBar
+    if (this.data.showSecondFloor) {
+      wx.hideTabBar();
+    }
+
+    this.loadHomeConfig(); // 获取配置和Banner
+    this.resetAndLoadActivists(); // 初始化加载
   },
 
-  // 获取Banner (from getActivities)
-  loadBanners: function() {
-    wx.cloud.callFunction({
-      name: 'getActivities',
-      data: { type: 'banner', limit: 5 },
-      success: res => {
-        if (res.result && res.result.success) {
-          this.setData({ banners: res.result.data });
-        }
-      },
-      fail: err => console.error('加载Banner失败', err)
+  // --- 新增：触底加载更多 ---
+  onReachBottom: function() {
+    if (this.data.hasMore && !this.data.isLoading) {
+      this.loadActivists(true); // true 表示是追加模式
+    }
+  },
+
+  // --- 新增：下拉刷新 (触发二楼) ---
+  onPullDownRefresh: function() {
+    // 触发二楼展开
+    this.setData({ showSecondFloor: true, secondFloorOffset: 0 });
+    wx.hideTabBar(); // 隐藏底部导航栏
+    
+    // 同时刷新数据
+    this.loadHomeConfig();
+    this.resetAndLoadActivists(() => {
+      wx.stopPullDownRefresh();
     });
   },
 
-  // 获取行动者墙 (from getActivists)
-  loadActivists: function() {
-    wx.showLoading({ title: '加载中...' });
+  // 关闭二楼
+  closeSecondFloor: function() {
+    this.setData({ 
+      showSecondFloor: false,
+      secondFloorOffset: 0,
+      isDragging: false
+    });
+    wx.showTabBar(); // 恢复显示底部导航栏
+  },
+
+  // 触摸交互处理
+  touchStart: function(e) {
+    this.startY = e.touches[0].clientY;
+    this.startX = e.touches[0].clientX;
+    this.setData({ isDragging: true });
+  },
+
+  touchMove: function(e) {
+    if (!this.data.showSecondFloor) return;
     
+    const currentY = e.touches[0].clientY;
+    const deltaY = currentY - this.startY;
+    
+    // 只处理向上划（deltaY < 0）
+    if (deltaY < 0) {
+      this.setData({ secondFloorOffset: deltaY });
+    }
+  },
+
+  touchEnd: function(e) {
+    const endY = e.changedTouches[0].clientY;
+    const endX = e.changedTouches[0].clientX;
+    const deltaY = this.startY - endY; 
+    const deltaX = Math.abs(endX - this.startX);
+
+    this.setData({ isDragging: false });
+
+    // 如果向上滑动超过 100px，则关闭二楼
+    if (deltaY > 100 && deltaY > deltaX * 1.5) {
+      this.closeSecondFloor();
+    } else {
+      // 否则回弹
+      this.setData({ secondFloorOffset: 0 });
+    }
+  },
+
+  // 辅助：重置并加载（用于筛选变化或下拉刷新）
+  resetAndLoadActivists: function(cb) {
+    this.setData({
+      page: 1,
+      hasMore: true,
+      actions: [],
+      leftColumn: [],  // 清空瀑布流
+      rightColumn: []
+    }, () => {
+      this.loadActivists(false, cb); // false 表示非追加模式
+    });
+  },
+
+  // 1. 深度抓取图片路径
+  parseImage: function(rawImg) {
+    if (!rawImg) {
+      console.log('parseImage: rawImg is empty');
+      return '';
+    }
+    let img = '';
+    
+    // 如果是 CMS 返回的数组格式 [{url, fileID}]
+    if (Array.isArray(rawImg) && rawImg.length > 0) {
+      img = rawImg[0].url || rawImg[0].fileID || rawImg[0];
+    } 
+    // 如果是对象格式
+    else if (typeof rawImg === 'object' && rawImg !== null) {
+      img = rawImg.url || rawImg.fileID || rawImg;
+    } 
+    // 如果直接是字符串
+    else {
+      img = rawImg;
+    }
+    
+    if (typeof img !== 'string') {
+      console.log('parseImage: img is not a string', img);
+      return '';
+    }
+    img = img.trim();
+    
+    // 如果拿到的是 // 开头的地址，补全它
+    if (img.startsWith('//')) img = 'https:' + img;
+    
+    console.log('parseImage final URL:', img);
+    return img;
+  },
+
+  /**
+   * 加载首页配置信息 (Banner, Regions, Topics)
+   */
+  loadHomeConfig: function() {
+    wx.cloud.callFunction({
+      name: 'getHomeConfig',
+      success: res => {
+        console.log('getHomeConfig result:', res);
+        if (res.result && res.result.success) {
+          const { banners, regions, topics } = res.result.data;
+          
+          // 处理 Banner 图片
+          let processedBanners = banners.map(item => ({
+            ...item,
+            image: this.parseImage(item.image)
+          })).filter((item, index, self) => 
+            item.image !== '' && self.findIndex(t => t.image === item.image) === index
+          );
+
+          // 如果没有从云端获取到 Banner，使用模拟数据占位
+          if (processedBanners.length === 0) {
+            console.log('No banners from cloud, using mocks');
+            processedBanners = [
+              { _id: 'banner_1', image: 'https://picsum.photos/seed/banner1/750/400', url: '' },
+              { _id: 'banner_2', image: 'https://picsum.photos/seed/banner2/750/400', url: '' }
+            ];
+          }
+
+          this.setData({
+            banners: processedBanners,
+            regions: regions.length > 0 ? regions : this.data.regions,
+            topics: topics.length > 0 ? topics : this.data.topics
+          });
+        } else {
+          console.error('getHomeConfig failed or returned empty:', res.result);
+        }
+      },
+      fail: err => {
+        console.error('call getHomeConfig failed:', err);
+      }
+    });
+  },
+
+  loadActivists: function(isAppend = false, cb) {
+    if (this.data.isLoading) return;
+    this.setData({ isLoading: true });
+    
+    wx.showLoading({ title: '加载中...' });
+
     wx.cloud.callFunction({
       name: 'getActivists',
       data: { 
         topic: this.data.selectedTopic,
         street: this.data.selectedRegion === 'all' ? '' : this.data.selectedRegion,
-        limit: 10 
+        page: this.data.page,      // 传页码给云函数
+        limit: this.data.pageSize
       },
       success: res => {
         if (res.result && res.result.success) {
-          const items = res.result.data.items;
-          this.setData({ actions: items }, () => {
-            this.distributeWaterfall(items);
+          const newItems = res.result.data.items.map(item => ({
+            ...item,
+            image: this.parseImage(item.image)
+          }));
+
+          // 判断是否还有更多数据
+          const hasMore = res.result.data.hasNext;
+
+          // 处理瀑布流分发
+          this.distributeWaterfall(newItems, isAppend);
+
+          this.setData({
+            page: this.data.page + 1,
+            hasMore: hasMore,
+            actions: isAppend ? this.data.actions.concat(newItems) : newItems 
           });
         }
       },
-      fail: err => {
-        console.error('加载行动者墙失败', err);
-        wx.showToast({ title: '加载失败', icon: 'none' });
-      },
-      complete: () => wx.hideLoading()
+      complete: () => {
+        this.setData({ isLoading: false });
+        wx.hideLoading();
+        if (cb) cb();
+      }
     });
   },
 
-  // 获取筛选配置 (可以从云端获取 regions/topics)
-  loadFilters: function() {
-    const db = wx.cloud.database();
-    db.collection('regions').orderBy('order', 'asc').get().then(res => {
-      if (res.data.length > 0) this.setData({ regions: res.data });
-    });
-    db.collection('topics').orderBy('order', 'asc').get().then(res => {
-      if (res.data.length > 0) this.setData({ topics: res.data });
-    });
-  },
+  distributeWaterfall: function(items, isAppend) {
+    const leftColumn = isAppend ? this.data.leftColumn : [];
+    const rightColumn = isAppend ? this.data.rightColumn : [];
+    
+    // 使用当前已有的总数来决定新项目的起始奇偶性
+    const currentTotal = isAppend ? this.data.actions.length : 0;
 
-  // 分配瀑布流
-  distributeWaterfall: function(items) {
-    const leftColumn = [];
-    const rightColumn = [];
     items.forEach((item, index) => {
-      if (index % 2 === 0) leftColumn.push(item);
-      else rightColumn.push(item);
+      if ((currentTotal + index) % 2 === 0) {
+        leftColumn.push(item);
+      } else {
+        rightColumn.push(item);
+      }
     });
     this.setData({ leftColumn, rightColumn });
   },
 
-  // 地区筛选
   selectRegion: function(e) {
-    const regionId = e.currentTarget.dataset.region;
-    const region = this.data.regions.find(item => item.id === regionId);
-    const regionText = region ? region.name : '全部地区';
-
-    this.setData({
-      selectedRegion: regionId,
-      selectedRegionText: regionText,
-      regionDropdownOpen: false
+    const id = e.currentTarget.dataset.region;
+    const reg = this.data.regions.find(i => i.id === id);
+    this.setData({ 
+      selectedRegion: id, 
+      selectedRegionText: reg ? reg.name : '全部地区', 
+      regionDropdownOpen: false 
+    }, () => {
+      this.resetAndLoadActivists(); // 筛选变更，重置列表
     });
-    this.loadActivists(); // 重新从云端加载
   },
 
-  // 议题筛选
   selectTopic: function(e) {
-    const topicId = e.currentTarget.dataset.topic;
-    const topic = this.data.topics.find(item => item.id === topicId);
-    const topicText = topic ? topic.name : '全部议题';
-
-    this.setData({
-      selectedTopic: topicId,
-      selectedTopicText: topicText,
-      topicDropdownOpen: false
+    const id = e.currentTarget.dataset.topic;
+    const top = this.data.topics.find(i => i.id === id);
+    this.setData({ 
+      selectedTopic: id, 
+      selectedTopicText: top ? top.name : '全部议题', 
+      topicDropdownOpen: false 
+    }, () => {
+      this.resetAndLoadActivists(); // 筛选变更，重置列表
     });
-    this.loadActivists(); // 重新从云端加载
   },
 
-  // Banner点击
   onBannerTap: function(e) {
-    const url = e.currentTarget.dataset.url;
-    wx.navigateTo({ url });
+    const { id } = e.currentTarget.dataset;
+    console.log('Banner tapped, navigating to activity:', id);
+    if (id) {
+      wx.navigateTo({ url: `/pages/activity-detail/index?id=${id}` });
+    }
   },
 
-  // 跳转
   goToGenerator: function() { wx.switchTab({ url: '/pages/generator/index' }); },
-  goToAction: function() { wx.switchTab({ url: '/pages/action/index' }); },
-  onLearnMore: function() { wx.switchTab({ url: '/pages/action/index' }); },
+  goToAction: function() { wx.switchTab({ url: '/pages/action-hub/index' }); },
+  onLearnMore: function() { wx.switchTab({ url: '/pages/action-hub/index' }); },
+  goToActivities: function() { wx.navigateTo({ url: '/pages/activities/index' }); },
 
-  // 切换下拉框
   toggleRegionDropdown: function() {
-    this.setData({
-      regionDropdownOpen: !this.data.regionDropdownOpen,
-      topicDropdownOpen: false
-    });
+    this.setData({ regionDropdownOpen: !this.data.regionDropdownOpen, topicDropdownOpen: false });
   },
   toggleTopicDropdown: function() {
-    this.setData({
-      topicDropdownOpen: !this.data.topicDropdownOpen,
-      regionDropdownOpen: false
-    });
+    this.setData({ topicDropdownOpen: !this.data.topicDropdownOpen, regionDropdownOpen: false });
   },
 
-  // 查看行动详情
   viewActionDetail: function(e) {
-    const actionId = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/pages/action/detail?id=${actionId}`
-    });
-  },
-
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    // 停止下拉刷新
-    wx.stopPullDownRefresh()
-  },
-
-  // 分享功能
-  onShareAppMessage: function () {
-    return {
-      title: '社区小事 - 在家门口的五十米，做一件小事',
-      path: '/pages/home/index',
-      imageUrl: 'https://picsum.photos/seed/community-share/500/400'
-    }
-  },
-
-  onShareTimeline: function () {
-    return {
-      title: '社区小事 - 在家门口的五十米，做一件小事',
-      imageUrl: 'https://picsum.photos/seed/community-share/500/400'
-    }
+    // 兼容逻辑：优先取 e.detail.id (组件传来的)，如果没有，取 e.currentTarget.dataset.id (原生view传来的)
+    const id = e.detail.id || e.currentTarget.dataset.id;
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/activist-detail/index?id=${id}` });
   }
 });

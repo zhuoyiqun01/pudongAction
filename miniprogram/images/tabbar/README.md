@@ -89,3 +89,7 @@ chmod +x convert_icons.sh
 2. 重新转换为 PNG 格式
 3. 测试在微信开发者工具中的显示效果
 
+
+
+
+

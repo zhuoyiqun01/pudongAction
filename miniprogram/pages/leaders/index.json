@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "联系小事带领人",
+  "usingComponents": {
+    "leader-card": "/components/leader-card/index"
+  }
+}
+
+
+

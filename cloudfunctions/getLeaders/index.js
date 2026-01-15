@@ -39,7 +39,11 @@ exports.main = async (event, context) => {
     const skip = (page - 1) * limit
     let dataQuery = db.collection('leaders')
       .where(query)
+      // 1. 优先把金牌带领人排在最前面 (true > false)
+      .orderBy('is_gold_medal', 'desc')
+      // 2. 然后再按照后台设置的手动顺序排序
       .orderBy('order', 'desc')
+      // 3. 最后按时间倒序
       .orderBy('createdAt', 'desc')
       .skip(skip)
       .limit(limit)

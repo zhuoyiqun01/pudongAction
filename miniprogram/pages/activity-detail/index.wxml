@@ -1,0 +1,33 @@
+<view class="detail-page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:else class="detail-container">
+    <image src="{{activity.image}}" mode="aspectFill" class="detail-image" />
+    
+    <view class="detail-content">
+      <view class="detail-header">
+        <text class="detail-title">{{activity.name || activity.title}}</text>
+        <text class="detail-type">{{activity.type}}</text>
+      </view>
+
+      <view class="detail-meta">
+        <view class="meta-item">
+          <text class="meta-icon">🕒</text>
+          <text class="meta-text">时间：{{activity.timeStr || activity.time}}</text>
+        </view>
+        <view class="meta-item">
+          <text class="meta-icon">📍</text>
+          <text class="meta-text">地点：{{activity.address}}</text>
+        </view>
+      </view>
+
+      <view class="detail-section">
+        <view class="section-title">活动简介</view>
+        <rich-text nodes="{{activity.intro}}" class="rich-content"></rich-text>
+      </view>
+    </view>
+
+    <view class="detail-footer">
+      <button class="join-btn" bindtap="onJoin">立即报名</button>
+    </view>
+  </view>
+</view>

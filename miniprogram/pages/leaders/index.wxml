@@ -11,39 +11,30 @@
   <view class="filters-section">
     <view class="container">
       <view class="filters-content">
-        <!-- 街道筛选 -->
-        <view class="filter-group">
-          <text class="filter-label">街道筛选：</text>
-          <view class="filter-options">
+        <!-- 街道筛选 (下拉模式) -->
+        <view class="dropdown-filter">
+          <view class="dropdown-trigger" bindtap="toggleStreetDropdown">
+            <text class="dropdown-text">{{selectedStreetText}}</text>
+            <view class="dropdown-arrow {{streetDropdownOpen ? 'open' : ''}}">▼</view>
+          </view>
+          <view class="dropdown-options {{streetDropdownOpen ? 'show' : ''}}">
             <view
-              class="filter-option {{ selectedStreet === '' ? 'active' : '' }}"
+              class="dropdown-option {{selectedStreet === '' ? 'selected' : ''}}"
               bindtap="onStreetFilter"
               data-street=""
             >
-              全部
+              全部街道
             </view>
             <view
-              wx:for="{{ streets }}"
-              wx:key="street"
-              class="filter-option {{ selectedStreet === item ? 'active' : '' }}"
+              wx:for="{{streets}}"
+              wx:key="*this"
+              class="dropdown-option {{selectedStreet === item ? 'selected' : ''}}"
               bindtap="onStreetFilter"
-              data-street="{{ item }}"
+              data-street="{{item}}"
             >
-              {{ item }}
+              {{item}}
             </view>
           </view>
-        </view>
-
-        <!-- 搜索框 -->
-        <view class="search-group">
-          <input
-            class="search-input"
-            placeholder="搜索带领人姓名..."
-            value="{{ searchQuery }}"
-            bindinput="onSearchInput"
-            bindconfirm="onSearchConfirm"
-          />
-          <button class="search-btn" bindtap="onSearchConfirm">搜索</button>
         </view>
       </view>
     </view>
@@ -52,55 +43,51 @@
   <!-- 带领人列表 -->
   <view class="leaders-section">
     <view class="container">
+      <!-- 1. 金牌带领人荣誉榜 (横向滚动) -->
+      <view wx:if="{{ goldLeaders.length > 0 }}" class="gold-section">
+        <view class="section-title">🌟 金牌带领人</view>
+        <scroll-view class="gold-scroll" scroll-x="{{ true }}" enable-flex="{{ true }}">
+          <view class="gold-list">
+            <view 
+              wx:for="{{ goldLeaders }}" 
+              wx:key="_id" 
+              class="gold-card" 
+              bindtap="onLeaderTap" 
+              data-id="{{ item._id }}"
+            >
+              <view class="gold-avatar-wrapper">
+                <image src="{{ item.photo }}" class="gold-avatar" mode="aspectFill" />
+                <view class="gold-badge">🏆</view>
+              </view>
+              <text class="gold-name">{{ item.name }}</text>
+              <text class="gold-street">{{ item.street }}</text>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 2. 普通带领人列表 -->
+      <view class="section-title" wx:if="{{ leaders.length > 0 }}">社区带领人</view>
+      
       <!-- 加载状态 -->
       <view wx:if="{{ loading }}" class="loading">
         <text>加载中...</text>
       </view>
 
       <!-- 空状态 -->
-      <view wx:elif="{{ leaders.length === 0 }}" class="empty-state">
+      <view wx:elif="{{ leaders.length === 0 && goldLeaders.length === 0 }}" class="empty-state">
         <text class="empty-text">暂无带领人数据</text>
       </view>
 
       <!-- 带领人列表 -->
       <view wx:else class="leaders-list">
-        <view
+        <leader-card
           wx:for="{{ leaders }}"
-          wx:key="id"
-          class="leader-card"
-          bindtap="onLeaderTap"
-          data-id="{{ item._id }}"
-        >
-          <!-- 左侧头像区域 -->
-          <view class="leader-avatar">
-            <image
-              src="{{ item.photo }}"
-              class="avatar-image"
-              mode="aspectFill"
-              binderror="onImageError"
-            />
-          </view>
-
-          <!-- 右侧信息区域 -->
-          <view class="leader-info">
-            <view class="leader-header">
-              <text class="leader-name">{{ item.name }}</text>
-              <text class="leader-role">{{ item.role }}</text>
-            </view>
-
-            <view class="leader-details">
-              <text class="leader-community">{{ item.community }}</text>
-              <text class="leader-street">{{ item.street }}</text>
-            </view>
-
-            <text class="leader-slogan">{{ item.slogan }}</text>
-
-            <view class="leader-contact">
-              <text class="contact-label">联系方式：</text>
-              <text class="contact-value">{{ item.contact }}</text>
-            </view>
-          </view>
-        </view>
+          wx:key="_id"
+          leader="{{ item }}"
+          bind:click="onLeaderTap"
+          binderror="onImageError"
+        />
       </view>
 
       <!-- 加载更多 -->

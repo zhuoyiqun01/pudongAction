@@ -9,15 +9,16 @@ App({
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
+        env: 'cloud1-3g71minke37b68b6', // 改回有效的 ID
         traceUser: true,
       })
     }
 
     // 获取系统信息
-    const windowInfo = wx.getWindowInfo()
-    this.globalData.systemInfo = windowInfo
-    this.globalData.statusBarHeight = windowInfo.statusBarHeight
-    this.globalData.navBarHeight = windowInfo.statusBarHeight + 44
+    const res = wx.getSystemInfoSync()
+    this.globalData.systemInfo = res
+    this.globalData.statusBarHeight = res.statusBarHeight
+    this.globalData.navBarHeight = res.statusBarHeight + 44
   },
 
   onShow: function (options) {
@@ -53,52 +54,18 @@ App({
 
   // 工具函数
   utils: {
-    // 格式化日期
-    formatDate: function (date, format = 'YYYY-MM-DD') {
-      const d = new Date(date)
-      const year = d.getFullYear()
-      const month = String(d.getMonth() + 1).padStart(2, '0')
-      const day = String(d.getDate()).padStart(2, '0')
-
-      switch (format) {
-        case 'YYYY-MM-DD':
-          return `${year}-${month}-${day}`
-        case 'MM/DD':
-          return `${month}/${day}`
-        default:
-          return `${year}-${month}-${day}`
-      }
-    },
-
-    // 显示加载提示
+    // 基础 UI 提示
     showLoading: function (title = '加载中...') {
-      wx.showLoading({
-        title: title,
-        mask: true
-      })
+      wx.showLoading({ title, mask: true })
     },
-
-    // 隐藏加载提示
     hideLoading: function () {
       wx.hideLoading()
     },
-
-    // 显示成功提示
     showSuccess: function (title = '操作成功') {
-      wx.showToast({
-        title: title,
-        icon: 'success',
-        duration: 2000
-      })
+      wx.showToast({ title, icon: 'success' })
     },
-
-    // 显示错误提示
     showError: function (title = '操作失败') {
-      wx.showToast({
-        title: title,
-        icon: 'error',
-        duration: 2000
-      })
+      wx.showToast({ title, icon: 'error' })
     }
   }
 })

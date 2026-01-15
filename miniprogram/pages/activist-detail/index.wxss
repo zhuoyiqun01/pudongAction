@@ -1,0 +1,175 @@
+.activist-detail-page {
+  background-color: var(--bg-light);
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* 加载状态 */
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 200rpx;
+  color: var(--text-gray);
+  font-size: var(--text-base);
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid var(--border-gray);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-md);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 封面区域 */
+.cover-section {
+  position: relative;
+  width: 100%;
+  height: 600rpx;
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+}
+
+.name-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60rpx var(--space-lg) var(--space-lg);
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.activist-name {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  letter-spacing: 2rpx;
+}
+
+.keyword-badge {
+  font-size: var(--text-base);
+  color: var(--secondary-color);
+  font-weight: var(--font-bold);
+}
+
+/* 信息区域 */
+.info-section {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: -40rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.tags-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.info-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 12rpx 24rpx;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+}
+
+.street-tag {
+  background-color: var(--white);
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.topic-tag {
+  background-color: var(--primary-color);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+/* 卡片样式 */
+.bio-card, .content-card, .feeling-card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.header-line {
+  width: 8rpx;
+  height: 32rpx;
+  background-color: var(--primary-color);
+  border-radius: 4rpx;
+}
+
+.section-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-dark);
+}
+
+.rich-content {
+  font-size: var(--text-base);
+  color: var(--text-dark);
+  line-height: 1.8;
+}
+
+.rich-content p {
+  margin-bottom: 1em;
+}
+
+.detail-img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+/* 底部操作 */
+.footer-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--white);
+  box-shadow: 0 -4rpx 12rpx rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+}
+
+.share-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-bold);
+  border: none;
+}
+
+.share-btn::after {
+  border: none;
+}

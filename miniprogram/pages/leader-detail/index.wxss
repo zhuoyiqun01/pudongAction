@@ -1,0 +1,4 @@
+/* pages/leader-detail/index.wxss */
+.container { padding: 32rpx; }
+.loading { text-align: center; margin-top: 100rpx; color: #999; }
+

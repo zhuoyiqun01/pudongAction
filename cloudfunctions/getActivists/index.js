@@ -24,7 +24,8 @@ exports.main = async (event, context) => {
     }
 
     if (topic && topic !== 'all') {
-      query.topic = topic
+      // 修改为匹配 topics 数组中的任意一个值
+      query.topics = topic
     }
 
     if (search) {
@@ -35,13 +36,13 @@ exports.main = async (event, context) => {
     }
 
     // 查询总数
-    const totalResult = await db.collection('xsxdz')
+    const totalResult = await db.collection('activists')
       .where(query)
       .count()
 
     // 查询数据
     const skip = (page - 1) * limit
-    let dataQuery = db.collection('xsxdz')
+    let dataQuery = db.collection('activists')
       .where(query)
       .orderBy('order', 'desc')
       .orderBy('createdAt', 'desc')

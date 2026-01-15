@@ -1,0 +1,32 @@
+<view class="activities-page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:else class="activity-list">
+    <view 
+      wx:for="{{activities}}" 
+      wx:key="_id" 
+      class="activity-card" 
+      bindtap="onActivityTap" 
+      data-id="{{item._id}}"
+    >
+      <image src="{{item.image}}" mode="aspectFill" class="activity-image" />
+      <view class="activity-info">
+        <view class="activity-header">
+          <text class="activity-title">{{item.name || item.title}}</text>
+          <text class="activity-type">{{item.type || '社区活动'}}</text>
+        </view>
+        <view class="activity-meta">
+          <view class="meta-item">
+            <text class="meta-icon">🕒</text>
+            <text class="meta-text">{{item.timeStr || item.time}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="meta-icon">📍</text>
+            <text class="meta-text">{{item.address}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{!loading && activities.length === 0}}" class="empty">暂无活动</view>
+</view>
+

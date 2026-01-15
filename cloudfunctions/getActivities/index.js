@@ -4,14 +4,19 @@ const db = cloud.database()
 
 exports.main = async (event, context) => {
   try {
-    const { limit = 10, type = 'banner' } = event
+    const { limit = 20, type = 'all' } = event
     
-    // 获取活动信息，通常用于首页Banner
+    let query = { 
+      published: true 
+    }
+
+    // 如果指定了 banner 类型，则只取 banner
+    if (type === 'banner') {
+      query.isBanner = true
+    }
+
     const activities = await db.collection('activities')
-      .where({ 
-        published: true,
-        isBanner: type === 'banner'
-      })
+      .where(query)
       .orderBy('order', 'asc')
       .orderBy('createdAt', 'desc')
       .limit(limit)
@@ -27,4 +32,8 @@ exports.main = async (event, context) => {
     return { success: false, message: e.message }
   }
 }
+
+
+
+
 

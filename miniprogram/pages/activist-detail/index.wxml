@@ -1,0 +1,63 @@
+<view class="activist-detail-page">
+  <view wx:if="{{loading}}" class="loading-wrapper">
+    <view class="loading-spinner"></view>
+    <text>正在查阅行动记录...</text>
+  </view>
+
+  <view wx:else class="detail-container fade-in">
+    <!-- 顶部封面 -->
+    <view class="cover-section">
+      <image src="{{activist.image}}" mode="aspectFill" class="cover-image" bindtap="previewImage" data-url="{{activist.image}}" />
+      <view class="name-overlay">
+        <text class="activist-name">{{activist.name}}</text>
+        <view class="keyword-badge" wx:if="{{activist.keyword}}"># {{activist.keyword}}</view>
+      </view>
+    </view>
+
+    <!-- 核心信息标签 -->
+    <view class="info-section">
+      <view class="tags-row">
+        <view class="info-tag street-tag">
+          <text class="tag-icon">📍</text>
+          <text>{{activist.street}}</text>
+        </view>
+        <view class="info-tag topic-tag">
+          <text class="tag-icon">🧩</text>
+          <text>{{topicMap[activist.topic] || activist.topic}}</text>
+        </view>
+      </view>
+
+      <!-- 个人简介（富文本） -->
+      <view class="bio-card shadow-sm">
+        <view class="section-header">
+          <view class="header-line"></view>
+          <text class="section-title">行动故事</text>
+        </view>
+        <rich-text nodes="{{activist.bio}}" class="rich-content"></rich-text>
+      </view>
+
+      <!-- 小事内容（图片2） -->
+      <view class="content-card shadow-sm" wx:if="{{activist.action_image}}">
+        <view class="section-header">
+          <view class="header-line"></view>
+          <text class="section-title">小事现场</text>
+        </view>
+        <image src="{{activist.action_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.action_image}}" />
+      </view>
+
+      <!-- 个人感受（图片3） -->
+      <view class="feeling-card shadow-sm" wx:if="{{activist.feeling_image}}">
+        <view class="section-header">
+          <view class="header-line"></view>
+          <text class="section-title">小事语录</text>
+        </view>
+        <image src="{{activist.feeling_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.feeling_image}}" />
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="footer-actions">
+      <button class="share-btn" open-type="share">分享这个故事</button>
+    </view>
+  </view>
+</view>

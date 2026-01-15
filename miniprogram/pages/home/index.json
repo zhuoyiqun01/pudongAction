@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "社区小事"
+  "navigationBarTitleText": "社区小事",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#068D7B",
+  "backgroundColorTop": "#068D7B",
+  "usingComponents": {
+    "action-card": "/components/action-card/index"
+  }
 }

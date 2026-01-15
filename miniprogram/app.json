@@ -2,12 +2,16 @@
   "pages": [
     "pages/home/index",
     "pages/generator/index",
-    "pages/action/index",
-    "pages/activists/index",
+    "pages/action-hub/index",
+    "pages/intro/index",
+    "pages/apply/index",
     "pages/leaders/index",
-    "pages/join/index",
-    "pages/learning/index",
-    "pages/action/intro/index"
+    "pages/activists/index",
+    "pages/leader-detail/index",
+    "pages/activities/index",
+    "pages/activity-detail/index",
+    "pages/activist-detail/index",
+    "pages/my-proposal/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -38,7 +42,7 @@
         "selectedIconPath": "images/tabbar/generator-active.png"
       },
       {
-        "pagePath": "pages/action/index",
+        "pagePath": "pages/action-hub/index",
         "text": "小事行动吧",
         "iconPath": "images/tabbar/action.png",
         "selectedIconPath": "images/tabbar/action-active.png"
