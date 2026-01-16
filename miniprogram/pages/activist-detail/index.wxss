@@ -48,7 +48,7 @@
   left: 0;
   right: 0;
   padding: 60rpx var(--space-lg) var(--space-lg);
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  background: linear-gradient(to top, rgba(6, 141, 123, 0.8), transparent);
   color: var(--white);
   display: flex;
   flex-direction: column;
@@ -59,6 +59,12 @@
   font-size: var(--text-4xl);
   font-weight: var(--font-bold);
   letter-spacing: 2rpx;
+}
+
+.keyword-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
 .keyword-badge {
@@ -106,30 +112,16 @@
 }
 
 /* 卡片样式 */
-.bio-card, .content-card, .feeling-card {
+.bio-card, .images-card {
   background-color: var(--white);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
 }
 
-.section-header {
+.images-card {
   display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.header-line {
-  width: 8rpx;
-  height: 32rpx;
-  background-color: var(--primary-color);
-  border-radius: 4rpx;
-}
-
-.section-title {
-  font-size: var(--text-lg);
-  font-weight: var(--font-bold);
-  color: var(--text-dark);
+  flex-direction: column;
+  gap: var(--space-lg);
 }
 
 .rich-content {

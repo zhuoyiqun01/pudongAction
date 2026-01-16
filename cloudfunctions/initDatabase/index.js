@@ -12,8 +12,6 @@ const ACTIVISTS_DATA = [
   {
     _id: 'activist_1', 
     name: '张建国',
-    title: '推广垃圾分类的第1000天',
-    role: '垃圾分类先行者',
     topics: ['environment'], // 改为数组，支持多选
     street: '长寿路街道',
     keyword: '持之以恒',
@@ -29,8 +27,6 @@ const ACTIVISTS_DATA = [
   {
     _id: 'activist_2',
     name: '李梅',
-    title: '在钢筋水泥里种下一片绿',
-    role: '社区花园维护人',
     topics: ['environment', 'health'], // 示例：多选议题
     street: '曹杨新村街道',
     keyword: '自然治愈',
@@ -46,8 +42,6 @@ const ACTIVISTS_DATA = [
   {
     _id: 'activist_3',
     name: '王大妈',
-    title: '一针一线缝合邻里情',
-    role: '真如织梦人',
     topics: ['culture'],
     street: '真如镇街道',
     keyword: '传统传承',
@@ -63,8 +57,6 @@ const ACTIVISTS_DATA = [
   {
     _id: 'activist_4',
     name: '赵工',
-    title: '公益维修，点亮万家灯火',
-    role: '长征维修达人',
     topics: ['environment'],
     street: '长征镇',
     keyword: '热心公益',

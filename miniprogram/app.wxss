@@ -86,6 +86,12 @@
     --z-fixed: 999;
     --z-modal: 2000;
 
+    /* 组件尺寸 */
+    --banner-height: 260rpx;
+    --banner-height-lg: 500rpx;
+    --banner-bg-height: 240rpx;
+    --dropdown-max-height: 600rpx;
+
     /* 字体粗细 */
     --font-normal: 400;
     --font-medium: 500;

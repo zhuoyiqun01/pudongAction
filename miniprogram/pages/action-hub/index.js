@@ -12,7 +12,7 @@ Page({
       },
       {
         id: 'join',
-        title: '申请成为小事行动者',
+        title: '成为小事行动者',
         icon: '🧩',
         span: 2,
         url: '/pages/apply/index',

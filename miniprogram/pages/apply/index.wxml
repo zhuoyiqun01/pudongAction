@@ -1,117 +1,171 @@
-<view class="join-page">
-  <!-- 页面头部 -->
-  <view class="page-header">
+<view class="join-page animate-fadeIn">
+  <!-- Header Section -->
+  <section class="header-section">
     <view class="container">
-      <text class="page-title">加入我们</text>
-      <text class="page-subtitle">期待你在家门口的五十米，创造更美好的社区生活</text>
+      <view class="tag-badge">JOIN US</view>
+      <view class="header-title">成为小事行动者</view>
+      <view class="header-desc">
+        每一个微小的愿望都是一块拼图，
+        在这里，让你的行动被看见。
+      </view>
     </view>
-  </view>
+    <!-- Decorative Puzzle Block -->
+    <view class="puzzle-block-decor"></view>
+  </section>
 
-  <!-- 加入表单 -->
-  <view class="join-section">
+  <!-- 4 Major Steps -->
+  <section class="steps-section">
     <view class="container">
-      <view class="join-card">
-        <view class="card-header">
-          <text class="card-title">申请加入社区小事</text>
-          <text class="card-subtitle">填写以下信息，我们会尽快审核您的申请</text>
+      <!-- Step 01 -->
+      <view class="step-item">
+        <view class="step-content">
+          <view class="step-num">Step 01</view>
+          <view class="step-title">填写申请表单，让你的愿望被看见</view>
+          <view class="step-desc">
+            完成小事行动者申请。你的愿望会被倾听，也会呈现在小事行动者墙上，让更多志同道合的人找到你。
+          </view>
+          <button class="action-btn" bindtap="scrollToForm">
+            立即填写表单 <text class="icon-arrow">>→</text>
+          </button>
+        </view>
+        <view class="step-image-box puzzle-left">
+          <image src="https://picsum.photos/seed/apply/800/600" mode="aspectFill" class="step-img shadow-lg" />
+        </view>
+      </view>
+
+      <!-- Step 02 -->
+      <view class="step-item reverse">
+        <view class="step-content">
+          <view class="step-num">Step 02</view>
+          <view class="step-title">获取小事行动工具包，让你的小事行动被看见</view>
+          <view class="step-desc">
+            下载小事包，启发一下后就直接在社区里开展你的尝试吧！用一块白板，让邻居、社区工作者们都知道你在做什么。
+          </view>
+        </view>
+        <view class="step-image-box puzzle-right">
+          <image src="https://picsum.photos/seed/toolkit/800/600" mode="aspectFill" class="step-img shadow-lg" />
+        </view>
+      </view>
+
+      <!-- Step 03 -->
+      <view class="step-item">
+        <view class="step-content">
+          <view class="step-num">Step 03</view>
+          <view class="step-title">加入行动者群、定期碰面，让更多的行动者互相看见</view>
+          <view class="step-desc">
+            加入小事行动者共学微信群。不要错过一月一次的行动者的线上/线下见面会，在这里收获伙伴，分享经验。
+          </view>
+        </view>
+        <view class="step-image-box puzzle-left">
+          <image src="https://picsum.photos/seed/meet/800/600" mode="aspectFill" class="step-img shadow-lg" />
+        </view>
+      </view>
+
+      <!-- Step 04 -->
+      <view class="step-item reverse">
+        <view class="step-content">
+          <view class="step-num">Step 04</view>
+          <view class="step-title">参加社区小事节，让你和你的团队一起被看见</view>
+          <view class="step-desc">
+            一年一期，在行动者共学群中发起小事节参与申请。机会难得，让你和团队成员们一起出来展示吧！
+          </view>
+        </view>
+        <view class="step-image-box puzzle-right">
+          <image src="https://picsum.photos/seed/festival/800/600" mode="aspectFill" class="step-img shadow-lg" />
+        </view>
+      </view>
+    </view>
+  </section>
+
+  <!-- What we provide Section -->
+  <section class="provide-section">
+    <view class="container">
+      <view class="section-header">
+        <view class="section-title">我们为小事行动者提供</view>
+        <view class="title-underline"></view>
+      </view>
+
+      <view class="provide-grid">
+        <!-- Item 01 -->
+        <view class="provide-card bg-primary text-white puzzle-right">
+          <view class="card-num">01</view>
+          <view class="card-title">小事工具包</view>
+          <view class="card-desc">一份免费的小事工具包（电子版），启发你的行动灵感。</view>
+          <view class="card-footer">
+            <button class="card-btn secondary">点击下载</button>
+            <button class="card-btn white">购买【小事卡包】</button>
+          </view>
+        </view>
+
+        <!-- Item 02 -->
+        <view class="provide-card bg-accent-blue text-primary">
+          <view class="card-num">02</view>
+          <view class="card-title">一块白板</view>
+          <view class="card-desc">在楼道里、家门口，用白板开启温和的对话窗口。</view>
+          <view class="card-footer">
+            <button class="card-btn primary">点击购买【一块白板】</button>
+          </view>
+        </view>
+
+        <!-- Item 03 -->
+        <view class="provide-card bg-accent-orange text-primary">
+          <view class="card-num">03</view>
+          <view class="card-title">定期见面会</view>
+          <view class="card-desc">一月一次线上/线下活动，遇见各领域专家，优秀行动更有机会获得经费支持。</view>
+        </view>
+
+        <!-- Item 04 -->
+        <view class="provide-card bg-navy text-white">
+          <view class="card-num color-secondary">04</view>
+          <view class="card-title color-secondary">社区小事节</view>
+          <view class="card-desc opacity-80">一年一次的盛大庆祝，媒体联合报道，作品收录进官方展览与手册。</view>
+        </view>
+      </view>
+    </view>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section" id="apply-form">
+    <view class="container">
+      <view class="form-card shadow-lg">
+        <view class="form-header">
+          <view class="form-title">填写申请表单</view>
+          <view class="form-subtitle">开启你的小事行动之旅</view>
         </view>
 
         <view class="join-form">
-          <!-- 姓名 -->
           <view class="form-group">
             <text class="form-label required">姓名</text>
-            <input
-              class="form-input"
-              placeholder="请输入您的姓名"
-              value="{{ formData.name }}"
-              bindinput="onInputChange"
-              data-field="name"
-            />
+            <input class="form-input" placeholder="请输入您的姓名" value="{{ formData.name }}" bindinput="onInputChange" data-field="name" />
           </view>
 
-          <!-- 手机号 -->
           <view class="form-group">
             <text class="form-label required">手机号</text>
-            <input
-              class="form-input"
-              placeholder="请输入您的手机号"
-              type="number"
-              value="{{ formData.phone }}"
-              bindinput="onInputChange"
-              data-field="phone"
-            />
+            <input class="form-input" placeholder="请输入您的手机号" type="number" value="{{ formData.phone }}" bindinput="onInputChange" data-field="phone" />
           </view>
 
-          <!-- 所属街道 -->
           <view class="form-group">
             <text class="form-label required">所属街道</text>
-            <picker
-              mode="selector"
-              range="{{ streets }}"
-              value="{{ streetIndex }}"
-              bindchange="onStreetChange"
-            >
-              <view class="picker-display">
+            <picker mode="selector" range="{{ streets }}" value="{{ streetIndex }}" bindchange="onStreetChange">
+              <view class="picker-display {{ streetIndex === -1 ? 'placeholder' : '' }}">
                 {{ streets[streetIndex] || '请选择所属街道' }}
               </view>
             </picker>
           </view>
 
-          <!-- 个人简介 -->
           <view class="form-group">
             <text class="form-label">个人简介</text>
-            <textarea
-              class="form-textarea"
-              placeholder="请简单介绍一下自己，比如您的兴趣爱好、希望参与的社区活动等..."
-              value="{{ formData.bio }}"
-              bindinput="onInputChange"
-              data-field="bio"
-              maxlength="200"
-            />
+            <textarea class="form-textarea" placeholder="介绍一下你的兴趣，或者你想在社区做的小事..." value="{{ formData.bio }}" bindinput="onInputChange" data-field="bio" maxlength="200" />
             <text class="textarea-count">{{ formData.bio.length }}/200</text>
           </view>
 
-          <!-- 兴趣标签 -->
-          <view class="form-group">
-            <text class="form-label">感兴趣的活动类型</text>
-            <view class="interest-tags">
-              <view
-                wx:for="{{ interestOptions }}"
-                wx:key="value"
-                class="interest-tag {{ formData.interests.includes(item.value) ? 'active' : '' }}"
-                bindtap="onInterestToggle"
-                data-value="{{ item.value }}"
-              >
-                {{ item.label }}
-              </view>
-            </view>
-          </view>
-
-          <!-- 提交按钮 -->
           <view class="form-actions">
-            <button
-              class="btn btn-primary submit-btn"
-              bindtap="onSubmit"
-              disabled="{{ submitting }}"
-            >
-              {{ submitting ? '提交中...' : '提交申请' }}
+            <button class="submit-btn" bindtap="onSubmit" disabled="{{ submitting }}">
+              {{ submitting ? '提交中...' : '确认并提交' }}
             </button>
           </view>
         </view>
       </view>
-
-      <!-- 信息说明 -->
-      <view class="info-section">
-        <view class="info-card">
-          <text class="info-title">申请须知</text>
-          <view class="info-list">
-            <view class="info-item">• 我们会在3个工作日内审核您的申请</view>
-            <view class="info-item">• 审核通过后，我们会通过电话或微信联系您</view>
-            <view class="info-item">• 加入后，您将有机会参与各类社区活动</view>
-            <view class="info-item">• 所有信息仅用于社区活动组织，不会泄露给第三方</view>
-          </view>
-        </view>
-      </view>
     </view>
-  </view>
+  </section>
 </view>

@@ -152,7 +152,7 @@
 /* 板块1: Banner区域 */
 .banner-section {
   position: relative;
-  height: 260rpx; /* 降低高度，使其更显精致 */
+  height: var(--banner-height); /* 使用设计规范变量 */
   overflow: visible; /* 允许阴影溢出 */
 }
 
@@ -166,7 +166,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 240rpx; /* 增加高度以覆盖副标题 */
+  height: var(--banner-bg-height); /* 使用设计规范变量 */
   background-color: var(--primary-color);
   z-index: 0;
 }
@@ -366,7 +366,7 @@
 }
 
 .dropdown-options.show {
-  max-height: 600rpx; /* 增加最大高度，适应更多街道 */
+  max-height: var(--dropdown-max-height); /* 使用设计规范变量 */
   overflow-y: auto;   /* 允许竖向滚动 */
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -461,7 +461,7 @@
 /* 响应式设计 */
 @media (min-width: 750rpx) {
   .banner-section {
-    height: 500rpx;
+    height: var(--banner-height-lg);
   }
 
   .feature-buttons {

@@ -85,7 +85,6 @@
           <!-- 信息 -->
           <view class="activist-info">
             <text class="activist-name">{{ item.name }}</text>
-            <text class="activist-role">{{ item.role }}</text>
             <text class="activist-street">{{ item.street }}</text>
             <text class="activist-bio">{{ item.bio }}</text>
           </view>

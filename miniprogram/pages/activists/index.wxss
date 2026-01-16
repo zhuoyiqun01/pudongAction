@@ -184,14 +184,6 @@
   margin-bottom: var(--space-xs);
 }
 
-.activist-role {
-  font-size: var(--text-sm);
-  color: var(--success-color);
-  font-weight: var(--font-semibold);
-  display: block;
-  margin-bottom: var(--space-xs);
-}
-
 .activist-street {
   font-size: var(--text-xs);
   color: var(--text-gray);

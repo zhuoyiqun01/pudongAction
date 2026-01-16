@@ -62,6 +62,14 @@ Page({
     // 页面显示时
   },
 
+  // 滚动到表单
+  scrollToForm: function() {
+    wx.pageScrollTo({
+      selector: '#apply-form',
+      duration: 300
+    })
+  },
+
   // 输入框变化处理
   onInputChange: function (e) {
     const field = e.currentTarget.dataset.field

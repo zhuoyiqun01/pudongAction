@@ -19,7 +19,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: var(--space-md);
+  gap: var(--space-lg);
   padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom));
 }
 

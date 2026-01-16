@@ -10,7 +10,9 @@
       <image src="{{activist.image}}" mode="aspectFill" class="cover-image" bindtap="previewImage" data-url="{{activist.image}}" />
       <view class="name-overlay">
         <text class="activist-name">{{activist.name}}</text>
-        <view class="keyword-badge" wx:if="{{activist.keyword}}"># {{activist.keyword}}</view>
+        <view class="keyword-badges" wx:if="{{activist.tags && activist.tags.length > 0}}">
+          <text wx:for="{{activist.tags}}" wx:key="*this" class="keyword-badge"># {{item}}</text>
+        </view>
       </view>
     </view>
 
@@ -23,35 +25,19 @@
         </view>
         <view class="info-tag topic-tag">
           <text class="tag-icon">🧩</text>
-          <text>{{topicMap[activist.topic] || activist.topic}}</text>
+          <text>{{activist.topic}}</text>
         </view>
       </view>
 
       <!-- 个人简介（富文本） -->
       <view class="bio-card shadow-sm">
-        <view class="section-header">
-          <view class="header-line"></view>
-          <text class="section-title">行动故事</text>
-        </view>
         <rich-text nodes="{{activist.bio}}" class="rich-content"></rich-text>
       </view>
 
-      <!-- 小事内容（图片2） -->
-      <view class="content-card shadow-sm" wx:if="{{activist.action_image}}">
-        <view class="section-header">
-          <view class="header-line"></view>
-          <text class="section-title">小事现场</text>
-        </view>
-        <image src="{{activist.action_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.action_image}}" />
-      </view>
-
-      <!-- 个人感受（图片3） -->
-      <view class="feeling-card shadow-sm" wx:if="{{activist.feeling_image}}">
-        <view class="section-header">
-          <view class="header-line"></view>
-          <text class="section-title">小事语录</text>
-        </view>
-        <image src="{{activist.feeling_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.feeling_image}}" />
+      <!-- 小事现场与语录图片（合并容器） -->
+      <view class="images-card shadow-sm" wx:if="{{activist.action_image || activist.feeling_image}}">
+        <image wx:if="{{activist.action_image}}" src="{{activist.action_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.action_image}}" />
+        <image wx:if="{{activist.feeling_image}}" src="{{activist.feeling_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.feeling_image}}" />
       </view>
     </view>
 
