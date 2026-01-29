@@ -1,9 +1,33 @@
 <view class="leaders-page">
-  <!-- 页面头部 -->
-  <view class="page-header">
-    <view class="container">
-      <text class="page-title">社区带领人</text>
-      <text class="page-subtitle">他们是社区的引路人，用智慧和热情引领大家前行</text>
+  <!-- Banner 轮播 -->
+  <view class="banner-section" wx:if="{{banners.length > 0}}">
+    <swiper 
+      class="banner-swiper" 
+      indicator-dots="{{true}}" 
+      indicator-color="rgba(255, 255, 255, 0.5)" 
+      indicator-active-color="#ffffff" 
+      autoplay="{{true}}" 
+      interval="3000" 
+      duration="500" 
+      circular="{{true}}"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="index">
+        <image 
+          src="{{item}}" 
+          class="banner-image" 
+          mode="aspectFill" 
+        />
+      </swiper-item>
+    </swiper>
+    <!-- 渐变遮罩和标题 -->
+    <view class="banner-overlay">
+      <view class="banner-title-wrapper">
+        <text class="banner-title">小事带领人计划</text>
+        <view class="banner-subtitle">
+          <text>欢迎行动者前往所在社区的居民委员会，</text>
+          <text>链接你的带领人</text>
+        </view>
+      </view>
     </view>
   </view>
 
@@ -43,30 +67,6 @@
   <!-- 带领人列表 -->
   <view class="leaders-section">
     <view class="container">
-      <!-- 1. 金牌带领人荣誉榜 (横向滚动) -->
-      <view wx:if="{{ goldLeaders.length > 0 }}" class="gold-section">
-        <view class="section-title">🌟 金牌带领人</view>
-        <scroll-view class="gold-scroll" scroll-x="{{ true }}" enable-flex="{{ true }}">
-          <view class="gold-list">
-            <view 
-              wx:for="{{ goldLeaders }}" 
-              wx:key="_id" 
-              class="gold-card" 
-              bindtap="onLeaderTap" 
-              data-id="{{ item._id }}"
-            >
-              <view class="gold-avatar-wrapper">
-                <image src="{{ item.photo }}" class="gold-avatar" mode="aspectFill" />
-                <view class="gold-badge">🏆</view>
-              </view>
-              <text class="gold-name">{{ item.name }}</text>
-              <text class="gold-street">{{ item.street }}</text>
-            </view>
-          </view>
-        </scroll-view>
-      </view>
-
-      <!-- 2. 普通带领人列表 -->
       <view class="section-title" wx:if="{{ leaders.length > 0 }}">社区带领人</view>
       
       <!-- 加载状态 -->
@@ -75,7 +75,7 @@
       </view>
 
       <!-- 空状态 -->
-      <view wx:elif="{{ leaders.length === 0 && goldLeaders.length === 0 }}" class="empty-state">
+      <view wx:elif="{{ leaders.length === 0 }}" class="empty-state">
         <text class="empty-text">暂无带领人数据</text>
       </view>
 
@@ -85,7 +85,6 @@
           wx:for="{{ leaders }}"
           wx:key="_id"
           leader="{{ item }}"
-          bind:click="onLeaderTap"
           binderror="onImageError"
         />
       </view>

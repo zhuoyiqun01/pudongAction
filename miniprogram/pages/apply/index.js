@@ -1,4 +1,6 @@
 // pages/apply/index.js
+const imageConfig = require('../../utils/imageConfig.js')
+
 Page({
   data: {
     // 表单数据
@@ -9,6 +11,8 @@ Page({
       bio: '',
       interests: []
     },
+    // 图片配置
+    moreArrowUrl: '', // 从云存储加载
 
     // 选项数据
     streets: [], // 改为动态获取
@@ -32,6 +36,19 @@ Page({
   onLoad: function (options) {
     // 页面加载时的初始化
     this.loadStreets()
+    this.loadImages()
+  },
+
+  // 加载图片
+  async loadImages() {
+    try {
+      const moreArrowUrl = await imageConfig.getIcon('more-arrow')
+      if (moreArrowUrl) {
+        this.setData({ moreArrowUrl })
+      }
+    } catch (error) {
+      console.warn('⚠️ 加载图片失败，使用本地路径:', error)
+    }
   },
 
   /**

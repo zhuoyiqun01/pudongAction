@@ -42,7 +42,7 @@
   border-radius: var(--radius-md);
   padding: var(--space-md) var(--space-lg);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
   transition: var(--transition-base);
@@ -78,25 +78,22 @@
 }
 
 .menu-arrow {
-  color: var(--text-light);
-  font-size: var(--text-xl);
-  font-weight: var(--font-bold);
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* 特殊样式处理：调整小卡片的布局 */
 .span-1 .menu-content {
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
 .span-1 .menu-icon-wrapper {
   margin-bottom: var(--space-sm);
   margin-right: 0;
-}
-
-.span-1 .menu-arrow {
-  position: absolute;
-  right: var(--space-md);
-  bottom: var(--space-md);
 }

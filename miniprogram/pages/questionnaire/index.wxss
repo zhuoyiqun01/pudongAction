@@ -1,0 +1,13 @@
+/* pages/questionnaire/index.wxss */
+.questionnaire-page {
+  width: 100%;
+  height: 100vh;
+}
+
+.questionnaire-page web-view {
+  width: 100%;
+  height: 100%;
+}
+
+
+

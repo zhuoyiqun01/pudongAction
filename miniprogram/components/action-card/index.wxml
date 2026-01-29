@@ -1,13 +1,12 @@
 <view class="action-card" catchtap="onTap">
-  <image wx:if="{{action.image && action.image !== ''}}" src="{{action.image}}" class="card-image" mode="widthFix" />
+  <view wx:if="{{action.image && action.image !== ''}}" class="card-image-wrapper">
+    <image src="{{action.image}}" class="card-image" mode="aspectFill" lazy-load="{{true}}" />
+  </view>
   <view class="card-content">
     <view class="card-header">
       <text class="card-name">{{action.name}}</text>
     </view>
     <view class="card-title">{{displayTitle}}</view>
-    <view class="card-tags">
-      <view wx:for="{{action.tags}}" wx:key="*this" class="tag">{{item}}</view>
-    </view>
   </view>
 </view>
 

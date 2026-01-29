@@ -1,10 +1,24 @@
 <view class="activists-page">
-  <!-- 页面头部 -->
-  <view class="page-header">
-    <view class="container">
-      <text class="page-title">社区活动家</text>
-      <text class="page-subtitle">他们用行动温暖着社区的每一个角落</text>
-    </view>
+  <!-- Banner 轮播 -->
+  <view class="banner-section">
+    <swiper 
+      class="banner-swiper" 
+      indicator-dots="{{true}}" 
+      indicator-color="rgba(255, 255, 255, 0.5)" 
+      indicator-active-color="#ffffff" 
+      autoplay="{{true}}" 
+      interval="3000" 
+      duration="500" 
+      circular="{{true}}"
+    >
+      <swiper-item wx:for="{{banners}}" wx:key="index">
+        <image 
+          src="{{item}}" 
+          class="banner-image" 
+          mode="aspectFill" 
+        />
+      </swiper-item>
+    </swiper>
   </view>
 
   <!-- 筛选和搜索 -->
@@ -86,7 +100,7 @@
           <view class="activist-info">
             <text class="activist-name">{{ item.name }}</text>
             <text class="activist-street">{{ item.street }}</text>
-            <text class="activist-bio">{{ item.bio }}</text>
+            <text class="activist-bio">{{ item.subtitle || item.bio }}</text>
           </view>
         </view>
       </view>

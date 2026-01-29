@@ -1,0 +1,9 @@
+<!-- pages/questionnaire/index.wxml - 问卷页面 -->
+<view class="questionnaire-page">
+  <web-view 
+    src="{{questionnaireUrl}}" 
+    bindmessage="onWebViewMessage"
+    binderror="onWebViewError"
+  ></web-view>
+</view>
+

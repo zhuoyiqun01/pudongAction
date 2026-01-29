@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "联系小事带领人",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "leader-card": "/components/leader-card/index"
   }

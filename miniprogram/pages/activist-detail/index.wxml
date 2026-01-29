@@ -1,4 +1,5 @@
 <view class="activist-detail-page">
+  <intro-second-floor />
   <view wx:if="{{loading}}" class="loading-wrapper">
     <view class="loading-spinner"></view>
     <text>正在查阅行动记录...</text>
@@ -7,12 +8,12 @@
   <view wx:else class="detail-container fade-in">
     <!-- 顶部封面 -->
     <view class="cover-section">
-      <image src="{{activist.image}}" mode="aspectFill" class="cover-image" bindtap="previewImage" data-url="{{activist.image}}" />
+      <view class="cover-image-wrapper" bindtap="previewImage" data-url="{{activist.image}}">
+        <image src="{{activist.image}}" class="cover-image" mode="aspectFill" lazy-load="{{true}}" />
+      </view>
       <view class="name-overlay">
         <text class="activist-name">{{activist.name}}</text>
-        <view class="keyword-badges" wx:if="{{activist.tags && activist.tags.length > 0}}">
-          <text wx:for="{{activist.tags}}" wx:key="*this" class="keyword-badge"># {{item}}</text>
-        </view>
+        <text wx:if="{{activist.subtitle}}" class="activist-subtitle">{{activist.subtitle}}</text>
       </view>
     </view>
 
@@ -20,12 +21,10 @@
     <view class="info-section">
       <view class="tags-row">
         <view class="info-tag street-tag">
-          <text class="tag-icon">📍</text>
           <text>{{activist.street}}</text>
         </view>
-        <view class="info-tag topic-tag">
-          <text class="tag-icon">🧩</text>
-          <text>{{activist.topic}}</text>
+        <view wx:for="{{activist.topicsList}}" wx:key="index" class="info-tag topic-tag">
+          <text>{{item}}</text>
         </view>
       </view>
 
@@ -36,12 +35,14 @@
 
       <!-- 小事现场与语录图片（合并容器） -->
       <view class="images-card shadow-sm" wx:if="{{activist.action_image || activist.feeling_image}}">
-        <image wx:if="{{activist.action_image}}" src="{{activist.action_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.action_image}}" />
-        <image wx:if="{{activist.feeling_image}}" src="{{activist.feeling_image}}" mode="widthFix" class="detail-img" bindtap="previewImage" data-url="{{activist.feeling_image}}" />
+        <view wx:if="{{activist.action_image}}" class="detail-img-wrapper" bindtap="previewImage" data-url="{{activist.action_image}}">
+          <image src="{{activist.action_image}}" mode="aspectFill" class="detail-img" />
+        </view>
+        <view wx:if="{{activist.feeling_image}}" class="detail-img-wrapper" bindtap="previewImage" data-url="{{activist.feeling_image}}">
+          <image src="{{activist.feeling_image}}" mode="aspectFill" class="detail-img" />
+        </view>
       </view>
-    </view>
-
-    <!-- 底部按钮 -->
+    </view>    <!-- 底部按钮 -->
     <view class="footer-actions">
       <button class="share-btn" open-type="share">分享这个故事</button>
     </view>

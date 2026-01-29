@@ -41,6 +41,12 @@
   z-index: var(--z-base);
 }
 
+.hero-logo {
+  width: 100%;
+  margin-bottom: var(--space-xl);
+  display: block;
+}
+
 .hero-badge {
   display: inline-block;
   padding: var(--space-sm) var(--space-lg);
@@ -106,9 +112,8 @@
 }
 
 .hero-arrow {
-  width: var(--space-lg);
-  height: var(--space-lg);
-  align-items: center;
+  width: 32rpx;
+  height: 32rpx;
   margin-left: var(--space-sm);
 }
 

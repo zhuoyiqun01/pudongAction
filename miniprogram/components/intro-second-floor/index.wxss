@@ -1,0 +1,109 @@
+/* components/intro-second-floor/index.wxss */
+
+.second-floor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: var(--primary-color);
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(-100%);
+  will-change: transform;
+  cursor: pointer;
+}
+
+.second-floor.visible {
+  display: flex;
+}
+
+.second-floor.expand {
+  z-index: 9999;
+  opacity: 1;
+}
+
+.hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-lg);
+  color: var(--white);
+}
+
+.hero-primary {
+  max-width: 640rpx;
+  text-align: left;
+}
+
+.hero-logo {
+  width: 100%;
+  margin-bottom: var(--space-xl);
+  display: block;
+}
+
+.hero-title-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.hero-title {
+  font-size: 64rpx;
+  font-weight: var(--font-black);
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 4rpx; 
+}
+
+.hero-title-highlight {
+  font-size: 72rpx;
+  font-weight: var(--font-black);
+  color: var(--secondary-color);
+  line-height: 1;
+  display: block;
+  margin-top: 0;
+}
+
+.hero-description {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-top: var(--space-xl);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-description view {
+  margin-bottom: var(--space-md);
+}
+
+.hero-description .title-para {
+  font-size: var(--text-2xl);
+  line-height: 1.4;
+  margin-bottom: var(--space-lg);
+  text-indent: -24rpx;
+  padding-left: 24rpx;
+}
+
+.hero-description .desc-para {
+  text-indent: 0;
+  margin-bottom: var(--space-md);
+}
+
+.hero-description .highlight {
+  color: var(--secondary-color);
+  font-weight: var(--font-bold);
+}
+
+.second-floor-tip {
+  padding-top: var(--space-xl);
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+  padding-bottom: calc(var(--space-xl) + 32rpx + env(safe-area-inset-bottom));
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--text-sm);
+  letter-spacing: 2rpx;
+}

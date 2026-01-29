@@ -2,7 +2,7 @@
 App({
   onLaunch: function (options) {
     // 小程序启动时的初始化工作
-    console.log('小程序启动')
+    console.log('小程序启动', 'scene:', options.scene)
 
     // 初始化云开发
     if (!wx.cloud) {
@@ -10,7 +10,7 @@ App({
     } else {
       wx.cloud.init({
         env: 'cloud1-3g71minke37b68b6', // 改回有效的 ID
-        traceUser: true,
+        traceUser: false, // 不追踪用户，不收集用户信息
       })
     }
 
@@ -19,10 +19,44 @@ App({
     this.globalData.systemInfo = res
     this.globalData.statusBarHeight = res.statusBarHeight
     this.globalData.navBarHeight = res.statusBarHeight + 44
+
+    // 每次小程序启动时（onLaunch），重置开屏页标志
+    // 这样无论是首次启动还是通过分享进入，都会显示开屏页
+    // onLaunch 只在小程序首次启动时调用，所以这里重置是安全的
+    this.globalData.hasShownIntro = false
+    try {
+      wx.setStorageSync('hasShownIntro', false)
+    } catch (e) {
+      console.error('设置本地存储失败:', e)
+    }
   },
 
   onShow: function (options) {
     // 小程序显示时的操作
+    // 注意：从右上角退出不会杀后台，再次打开只会触发 onShow，不会触发 onLaunch
+    
+    // 如果是从分享链接进入（scene 为分享相关场景），重置开屏页标志
+    // 使用本地存储确保状态持久化，避免时序问题
+    // 常见的分享场景：
+    // 1001: 发现栏小程序主入口
+    // 1007: 单人聊天会话中的小程序消息卡片
+    // 1008: 群聊会话中的小程序消息卡片
+    // 1047: 扫描小程序码
+    // 1049: 长按识别小程序码
+    // 1011: 扫描二维码
+    // 1012: 长按图片识别小程序码
+    // 1013: 手机相册选取小程序码
+    // 1014: 小程序 profile 页
+    const shareScenes = [1001, 1007, 1008, 1047, 1049, 1011, 1012, 1013, 1014]
+    if (options.scene && shareScenes.includes(options.scene)) {
+      // 重置全局变量和本地存储
+      this.globalData.hasShownIntro = false
+      try {
+        wx.setStorageSync('hasShownIntro', false)
+      } catch (e) {
+        console.error('设置本地存储失败:', e)
+      }
+    }
   },
 
   onHide: function () {
@@ -49,7 +83,8 @@ App({
       accent2: '#A4CCFE',      // 强调色2 - 淡蓝
       accent3: '#FDC57A',      // 强调色3 - 橙黄
       gray: '#64748b'          // 灰色
-    }
+    },
+    hasShownIntro: false
   },
 
   // 工具函数

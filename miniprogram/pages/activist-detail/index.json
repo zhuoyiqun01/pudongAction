@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "行动者详情"
+  "navigationBarTitleText": "行动者详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "intro-second-floor": "/components/intro-second-floor/index"
+  }
 }
-

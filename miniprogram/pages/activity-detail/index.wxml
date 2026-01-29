@@ -1,12 +1,15 @@
 <view class="detail-page">
+  <intro-second-floor />
   <view wx:if="{{loading}}" class="loading">加载中...</view>
   <view wx:else class="detail-container">
-    <image src="{{activity.image}}" mode="aspectFill" class="detail-image" />
+    <view class="detail-image-wrapper">
+      <image src="{{activity.image}}" mode="aspectFill" class="detail-image" />
+    </view>
     
     <view class="detail-content">
       <view class="detail-header">
         <text class="detail-title">{{activity.name || activity.title}}</text>
-        <text class="detail-type">{{activity.type}}</text>
+        <text class="activity-status status-{{activity.statusClass}}">{{activity.statusLabel}}</text>
       </view>
 
       <view class="detail-meta">
@@ -24,10 +27,38 @@
         <view class="section-title">活动简介</view>
         <rich-text nodes="{{activity.intro}}" class="rich-content"></rich-text>
       </view>
+
+      <!-- 介绍图片 -->
+      <view class="intro-images-section" wx:if="{{activity.intro_images && activity.intro_images.length > 0}}">
+        <image 
+          wx:for="{{activity.intro_images}}" 
+          wx:key="index"
+          src="{{item}}" 
+          mode="widthFix" 
+          class="intro-image"
+          bindtap="previewImage"
+          data-url="{{item}}"
+          data-urls="{{activity.intro_images}}"
+        />
+      </view>
     </view>
 
     <view class="detail-footer">
-      <button class="join-btn" bindtap="onJoin">立即报名</button>
+      <button class="join-btn" bindtap="onJoin">{{buttonText}}</button>
+    </view>
+  </view>
+</view>
+
+<!-- 报名方式弹窗 -->
+<view class="modal-overlay {{showModal ? 'show' : ''}}" bindtap="closeModal">
+  <view class="modal-content" catchtap="stopPropagation">
+    <view class="modal-header">
+      <text class="modal-title">报名方式</text>
+      <text class="modal-close" bindtap="closeModal">×</text>
+    </view>
+    <view class="modal-body">
+      <rich-text nodes="{{activity.register_info || '暂无报名信息'}}" class="register-info-text"></rich-text>
+      <button class="copy-btn" bindtap="copyRegisterInfo">复制</button>
     </view>
   </view>
 </view>

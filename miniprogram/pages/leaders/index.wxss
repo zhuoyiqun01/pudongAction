@@ -4,27 +4,71 @@
   min-height: 100vh;
 }
 
-/* 页面头部 */
-.page-header {
-  background-color: var(--primary-color);
-  padding: var(--space-2xl) 0 var(--space-xl);
+/* Banner 轮播区域 */
+.banner-section {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.banner-swiper {
+  width: 100%;
+  height: calc(100vw * 853 / 1080); /* 1080:853 比例，0边距 */
+}
+
+.banner-swiper swiper-item {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 渐变遮罩和标题 */
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60rpx var(--space-lg) var(--space-lg);
+  background: linear-gradient(to top, rgba(6, 141, 123, 0.8), transparent);
+  color: var(--white);
+  display: flex;
+  align-items: flex-end;
+  z-index: 10;
+}
+
+.banner-title-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: flex-start;
+}
+
+.banner-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  letter-spacing: 2rpx;
   color: var(--white);
 }
 
-.page-title {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-bold);
-  display: block;
-  text-align: center;
-  margin-bottom: var(--space-sm);
-  letter-spacing: -0.5rpx;
+.banner-subtitle {
+  font-size: var(--text-base);
+  color: var(--white);
+  opacity: 0.95;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.page-subtitle {
-  font-size: var(--text-base);
-  opacity: 0.9;
+.banner-subtitle text {
   display: block;
-  text-align: center;
 }
 
 /* 筛选区域 */
@@ -132,82 +176,12 @@
   padding: var(--space-lg) var(--space-lg) var(--space-2xl) var(--space-lg);
 }
 
-/* 金牌带领人样式 */
-.gold-section {
-  margin-bottom: var(--space-xl);
-}
-
 .section-title {
   font-size: var(--text-lg);
   font-weight: var(--font-bold);
   color: var(--primary-color);
   margin-bottom: var(--space-md);
   display: block;
-}
-
-.gold-scroll {
-  width: 100%;
-  white-space: nowrap;
-}
-
-.gold-list {
-  display: flex;
-  padding: var(--space-xs) 0;
-}
-
-.gold-card {
-  flex-shrink: 0;
-  width: 200rpx;
-  margin-right: var(--space-lg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.gold-avatar-wrapper {
-  position: relative;
-  width: 160rpx;
-  height: 160rpx;
-  margin-bottom: var(--space-sm);
-}
-
-.gold-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 4rpx solid var(--secondary-color); /* 统一为 2px (4rpx) */
-  box-shadow: var(--shadow-md);
-}
-
-.gold-badge {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background-color: var(--secondary-color);
-  width: 48rpx;
-  height: 48rpx;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24rpx;
-  box-shadow: var(--shadow-sm);
-}
-
-.gold-name {
-  font-size: var(--text-base);
-  font-weight: var(--font-bold);
-  color: var(--text-dark);
-  margin-bottom: 4rpx;
-}
-
-.gold-street {
-  font-size: var(--text-xs);
-  color: var(--text-gray);
-  background-color: var(--bg-gray);
-  padding: 2rpx 12rpx;
-  border-radius: var(--radius-full);
 }
 
 .loading, .empty-state {
@@ -235,15 +209,8 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition-base);
-  cursor: pointer;
   display: flex;
   padding: var(--space-md);
-}
-
-.leader-card:hover {
-  transform: translateY(-4rpx);
-  box-shadow: var(--shadow-md);
 }
 
 /* 头像区域 */

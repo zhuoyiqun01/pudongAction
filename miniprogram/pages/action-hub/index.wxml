@@ -15,11 +15,11 @@
       style="--item-color: {{item.color}}"
     >
       <view class="menu-content">
-        <view class="menu-icon-wrapper">
+        <view class="menu-icon-wrapper" wx:if="{{item.icon}}">
           <text class="menu-icon">{{item.icon}}</text>
         </view>
         <view class="menu-title">{{item.title}}</view>
-        <view class="menu-arrow">→</view>
+        <image class="menu-arrow" src="{{moreArrowUrl}}" mode="aspectFit" wx:if="{{moreArrowUrl}}" />
       </view>
     </view>
   </view>

@@ -111,6 +111,11 @@
   width: auto;
 }
 
+.icon-arrow {
+  width: 32rpx;
+  height: 32rpx;
+}
+
 .step-image-box {
   width: 100%;
   padding: var(--space-md);

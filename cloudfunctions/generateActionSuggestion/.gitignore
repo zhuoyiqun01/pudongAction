@@ -1,0 +1,18 @@
+# 排除 node_modules，云平台会自动根据 package.json 安装依赖
+node_modules/
+
+# 排除开发相关文件
+package-lock.json
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# 排除测试文件
+test/
+tests/
+*.test.js
+*.spec.js
+
+
+

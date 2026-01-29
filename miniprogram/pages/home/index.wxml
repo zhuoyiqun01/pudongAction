@@ -1,51 +1,27 @@
-<view class="home-page fade-in {{showSecondFloor ? 'lock-scroll' : ''}}">
-  <!-- 二楼内容：社区小事是什么介绍 -->
-  <view 
-    class="second-floor {{showSecondFloor ? 'expand' : ''}}"
-    bindtouchstart="touchStart"
-    catchtouchmove="touchMove"
-    bindtouchend="touchEnd"
-    style="transform: translateY({{showSecondFloor ? secondFloorOffset : -windowHeight}}px); transition: {{isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1)'}};"
-  >
-    <view class="hero-section">
-      <view class="hero-primary">
-        <view class="hero-content">
-          <view class="hero-title-line">
-            <text class="hero-title">在家门口的五十米，</text>
-          </view>
-          <view class="hero-title-line">
-            <text class="hero-title-highlight">做一件小事</text>
-          </view>
-          <view class="hero-description">
-            <view>2025年普陀区委社会工作部、团区委联合大鱼营造，在全区发起「社区小事」开放邻里计划。</view>
-            <view>计划面向普陀区所有社区，招募期待在楼组、社区行动的在地生活者。鼓励人们回到身边最初五十米，关注那些细小、具体又温暖的"附近"。</view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="second-floor-tip" bindtap="closeSecondFloor">向上滑动或点击进入首页 ↑</view>
-  </view>
+<view class="home-page fade-in">
+  <!-- 二楼内容：使用 intro-second-floor 组件 -->
+  <intro-second-floor bind:close="onSecondFloorClose" />
 
-  <view 
-    class="main-content {{showSecondFloor ? 'slide-down' : ''}}"
-    style="{{showSecondFloor ? 'transform: translateY(' + (windowHeight + secondFloorOffset) + 'px);' : ''}} transition: {{isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1)'}};"
-  >
+  <view class="main-content">
     <!-- 板块1: 社区小事是什么？-->
   <view class="section banner-section-wrapper">
     <view class="section-title banner-title">
       <text>社区小事是什么？</text>
-      <text class="title-link" bindtap="onLearnMore">了解更多👉</text>
+      <view class="title-link" bindtap="onLearnMore">
+        <text>了解更多</text>
+        <image class="link-arrow" src="{{icons['learn-more-arrow']}}" mode="aspectFit" wx:if="{{icons['learn-more-arrow']}}" />
+      </view>
     </view>
     <view class="intro-subtitle">让小行动带来大改变</view>
     <view class="intro-section">
       <view class="feature-buttons">
         <view class="feature-btn generator-btn" bindtap="goToGenerator">
-          <view class="btn-icon">💡</view>
+          <image class="btn-icon" src="{{icons['generator-icon']}}" mode="aspectFit" wx:if="{{icons['generator-icon']}}" />
           <view class="btn-title">生成你的社区点子</view>
         </view>
 
         <view class="feature-btn action-btn" bindtap="goToAction">
-          <view class="btn-icon">🧩</view>
+          <image class="btn-icon" src="{{icons['action-icon']}}" mode="aspectFit" wx:if="{{icons['action-icon']}}" />
           <view class="btn-title">成为小事行动者</view>
         </view>
       </view>
@@ -56,7 +32,10 @@
   <view class="section">
     <view class="section-title sticky-title">
       <text>正在发生</text>
-      <text class="title-link" bindtap="goToActivities">查看更多小事活动 ></text>
+      <view class="title-link" bindtap="goToActivities">
+        <text>更多</text>
+        <image class="link-arrow" src="{{icons['more-arrow']}}" mode="aspectFit" wx:if="{{icons['more-arrow']}}" />
+      </view>
     </view>
     <view class="banner-section">
       <swiper 
@@ -74,14 +53,15 @@
       >
       <swiper-item wx:for="{{banners}}" wx:key="index">
         <view class="swiper-item-inner">
-          <image 
-            wx:if="{{item.image && item.image !== ''}}" 
-            src="{{item.image}}" 
-            class="banner-image" 
-            mode="aspectFill" 
-            bindtap="onBannerTap" 
-            data-id="{{item._id}}" 
-          />
+          <view wx:if="{{item.image && item.image !== ''}}" class="banner-image-wrapper" bindtap="onBannerTap" data-id="{{item._id}}">
+            <image 
+              src="{{item.image}}" 
+              class="banner-image" 
+              mode="aspectFill"
+              lazy-load="{{true}}"
+              binderror="onBannerImageError"
+            />
+          </view>
         </view>
       </swiper-item>
     </swiper>
@@ -105,9 +85,9 @@
               <view
                 wx:for="{{regions}}"
                 wx:key="_id"
-                class="dropdown-option {{selectedRegion === item.id ? 'selected' : ''}}"
+                class="dropdown-option {{selectedRegion === item.id || selectedRegion === item._id ? 'selected' : ''}}"
                 bindtap="selectRegion"
-                data-region="{{item.id}}"
+                data-region="{{item._id || item.id}}"
               >
                 {{item.name}}
               </view>

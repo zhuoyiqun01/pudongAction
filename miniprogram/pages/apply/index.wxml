@@ -25,7 +25,7 @@
             完成小事行动者申请。你的愿望会被倾听，也会呈现在小事行动者墙上，让更多志同道合的人找到你。
           </view>
           <button class="action-btn" bindtap="scrollToForm">
-            立即填写表单 <text class="icon-arrow">>→</text>
+            立即填写表单 <image class="icon-arrow" src="{{moreArrowUrl}}" mode="aspectFit" wx:if="{{moreArrowUrl}}" />
           </button>
         </view>
         <view class="step-image-box puzzle-left">
@@ -112,7 +112,7 @@
           <view class="card-num">03</view>
           <view class="card-title">定期见面会</view>
           <view class="card-desc">一月一次线上/线下活动，遇见各领域专家，优秀行动更有机会获得经费支持。</view>
-        </view>
+  </view>
 
         <!-- Item 04 -->
         <view class="provide-card bg-navy text-white">

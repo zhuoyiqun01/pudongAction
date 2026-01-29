@@ -1,25 +1,32 @@
 <view class="generator-page fade-in">
   <view class="header-area">
     <text class="title">社区小事生成器</text>
-    <text class="sub-title">你正在关注什么问题或话题？(如：老旧小区楼道堆物)</text>
+    <view class="sub-title-row">
+      <text class="sub-title">你正在关注什么问题或话题？</text>
+      <view class="change-topic-btn" bindtap="changeTopic">
+        <text class="change-topic-text">换个话题</text>
+      </view>
+    </view>
   </view>
 
   <view class="input-area">
-    <input 
+    <textarea 
       class="main-input" 
-      placeholder="输入场景..." 
+      placeholder="{{examplePlaceholder}}" 
       value="{{inputValue}}" 
       bindinput="onInput"
-      confirm-type="search"
-      bindconfirm="generate"
+      auto-height
+      maxlength="200"
+      show-confirm-bar="{{false}}"
     />
     <button 
       class="generate-btn {{isLoading ? 'loading' : ''}}" 
       bindtap="generate" 
       disabled="{{isLoading}}"
     >
-      {{isLoading ? '🤔 AI 正在思考中...' : '生成创意点子'}}
+      {{isLoading ? 'AI 正在思考中...' : '生成创意点子'}}
     </button>
+    <view class="ai-notice">由 AI 生成，仅供参考</view>
   </view>
 
   <view class="tags-area" wx:if="{{!showResult && !isLoading}}">
@@ -38,7 +45,7 @@
   </view>
 
   <view class="result-area" wx:if="{{showResult}}">
-    <view class="result-header">✨ 生成结果</view>
+    <view class="result-header">生成结果</view>
     <view class="tip-text">点击卡片，生成分享图片</view>
     
     <block wx:for="{{suggestions}}" wx:key="index">
@@ -50,12 +57,12 @@
           </view>
           <text class="card-title">{{item.title}}</text>
         </view>
-        <view class="card-desc">{{item.desc}}</view>
-        <button class="adopt-btn" bindtap="onViewDetail" data-index="{{index}}">查看详情</button>
+          <view class="card-desc">{{item.desc}}</view>
+        <button class="adopt-btn" bindtap="onViewDetail" data-index="{{index}}">分享</button>
       </view>
     </block>
     
-    <view class="re-generate" bindtap="generate">不满意？换一批试试 🔄</view>
+    <view class="re-generate" bindtap="generate">不满意？换一批试试</view>
   </view>
 
   <!-- 详情弹窗 -->
@@ -78,7 +85,7 @@
       
       <view class="modal-footer">
         <button class="footer-btn save-btn" bindtap="saveImage">保存卡片</button>
-        <button class="footer-btn share-btn" open-type="share">分享给好友</button>
+        <button class="footer-btn share-btn" open-type="share">分享小事生成器</button>
       </view>
       
       <view class="modal-close" bindtap="closeModal">✕</view>
@@ -87,7 +94,21 @@
   
   <view class="loading-area" wx:if="{{isLoading}}">
     <view class="loading-spinner"></view>
-    <text class="loading-text">🤔 AI 正在思考中...</text>
+  </view>
+
+  <!-- 免责声明弹窗 -->
+  <view class="disclaimer-mask" wx:if="{{showDisclaimer}}" bindtap="confirmDisclaimer">
+    <view class="disclaimer-content" catchtap="preventBubble">
+      <view class="disclaimer-title">使用须知</view>
+      <view class="disclaimer-text">
+        <text class="disclaimer-bold">本功能由 AI 生成内容，仅供参考。</text>
+        <text>生成的建议为人工智能算法生成，可能存在不准确、不完整或不适用的内容。请您在使用时：</text>
+        <text>1. 理性判断生成内容的适用性</text>
+        <text>2. 结合实际情况调整建议</text>
+        <text>3. 对生成内容的使用后果自行承担责任</text>
+      </view>
+      <button class="disclaimer-btn" bindtap="confirmDisclaimer">我知道了</button>
+    </view>
   </view>
 
   <!-- 隐藏的画布，用于生成分享图片 -->

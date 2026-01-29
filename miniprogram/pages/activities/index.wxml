@@ -1,4 +1,25 @@
-<view class="activities-page">
+<view class="activities-page" bindtap="closeDropdown">
+  <!-- 筛选器 -->
+  <view class="filter-container" catchtap="stopPropagation">
+    <view class="dropdown-filter">
+      <view class="dropdown-trigger" bindtap="toggleStatusDropdown">
+        <text class="dropdown-text">{{selectedStatusText}}</text>
+        <view class="dropdown-arrow {{statusDropdownOpen ? 'open' : ''}}">▼</view>
+      </view>
+      <view class="dropdown-options {{statusDropdownOpen ? 'show' : ''}}">
+        <view
+          wx:for="{{statusOptions}}"
+          wx:key="value"
+          class="dropdown-option {{selectedStatus === item.value ? 'selected' : ''}}"
+          bindtap="selectStatus"
+          data-status="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+  </view>
+
   <view wx:if="{{loading}}" class="loading">加载中...</view>
   <view wx:else class="activity-list">
     <view 
@@ -8,11 +29,13 @@
       bindtap="onActivityTap" 
       data-id="{{item._id}}"
     >
-      <image src="{{item.image}}" mode="aspectFill" class="activity-image" />
+      <view class="activity-image-wrapper">
+        <image src="{{item.image}}" mode="aspectFill" class="activity-image" />
+      </view>
       <view class="activity-info">
         <view class="activity-header">
           <text class="activity-title">{{item.name || item.title}}</text>
-          <text class="activity-type">{{item.type || '社区活动'}}</text>
+          <text class="activity-status status-{{item.statusClass}}">{{item.statusLabel}}</text>
         </view>
         <view class="activity-meta">
           <view class="meta-item">

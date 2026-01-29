@@ -11,7 +11,8 @@
     "pages/activities/index",
     "pages/activity-detail/index",
     "pages/activist-detail/index",
-    "pages/my-proposal/index"
+    "pages/my-proposal/index",
+    "pages/questionnaire/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -19,7 +20,7 @@
     "navigationBarTitleText": "社区小事",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f8fafc",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "onReachBottomDistance": 50
   },
   "tabBar": {
@@ -49,5 +50,6 @@
       }
     ]
   },
+  "subPackages": [],
   "lazyCodeLoading": "requiredComponents"
 }

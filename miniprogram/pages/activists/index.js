@@ -8,6 +8,13 @@ Page({
     searchQuery: '',
     streets: ['长寿路街道', '曹杨新村街道', '长风新村街道', '甘泉路街道', '万里街道'],
 
+    // Banner 图片列表（请将图片放在 miniprogram/images/banners/activists/ 目录下）
+    banners: [
+      // '/images/banners/activists/banner1.jpg',
+      // '/images/banners/activists/banner2.jpg',
+      // '/images/banners/activists/banner3.jpg',
+    ],
+
     // 分页相关
     page: 1,
     limit: 10,

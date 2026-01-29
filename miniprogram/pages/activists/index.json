@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "小事行动者",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }
 

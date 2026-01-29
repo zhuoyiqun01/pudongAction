@@ -50,8 +50,11 @@ miniprogram/
 cloudfunctions/          # 云函数
 ├── getActivists/       # 获取活动家数据
 ├── getLeaders/         # 获取领导者数据
+├── getActivities/      # 获取活动数据
+├── getHomeConfig/       # 获取首页配置（Banners, Regions, Topics）
 ├── joinCommunity/      # 用户加入申请
-└── initDatabase/       # 初始化数据库
+├── login/              # 用户登录
+└── generateActionSuggestion/  # 生成行动建议（AI）
 ```
 
 ## 数据库设计
@@ -116,15 +119,19 @@ cloudfunctions/          # 云函数
 2. 修改 `project.config.json` 中的 `appid` 为你的小程序 AppID
 3. 修改 `miniprogram/app.js` 中的云环境ID为你的云环境ID
 
-### 3. 初始化数据库
-1. 在微信开发者工具中部署 `initDatabase` 云函数
-2. 调用云函数初始化基础数据
+### 3. 配置数据库
+1. 在微信云开发控制台配置数据库集合
+2. 通过 CMS 内容管理后台管理数据（活动、活动家、带领人、地区、议题等）
 
 ### 4. 部署云函数
 在微信开发者工具中依次部署以下云函数：
-- `getActivists`
-- `getLeaders`
-- `joinCommunity`
+- `getActivists` - 获取活动家数据
+- `getLeaders` - 获取带领人数据
+- `getActivities` - 获取活动数据
+- `getHomeConfig` - 获取首页配置
+- `joinCommunity` - 用户加入申请
+- `login` - 用户登录
+- `generateActionSuggestion` - 生成行动建议（AI）
 
 ### 5. 预览和发布
 1. 在开发者工具中预览小程序

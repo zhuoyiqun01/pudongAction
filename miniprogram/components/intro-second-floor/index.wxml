@@ -1,0 +1,29 @@
+<view 
+  class="second-floor {{show ? 'expand' : ''}} {{visible ? 'visible' : ''}}"
+  catchtap="close"
+  bindtouchstart="touchStart"
+  catchtouchmove="touchMove"
+  bindtouchend="touchEnd"
+  style="transform: translateY({{show ? offset : -windowHeight}}px); transition: {{isDragging ? 'none' : 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1)'}};"
+  wx:if="{{visible}}"
+>
+  <view class="hero-section">
+    <view class="hero-primary">
+      <view class="hero-content">
+        <image class="hero-logo" src="{{logoUrl}}" mode="widthFix" wx:if="{{logoUrl}}" />
+        <view class="hero-title-line">
+          <text class="hero-title">在家门口的五十米，</text>
+        </view>
+        <view class="hero-title-line">
+          <text class="hero-title-highlight">做一件小事</text>
+        </view>
+        <view class="hero-description">
+          <view class="title-para"><text class="highlight">【社区小事】开放邻里计划是一场关于身边五十米的行动实验。</text></view>
+          <view class="desc-para"><text class="highlight">它倡导</text>普陀在地的生活者，从在家门口做一件小事开始，共同营造最初五十米的开放邻里生活。</view>
+          <view class="desc-para"><text class="highlight">它希望</text>个体在一件件的小事行动中，逐渐拥有自己构建「附近」的力量，在一次次开放的共同行动中，让邻里生活更自主、更有温度、更有想象。</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="second-floor-tip">向上滑动或点击进入 ↑</view>
+</view>

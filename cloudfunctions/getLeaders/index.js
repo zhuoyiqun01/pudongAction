@@ -19,8 +19,13 @@ exports.main = async (event, context) => {
       published: true
     }
 
-    if (street) {
+    // 街道筛选：street 可能是关联数据字段（存储 region 的 _id），也可能是字符串名称
+    // 如果 street 未传递、为空字符串或为 'all'，则不添加筛选条件（显示全部地区）
+    if (street !== undefined && street !== null && street !== '' && street !== 'all') {
       query.street = street
+      console.log('添加街道筛选:', street);
+    } else {
+      console.log('不添加街道筛选（显示全部地区）');
     }
 
     if (search) {

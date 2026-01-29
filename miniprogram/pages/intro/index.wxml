@@ -5,6 +5,14 @@
     <!-- Large Primary Block -->
     <view class="hero-primary">
       <view class="hero-content">
+        <image 
+          class="hero-logo" 
+          src="{{logoUrl}}" 
+          mode="widthFix" 
+          wx:if="{{logoUrl}}"
+          lazy-load="{{true}}"
+          binderror="onLogoError"
+        />
         <view class="hero-title-line">
           <text class="hero-title">在家门口的五十米，</text>
         </view>
@@ -17,7 +25,7 @@
         </view>
         <button class="btn btn-secondary hero-cta" bindtap="onJoinTap">
           立即加入
-          <text class="hero-arrow">→</text>
+          <image class="hero-arrow" src="{{moreArrowUrl}}" mode="aspectFit" wx:if="{{moreArrowUrl}}" />
         </button>
       </view>
     </view>
@@ -33,7 +41,13 @@
           <text class="puzzle-text">COMMUNITY<br/>ACTIONS</text>
         </view>
         <view class="puzzle-item puzzle-item-4">
-          <image src="https://picsum.photos/seed/community1/600/600" class="puzzle-image" mode="aspectFill" />
+          <image 
+            src="{{puzzleImageUrl || 'https://picsum.photos/seed/community1/600/600'}}" 
+            class="puzzle-image" 
+            mode="aspectFill"
+            lazy-load="{{true}}"
+            binderror="onPuzzleImageError"
+          />
         </view>
       </view>
     </view>
@@ -91,7 +105,13 @@
     <view class="container">
       <view class="mission-content">
         <view class="mission-image-container">
-          <image src="https://picsum.photos/seed/putuo/1000/800" class="mission-image" mode="aspectFill" />
+          <image 
+            src="{{missionImageUrl || 'https://picsum.photos/seed/putuo/1000/800'}}" 
+            class="mission-image" 
+            mode="aspectFill"
+            lazy-load="{{true}}"
+            binderror="onMissionImageError"
+          />
         </view>
         <view class="mission-text">
           <text class="mission-title">共创有温度的"附近"</text>

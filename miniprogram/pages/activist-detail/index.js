@@ -2,228 +2,182 @@
 Page({
   data: {
     activist: null,
-    loading: true,
-    regionsCache: null,
-    topicsCache: null
+    loading: true
   },
   onLoad(options) {
     const { id } = options;
     if (id) {
+      // 立即开始加载，不等待页面渲染完成
       this.loadActivistDetail(id);
+    } else {
+      this.setData({ loading: false });
+      wx.showToast({ title: '参数错误', icon: 'none' });
     }
   },
+  
   loadActivistDetail(id) {
     const db = wx.cloud.database();
-
-    // 设置超时
-    const timeout = setTimeout(() => {
-      wx.showToast({ title: '加载超时，请重试', icon: 'none' });
-      this.setData({ loading: false });
-    }, 15000); // 15秒超时
-
-    // 1. 先获取行动者详情
-    db.collection('activists').doc(id).get().then(activistRes => {
-      clearTimeout(timeout);
-      const activist = activistRes.data;
-
-      // 2. 异步处理地区和话题解析（不阻塞页面显示）
-      this.resolveRegionsAndTopics(activist).then(resolvedActivist => {
-        this.setData({
-          activist: resolvedActivist,
-          loading: false
-        });
-
-        if (resolvedActivist.name) {
-          wx.setNavigationBarTitle({
-            title: `${resolvedActivist.name}的行动故事`
-          });
+    
+    // 直接使用数据库查询，比云函数更快
+    db.collection('activists').doc(id).get({
+      success: (res) => {
+        if (res.data) {
+          this.processActivistData(res.data);
+        } else {
+          this.handleLoadError(new Error('数据不存在'));
         }
-      }).catch(err => {
-        console.warn('地区话题解析失败，使用原始数据:', err);
-        // 如果解析失败，直接显示原始数据
-        this.setData({
-          activist,
-          loading: false
-        });
-
-        if (activist.name) {
-          wx.setNavigationBarTitle({
-            title: `${activist.name}的行动故事`
+      },
+      fail: (err) => {
+        // 如果失败，尝试补全前缀查询（兼容运营录入的简单ID）
+        let searchId = id;
+        if (/^\d+$/.test(id)) {
+          searchId = `activist_${id}`;
+          console.log('ID 自动补全查询:', searchId);
+          
+          db.collection('activists').doc(searchId).get({
+            success: (res) => {
+              if (res.data) {
+                this.processActivistData(res.data);
+              } else {
+                this.handleLoadError(new Error('数据不存在'));
+              }
+            },
+            fail: (err2) => {
+              this.handleLoadError(err2);
+            }
           });
+        } else {
+          this.handleLoadError(err);
         }
-      });
-
-    }).catch(err => {
-      clearTimeout(timeout);
-      console.error('加载详情失败', err);
-      wx.showToast({ title: '加载失败', icon: 'none' });
-      this.setData({ loading: false });
+      }
     });
   },
 
-  // 解析地区和话题（带缓存优化）
-  async resolveRegionsAndTopics(activist) {
-    const tasks = [];
-
-    // 如果有街道ID，需要解析
-    if (activist.street && typeof activist.street === 'string') {
-      tasks.push(this.resolveRegion(activist.street));
+  processActivistData(activist) {
+    // 处理图片字段
+    if (activist.image) {
+      activist.image = this.parseImage(activist.image);
+    }
+    if (activist.action_image) {
+      activist.action_image = this.parseImage(activist.action_image);
+    }
+    if (activist.feeling_image) {
+      activist.feeling_image = this.parseImage(activist.feeling_image);
     }
 
-    // 如果有话题ID，需要解析
-    if (activist.topic && typeof activist.topic === 'string') {
-      tasks.push(this.resolveTopic(activist.topic));
+    // 处理议题字段：topics 是数组，需要转换为显示文本数组（排除"其他"）
+    // 议题映射：1=楼组, 2=为老, 3=爱宠, 4=文化, 5=亲子, 6=无障碍, 7=可持续, 8=其他
+    const topicMap = {
+      1: '楼组',
+      2: '为老',
+      3: '爱宠',
+      4: '文化',
+      5: '亲子',
+      6: '无障碍',
+      7: '可持续',
+      8: '其他'
+    };
+    
+    // 处理所有议题，排除"其他"
+    activist.topicsList = [];
+    if (activist.topics && Array.isArray(activist.topics) && activist.topics.length > 0) {
+      activist.topicsList = activist.topics
+        .map(topicId => topicMap[topicId] || null)
+        .filter(topicName => topicName && topicName !== '其他'); // 排除"其他"和无效值
+    }
+    
+    // 如果没有有效议题，设置为空数组（不显示议题标签）
+    if (activist.topicsList.length === 0) {
+      activist.topicsList = [];
     }
 
-    // 如果有话题数组，需要解析
-    if (activist.topics && Array.isArray(activist.topics)) {
-      tasks.push(this.resolveTopics(activist.topics));
-    }
-
-    try {
-      const results = await Promise.all(tasks);
-      const resolvedActivist = { ...activist };
-
-      // 应用解析结果
-      results.forEach(result => {
-        if (result.type === 'region') {
-          resolvedActivist.street = result.name;
-        } else if (result.type === 'topic') {
-          resolvedActivist.topic = result.name;
-        } else if (result.type === 'topics') {
-          // 如果有多个话题，取第一个作为主要显示话题
-          if (result.names && result.names.length > 0) {
-            resolvedActivist.topic = result.names[0];
-          }
-        }
+    // 处理街道名称：如果 street 是 regions 的 _id（如 reg_4），需要查询获取名称
+    this.processStreetName(activist, () => {
+      this.setData({
+        activist: activist,
+        loading: false
       });
 
-      return resolvedActivist;
-    } catch (error) {
-      console.warn('部分数据解析失败:', error);
-      return activist; // 返回原始数据
-    }
+      // 设置导航栏标题
+      if (activist.name) {
+        wx.setNavigationBarTitle({
+          title: activist.name
+        });
+      }
+    });
   },
 
-  // 解析地区（带缓存）
-  async resolveRegion(streetId) {
-    // 先检查缓存
-    if (this.data.regionsCache) {
-      const region = this.data.regionsCache.find(r => r._id === streetId || r.id === streetId);
-      if (region) {
-        return { type: 'region', name: region.name };
-      }
+  processStreetName(activist, callback) {
+    // 如果 street 已经是字符串名称，直接使用
+    if (typeof activist.street === 'string' && !activist.street.startsWith('reg_')) {
+      callback();
+      return;
     }
 
-    // 缓存不存在，查询数据库
-    try {
-      const db = wx.cloud.database();
-      const result = await db.collection('regions').where({
-        $or: [{ _id: streetId }, { id: streetId }]
-      }).get();
-
-      if (result.data && result.data.length > 0) {
-        const region = result.data[0];
-        // 更新缓存
-        const cache = this.data.regionsCache || [];
-        cache.push(region);
-        this.setData({ regionsCache: cache });
-
-        return { type: 'region', name: region.name };
-      }
-    } catch (error) {
-      console.warn('地区查询失败:', error);
+    // 如果 street 是 _id（如 reg_4），需要查询 regions 集合
+    const streetId = activist.street;
+    if (!streetId) {
+      activist.street = '';
+      callback();
+      return;
     }
 
-    // 查询失败，返回原始ID
-    return { type: 'region', name: streetId };
-  },
-
-  // 解析单个话题（带缓存）
-  async resolveTopic(topicId) {
-    // 先检查缓存
-    if (this.data.topicsCache) {
-      const topic = this.data.topicsCache.find(t => t._id === topicId || t.id === topicId);
-      if (topic) {
-        return { type: 'topic', name: topic.name };
-      }
-    }
-
-    // 缓存不存在，查询数据库
-    try {
-      const db = wx.cloud.database();
-      const result = await db.collection('topics').where({
-        $or: [{ _id: topicId }, { id: topicId }]
-      }).get();
-
-      if (result.data && result.data.length > 0) {
-        const topic = result.data[0];
-        // 更新缓存
-        const cache = this.data.topicsCache || [];
-        cache.push(topic);
-        this.setData({ topicsCache: cache });
-
-        return { type: 'topic', name: topic.name };
-      }
-    } catch (error) {
-      console.warn('话题查询失败:', error);
-    }
-
-    // 查询失败，返回原始ID
-    return { type: 'topic', name: topicId };
-  },
-
-  // 解析话题数组（带缓存）
-  async resolveTopics(topicIds) {
-    if (!Array.isArray(topicIds) || topicIds.length === 0) {
-      return { type: 'topics', names: [] };
-    }
-
-    const names = [];
-    const unresolvedIds = [];
-
-    // 先从缓存中查找
-    for (const topicId of topicIds) {
-      if (this.data.topicsCache) {
-        const topic = this.data.topicsCache.find(t => t._id === topicId || t.id === topicId);
-        if (topic) {
-          names.push(topic.name);
-          continue;
+    const db = wx.cloud.database();
+    db.collection('regions').doc(streetId).get({
+      success: (res) => {
+        if (res.data && res.data.name) {
+          activist.street = res.data.name;
+        } else {
+          // 如果查询失败，尝试使用原始值或空字符串
+          activist.street = typeof streetId === 'string' ? streetId : '';
         }
+        callback();
+      },
+      fail: (err) => {
+        console.warn('查询街道名称失败:', err);
+        // 查询失败时，如果原始值是字符串，尝试直接使用
+        activist.street = typeof streetId === 'string' ? streetId : '';
+        callback();
       }
-      unresolvedIds.push(topicId);
+    });
+  },
+
+  // 解析图片路径（与 activity-detail 保持一致）
+  parseImage(rawImg) {
+    if (!rawImg) return '';
+    let img = '';
+    if (Array.isArray(rawImg) && rawImg.length > 0) {
+      img = rawImg[0].url || rawImg[0].fileID || rawImg[0];
+    } else if (typeof rawImg === 'object' && rawImg !== null) {
+      img = rawImg.url || rawImg.fileID || rawImg;
+    } else {
+      img = rawImg;
     }
+    if (typeof img !== 'string') return '';
+    img = img.trim();
+    if (img.startsWith('//')) img = 'https:' + img;
+    return img;
+  },
 
-    // 查询未缓存的话题
-    if (unresolvedIds.length > 0) {
-      try {
-        const db = wx.cloud.database();
-        const result = await db.collection('topics').where({
-          $or: unresolvedIds.map(id => ({ _id: id })).concat(unresolvedIds.map(id => ({ id: id })))
-        }).get();
-
-        if (result.data && result.data.length > 0) {
-          const cache = this.data.topicsCache || [];
-
-          for (const topic of result.data) {
-            names.push(topic.name);
-            cache.push(topic);
-          }
-
-          this.setData({ topicsCache: cache });
-        }
-      } catch (error) {
-        console.warn('话题数组查询失败:', error);
-      }
-    }
-
-    return { type: 'topics', names };
+  handleLoadError(err) {
+    console.error('加载详情失败', err);
+    this.setData({ loading: false });
+    wx.showToast({ 
+      title: '内容已下架或不存在', 
+      icon: 'none',
+      duration: 2000
+    });
+    // 延迟返回上一页
+    setTimeout(() => {
+      wx.navigateBack();
+    }, 2000);
   },
 
   previewImage(e) {
     const url = e.currentTarget.dataset.url;
+    const urls = e.currentTarget.dataset.urls || [url];
     wx.previewImage({
-      urls: [url],
+      urls: urls,
       current: url
     });
   }

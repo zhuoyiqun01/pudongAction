@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "带领人详情"
+  "navigationBarTitleText": "带领人详情",
+  "enablePullDownRefresh": false
 }
 

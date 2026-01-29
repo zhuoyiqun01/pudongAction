@@ -1,21 +1,23 @@
-<view class="leader-card" catchtap="onTap">
+<view class="leader-card">
   <view class="leader-avatar">
     <image src="{{ leader.photo }}" class="avatar-image" mode="aspectFill" binderror="onImageError" />
   </view>
   <view class="leader-info">
     <view class="leader-header">
-      <text class="leader-name">{{ leader.name }}</text>
-      <text class="leader-role">{{ leader.role }}</text>
+      <view class="leader-name-group">
+        <text class="leader-name">{{ leader.name }}</text>
+        <text class="leader-role">{{ leader.role }}</text>
+      </view>
+      <text wx:if="{{ leader.is_gold_medal }}" class="gold-badge">金牌带领人</text>
     </view>
     <view class="leader-details">
-      <text class="leader-community">{{ leader.community }}</text>
-      <text class="leader-street">{{ leader.street }}</text>
+      <view class="leader-tags">
+        <text class="leader-community">{{ leader.community }}</text>
+        <text class="leader-street">{{ leader.street }}</text>
+      </view>
     </view>
+    <text wx:if="{{ leader.contact }}" class="leader-contact">{{ leader.contact }}</text>
     <text class="leader-slogan">{{ leader.slogan }}</text>
-    <view class="leader-contact">
-      <text class="contact-label">联系方式：</text>
-      <text class="contact-value">{{ leader.contact }}</text>
-    </view>
   </view>
 </view>
 
